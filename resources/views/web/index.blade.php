@@ -21,7 +21,7 @@
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-sm-12 mb-3">
-                        <span class="hero-text">UNLEASH THE POWER With Blender RB-6633</span>
+                        <span class="hero-text">UNLEASH THE POWER With Blender RB-663</span>
                     </div>
                     <div class="col-md-6 col-sm-12 mb-3">
                         <div class="d-md-flex d-block text-md-start text-center align-items-center ">
