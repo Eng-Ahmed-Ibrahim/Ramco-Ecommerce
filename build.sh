@@ -26,4 +26,4 @@ fi
 echo "[5/5] 🛠️ Migrating database"
 php artisan migrate --force
 
-echo "✅ The app has been built successfully!"
+echo "✅ The app has been built successfully !"
