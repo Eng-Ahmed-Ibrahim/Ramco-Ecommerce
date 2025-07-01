@@ -1,0 +1,10 @@
+@extends('web.app')
+@section('title', 'Ramco | ')
+@section('css')
+@endsection
+@section('content')
+
+@endsection
+@section('js')
+
+@endsection
