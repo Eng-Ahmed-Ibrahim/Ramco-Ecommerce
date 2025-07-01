@@ -7,7 +7,6 @@
 .phpunit.result.cache
 /.fleet
 /.idea
-/.ssh
 /.nova
 /.phpunit.cache
 /.vscode
