@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 col-12 mb-3 px-3">
+            <div class="col-md-8 col-12 mb-3 px-3 desktop">
                 <div class="company">Company</div>
                 <ul class="mb-5">
                     <li>
@@ -77,23 +77,27 @@
 
                     </div>
                 </div>
-                <div class=" d-md-none d-flex gap-2 ">
+            </div>
+            <div class=" d-md-none d-flex gap-2 ">
 
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"
-                            fill="none">
-                            <path d="M13 2L13 34M13 2L1 14M13 2L25 14" stroke="#6F6D66" stroke-width="2" />
-                        </svg>
-                    </button>
-                    <div>
-                        <a class="social-link mb-2"> <i class="fa-brands fa-square-facebook"></i></a>
-                        <a class="social-link"> <i class="fab fa-instagram"></i></a>
-                    </div>
+                <button class="desktop">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"
+                        fill="none">
+                        <path d="M13 2L13 34M13 2L1 14M13 2L25 14" stroke="#6F6D66" stroke-width="2" />
+                    </svg>
+                </button>
+                <div class="d-flex d-sm-none w-100 w-sm-auto align-items-center justify-content-center gap-2">
+                    <a class="social-link md-2 md-sm-none"> <i class="fa-brands fa-square-facebook"></i></a>
+                    <a class="social-link"> <i class="fab fa-instagram"></i></a>
                 </div>
+            </div>
+            <div class="mobile my-4">
+                        <div class="sub-title text-center">Copyright 2025 © RAMCO</div>
+
             </div>
         </div>
     </div>
-    <div class="footer-copyright d-flex justify-content-between align-items-center">
+    <div class="footer-copyright desktop  d-flex justify-content-between align-items-center">
         <div class="sub-title">Copyright 2025 © RAMCO</div>
         <div class="d-flex gap-3">
             <a class="sub-title">EN</a>

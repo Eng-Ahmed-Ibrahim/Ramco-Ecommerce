@@ -418,6 +418,7 @@ footer ul li {
         font-size: 15px;
 
     }
+
 }
 
 footer ul li a {
@@ -455,7 +456,13 @@ footer .sub-description {
     footer .sub-description {
         font-size: 14px;
     }
-
+    footer img{
+        width: 159px;
+    height: 52px;
+    aspect-ratio: 159 / 52;
+    text-align: center;
+    margin: auto;
+    }
 }
 
 footer .footer-copyright {
