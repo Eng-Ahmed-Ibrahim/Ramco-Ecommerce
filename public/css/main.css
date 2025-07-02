@@ -128,6 +128,7 @@ a {
 .nav-item.dropdown .dropdown-menu:hover {
     display: block;
 }
+
 .navbar .logo {
     height: 34px;
 }
@@ -216,7 +217,7 @@ a {
 }
 
 .home .hero .hero-text {
-    color: var(--main-color);
+    color: var(--black-color);
     font-size: 56px;
     font-style: normal;
     font-weight: 700;
@@ -231,8 +232,26 @@ a {
 
 @media (max-width: 425px) {
     .home .hero .hero-text {
-        font-size: 34px;
-        line-height: 70px;
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    html body .home .hero .hero-content {
+        color: #1F1F1F;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 23px;
+    }
+
+    .main-btn {
+
+        display: flex;
+        min-height: 24.358px;
+        padding: var(--12, 12px) var(--24, 24px);
+        justify-content: center;
+        align-items: center;
+        gap: var(--8, 8px);
 
     }
 }
@@ -456,12 +475,13 @@ footer .sub-description {
     footer .sub-description {
         font-size: 14px;
     }
-    footer img{
+
+    footer img {
         width: 159px;
-    height: 52px;
-    aspect-ratio: 159 / 52;
-    text-align: center;
-    margin: auto;
+        height: 52px;
+        aspect-ratio: 159 / 52;
+        text-align: center;
+        margin: auto;
     }
 }
 
