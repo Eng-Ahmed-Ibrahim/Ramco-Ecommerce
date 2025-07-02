@@ -226,8 +226,10 @@ a {
 
 @media (max-width: 768px) and (min-width: 425px) {
     .home .hero .hero-text {
-        font-size: 45px;
+        font-size: 26px;
+        line-height: normal;
     }
+
 }
 
 @media (max-width: 425px) {

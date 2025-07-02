@@ -15,8 +15,8 @@
 
         {{-- Cart & User --}}
         <div class="mobile mx-2">
-            <i class="fa fa-shopping-cart icon mx-2"></i>
-            <i class="fas fa-user"></i>
+            <i class="fa fa-shopping-cart icon mx-4"></i>
+            <i class="fas fa-user mx-2"></i>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
