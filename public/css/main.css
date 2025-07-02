@@ -15,6 +15,9 @@ body {
     background-attachment: fixed;
     overflow-x: hidden;
 }
+html{
+        overflow-x: hidden;
+}
 
 :root {
     --main-color: #E2211C;
