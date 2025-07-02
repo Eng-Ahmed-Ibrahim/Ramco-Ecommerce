@@ -12,3 +12,4 @@ Route::view('/repair','web.repair.index');
 Route::view('/news','web.news.index');
 Route::view('/news/article','web.news.show');
 Route::view('/contactus','web.contact.index');
+Route::view('/login','web.auth.login'); 
