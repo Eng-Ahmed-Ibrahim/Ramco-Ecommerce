@@ -97,7 +97,7 @@
     </style>
 @endsection
 @section('content')
-    <section class="home py-2">
+    <section class="home ">
 
         <section class="hero desktop ">
             <div class="container py-5 mx-4" style="height: 100vh;">
