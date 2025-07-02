@@ -285,7 +285,7 @@ a {
 
 @media (max-width: 425px) {
     .section-title {
-        font-size: 35px;
+        font-size: 30px;
     }
 
 }
@@ -347,15 +347,12 @@ a {
 }
 
 .home .best-deal-content {
-    color: var(--Colors-Primary-500, #1F1F1F);
+color: var(--Colors-Primary-500, #1F1F1F);
 
-    /* Global Tokens/Body/B-1 */
-    font-family: Oswald;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 27px;
-    /* 150% */
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
 }
 
 .home .best-deal a {
@@ -531,7 +528,7 @@ footer .footer-copyright {
 }
 
 .product-description {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
 }
 

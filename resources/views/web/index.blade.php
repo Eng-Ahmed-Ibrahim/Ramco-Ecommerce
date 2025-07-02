@@ -123,7 +123,7 @@
             </video>
 
             <div class="video-content col-md-4 col-sm-6 col-12">
-                <div class="container ">
+                <div class="container mx-4 mx-md-auto">
 
                     <div class="video-title">KASEM GROUP</div>
                     <p class="video-content">Renowned engineering company,
@@ -192,7 +192,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img src="{{ asset('static/best_deal.webp') }}" class="max-width" loading="lazy" alt="">
+                        <img src="{{ asset('static/best_deal.webp') }}" class="max-width"  >
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
