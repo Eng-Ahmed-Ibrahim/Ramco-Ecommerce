@@ -22,7 +22,7 @@
 
         <section class="hero mb-5">
             <div class="container py-5">
-                <div class="row align-items-center desktop">
+                <div class="row align-items-center desktop-flex">
                     <div class="col-md-6 col-sm-12 mb-3">
                         <span class="hero-text">UNLEASH THE POWER With Blender RB-663 </span>
                     </div>

@@ -279,6 +279,8 @@ a {
 @media (max-width: 768px) and (min-width: 425px) {
     .section-title {
         font-size: 40px;
+            line-height: 50px;
+
     }
 
 }
@@ -286,6 +288,8 @@ a {
 @media (max-width: 425px) {
     .section-title {
         font-size: 30px;
+            line-height: 50px;
+
     }
 
 }
