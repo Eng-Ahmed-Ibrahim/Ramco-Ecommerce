@@ -31,11 +31,11 @@
             z-index: 9999;
         }
 
-         @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .form {
                 width: 100%;
                     position: relative;
-                    height: auto ;
+                    height: auto !important;
             }
             body{
                 overflow: auto;
@@ -43,11 +43,6 @@
             .navbar{
                 display: none;
             }
-        }
-
-        .hero-text {
-            color: var(--Colors-Primary-500, #1F1F1F) !important;
-
         }
 
         .card-header,
@@ -94,12 +89,16 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
+        .login-link{
+            text-decoration: underline !important;
+            color: black;
+        }
     </style>
 @endsection
 @section('content')
     <section class="home py-2">
 
-        <section class="hero desktop ">
+        <section class="hero desktop mb-5">
             <div class="container py-5 mx-4" style="height: 100vh;">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-sm-12 mb-3">
@@ -119,33 +118,53 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <a href="/" class="btn"><i class="fa-solid fa-xmark"></i> </a>
-                    <span>Login</span>
+                    <span>Create an account</span>
 
                 </div>
                 <div class="card-body">
 
-                    <div class="mt-5 mx-md-5 mx-2">
+                    <div class="mt-2 mx-md-5 mx-2">
 
                         <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="first_name" class="mb-2"> First Name</label>
+                                <div class="input-wrapper">
+                                    {{-- <i class="fa fa-envelope icon"></i> --}}
+                                    <input type="text" name="first_name" id="first_name" placeholder="First Name " />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="mb-2"> Last Name</label>
+                                <div class="input-wrapper">
+                                    {{-- <i class="fa fa-envelope icon"></i> --}}
+                                    <input type="text" name="last_name" id="last_name" placeholder="Last Name " />
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="email" class="mb-2"> Email</label>
                                 <div class="input-wrapper">
                                     {{-- <i class="fa fa-envelope icon"></i> --}}
-                                    <input type="email" id="email" placeholder="email address" />
+                                    <input type="email" name="email" id="email" placeholder="email address" />
                                 </div>
                             </div>
+               
                             <div class="mb-3">
                                 <label for="password" class="mb-2"> Password</label>
                                 <div class="input-wrapper">
                                     <input type="password" id="password" placeholder="Password" />
                                 </div>
                             </div>
-                            <button class="main-btn login-btn w-100">Login</button>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="mb-2">Confirm Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="confirm_password" placeholder="Confirm Password" />
+                                </div>
+                            </div>
+                            <button class="main-btn login-btn w-100">Create Account</button>
                         </form>
-                        <div class="divider">
-                            <span>OR</span>
+                        <div class="text-center mt-3">
+                            Already have an account? <a class="login-link" href="/login">Login</a>
                         </div>
-                        <a href="/register" class="main-btn">Create Account</a>
                     </div>
                 </div>
             </div>

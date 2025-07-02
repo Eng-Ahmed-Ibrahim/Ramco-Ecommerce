@@ -13,3 +13,4 @@ Route::view('/news','web.news.index');
 Route::view('/news/article','web.news.show');
 Route::view('/contactus','web.contact.index');
 Route::view('/login','web.auth.login'); 
+Route::view('/register','web.auth.register'); 
