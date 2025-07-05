@@ -17,176 +17,43 @@
         <meta property="og:url" content="https://keenthemes.com/metronic" />
         <meta property="og:site_name" content="Keenthemes | Metronic" />
         <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-        <link rel="shortcut icon" href="/{{ $shared_data['website_logo'] }}" />
+        {{-- <link rel="shortcut icon" href="/{{ $shared_data['website_logo'] }}" /> --}}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 
         <!-- ltr -->
         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-            type="text/css" />
+        type="text/css" />
         <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}?v={{ time() }}" rel="stylesheet"
             type="text/css" />
         @yield('css')
 
         <style>
-            body {
-                overflow-x: hidden;
+            #kt_app_sidebar_toggle{
+                background: white !important;
             }
-
-            .card {
-                background: transparent !important;
+            tr,th,td{
+                text-align: center
             }
-
-            .select2-container .select2-selection--single .select2-selection__clear {
-                background-color: transparent;
-                border: none;
-                font-size: 1em;
-                position: absolute;
-                top: 50%;
-                left: 3px;
+            textarea{
+                resize: none;
             }
+            .btn-primary{
+   
+            background-color: #1F1F1F !important;
 
-            html[data-bs-theme="dark"] .modal-content {
-                background-color: #1C1C1C !important;
-                color: white;
+            color: #fff !important;
+
             }
+            .btn-check:checked + .btn.btn-primary, .btn-check:active + .btn.btn-primary, .btn.btn-primary:focus:not(.btn-active), .btn.btn-primary:hover:not(.btn-active), .btn.btn-primary:active:not(.btn-active), .btn.btn-primary.active, .btn.btn-primary.show, .show > .btn.btn-primary:hover{
+   
+            background-color: #1F1F1F !important;
 
-            html[data-bs-theme="dark"] #kt_app_header_container {
-                background-color: #1C1C1C !important;
-                color: white !important;
-                /* Adjust text color for dark background */
-            }
+            color: #fff !important;
 
-            html[data-bs-theme="light"] #kt_app_header_container {
-                background-color: white !important;
-                color: black !important;
-                /* Adjust text color for dark background */
-            }
-
-            html[data-bs-theme="dark"] .form-control {
-                background-color: #1c1c1c !important;
-                color: white;
-                /* Adjust text color for dark background */
-                border: 1px solid var(--bs-gray-300) !important;
-            }
-
-            html[data-bs-theme="dark"] #calendar {
-                background-color: #1c1c1c !important;
-                color: white;
-                /* Adjust text color for dark background */
-            }
-
-            .card-body {
-                width: 100%;
-                overflow-x: scroll;
-            }
-
-            html {
-                overflow-x: hidden;
-            }
-
-            .pagination {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 5px;
-                margin-top: 20px;
-            }
-
-            .pagination-link {
-                display: inline-block;
-                padding: 10px 15px;
-                text-decoration: none;
-                color: #333;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                transition: background-color 0.3s, color 0.3s;
-            }
-
-            .pagination-link:hover {
-                background-color: #f0f0f0;
-                color: #333;
-            }
-
-            .pagination-link.active {
-                background-color: #007bff;
-                color: white;
-                border-color: #007bff;
-            }
-
-            .pagination-link.disabled {
-                color: #ccc;
-                cursor: not-allowed;
-            }
-
-            .nav-line-tabs.nav-line-tabs-2x .nav-item .nav-link.active,
-            .nav-line-tabs.nav-line-tabs-2x .nav-item.show .nav-link,
-            .nav-line-tabs.nav-line-tabs-2x .nav-item .nav-link:hover:not(.disabled) {
-                border-bottom-width: 2px;
-                padding: 10px !important;
-            }
-
-            html[data-bs-theme="dark"] .breadcrumb {
-                background: #1c1c1c !important;
-                color: white !important;
-                padding: 5px;
-            }
-
-            html[data-bs-theme="light"] .breadcrumb {
-                background: #ffffff !important;
-                color: black !important;
-                padding: 5px;
-            }
-
-            .form-control::placeholder {
-                font-size: 13px;
-            }
-
-
-            .breadcrumb {
-                background-color: #5C5BE5 !important;
-                color: white !important;
-            }
-
-            html[data-bs-theme="dark"] .card {
-                border: none;
-                padding: 0;
-            }
-
-            td,
-            th {
-                text-align: center !important;
-            }
-
-            .avaliable-span {
-                position: absolute;
-                top: 1;
-                z-index: 9;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-                font-weight: bold;
-                border: 1px solid #8080802b;
-            }
-
-            html[data-bs-theme="dark"] .avaliable-span {
-                border: 1px solid;
-            }
-
-            html[data-bs-theme="dark"] .card-body,
-            .avaliable-span {
-                background: #1c1c1c !important;
-                color: white !important;
-            }
-
-            html[data-bs-theme="light"] .card-body,
-            .avaliable-span {
-                background: #FFFFFF !important;
-                color: black !important;
             }
         </style>
+
 
     </head>
 
@@ -200,11 +67,10 @@
         <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
             <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
                 @include('admin.layouts.header')
+                @include('admin.layouts.sidebar')
                 <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-                    @include('admin.layouts.sidebar')
                     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                         @yield('content')
-                        @include('admin.layouts.reminder')
                     </div>
                 </div>
             </div>
@@ -228,6 +94,9 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+
+
 
         <script>
             toastr.options = {
@@ -253,7 +122,7 @@
                 toastr.warning("{{ session('warning') }}");
             @endif
 
-            @if ($errors->any())
+            @if (isset($errors) && $errors->any())
                 @foreach ($errors->all() as $error)
                     toastr.error("{{ $error }}");
                 @endforeach

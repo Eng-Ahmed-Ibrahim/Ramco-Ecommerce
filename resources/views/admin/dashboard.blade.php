@@ -13,7 +13,7 @@ $sub_title="Pages";
 				<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ $title }}</h1>
 				<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
 					<li class="breadcrumb-item text-muted">
-						<a class="text-muted text-hover-primary">{{ $sub_title }}</a>
+						<a  class="text-muted text-hover-primary">{{ $sub_title }}</a>
 					</li>
 					<li class="breadcrumb-item">
 						<span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -39,6 +39,5 @@ $sub_title="Pages";
 			</div>
 		</div>
 	</div>
-</div>
 
 @endsection

@@ -27,34 +27,35 @@ class ProductService
         return $product;
     }
 
-public function add_product($data, $galleryFiles = [])
-{
-    $thumbnailPath = null;
-
-    try {
-        return DB::transaction(function () use (&$thumbnailPath, $data, $galleryFiles) {
-            $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
-            $data['thumbnail'] = $thumbnailPath;
-            $data['colors'] = $this->formatColors($data['colors']);
-            $product = $this->ProductsRepository->store($data);
-            $this->upload_galleries($galleryFiles, $product);
-            return $product;
-        });
-    } catch (\Exception $e) {
-        if ($thumbnailPath && Storage::disk('public')->exists($thumbnailPath)) {
-            Storage::disk('public')->delete($thumbnailPath);
-        }
-
-        throw $e;
-    }
-}
-
-    public function update_product($data, $galleryFiles = [], $product_id)
+    public function add_product($data, $galleryFiles = [])
     {
         $thumbnailPath = null;
-        try{
 
-            return DB::transaction(function () use ($data, $galleryFiles, $product_id) {
+        try {
+            return DB::transaction(function () use (&$thumbnailPath, $data, $galleryFiles) {
+                $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
+                $data['thumbnail'] = $thumbnailPath;
+                $data['colors'] = $this->formatColors($data['colors']);
+                $product = $this->ProductsRepository->store($data);
+                $this->upload_galleries($galleryFiles, $product);
+                return $product;
+            });
+        } catch (\Exception $e) {
+            // @phpstan-ignore-next-line
+            if (!empty($thumbnailPath)  && Storage::disk('public')->exists($thumbnailPath)) {
+                Storage::disk('public')->delete($thumbnailPath);
+            }
+
+            throw $e;
+        }
+    }
+
+    public function update_product($data, $product_id, $galleryFiles = [])
+    {
+        $thumbnailPath = null;
+        try {
+
+            return DB::transaction(function () use (&$thumbnailPath , $data, $galleryFiles, $product_id) {
                 $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
                 $data['thumbnail'] = $thumbnailPath;
 
@@ -63,8 +64,10 @@ public function add_product($data, $galleryFiles = [])
                 $this->upload_galleries($galleryFiles, $product);
                 return $product;
             });
-        }catch (\Exception $e){
-            if($thumbnailPath != null && Storage::disk('public')->exists($thumbnailPath))
+        } catch (\Exception $e) {
+            
+            // @phpstan-ignore-next-line
+            if (!empty($thumbnailPath)  && Storage::disk('public')->exists($thumbnailPath))
                 Storage::disk('public')->delete($thumbnailPath);
             throw $e;
         }

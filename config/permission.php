@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'guard_name' => 'admin',
 
     'models' => [
 

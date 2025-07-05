@@ -1,7 +1,7 @@
 @extends('admin.app')
 @php
-$title="Dashboard";
-$sub_title="Pages";
+$title="Create Product";
+$sub_title="Products";
 @endphp
 @section('title',$title)
 @section('content')
@@ -21,17 +21,18 @@ $sub_title="Pages";
 					<li class="breadcrumb-item text-muted">{{ $title }}</li>
 				</ul>
 			</div>
-			<div class="d-flex align-items-center gap-2 gap-lg-3">
 
-				<a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Create</a>
-			</div>
 		</div>
 	</div>
 	<div id="kt_app_content" class="app-content flex-column-fluid">
 		<div id="kt_app_content_container" class="app-container container-xxl">
 			<div class="card">
 				<div class="card-body p-lg-17">
-
+            <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+                @csrf
+                @include('admin.products.layouts.form')
+                <button class="btn btn-primary w-100" >Create</button>
+            </form>
 
 
 

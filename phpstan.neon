@@ -6,3 +6,6 @@ parameters:
     paths:
         - app
         - routes
+    ignoreErrors:
+        - '#Parameter \#1 \$view of function view expects view-string\|null, string given.#'
+
