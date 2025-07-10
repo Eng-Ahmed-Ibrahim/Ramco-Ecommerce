@@ -13,10 +13,14 @@
         <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('static/logo.webp') }}"
                 alt=""></a>
 
-        {{-- Cart & User --}}
+        {{-- Cart & User  --}}
         <div class="mobile mx-2">
-            <i class="fa fa-shopping-cart icon mx-4"></i>
-            <i class="fas fa-user mx-2"></i>
+            <a href="{{ route('web.cart') }}">
+                <i class="fa fa-shopping-cart icon mx-4"></i>
+            </a>
+            <a href="{{ route('web.register') }}">
+                <i class="fas fa-user mx-2"></i>
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,26 +36,28 @@
             </div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">About Us </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.about') }}">About Us </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"> Kitchen Appliances </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}#"> Kitchen
+                        Appliances </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home Appliances </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}">Home Appliances
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accessories </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}">Accessories </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Repair </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.repair') }}">Repair </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">News </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.news') }}">News </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Contact Us </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.contact') }}">Contact Us </a>
                 </li>
 
             </ul>
@@ -66,9 +72,13 @@
 
                 <span>English</span>
                 <i class="fas fa-globe"></i>
-                <i class="fa fa-shopping-cart icon"></i>
+                <a href="{{ route('web.cart') }}">
+                    <i class="fa fa-shopping-cart icon"></i>
+                </a>
 
-                <i class="fas fa-user"></i>
+                <a href="{{ route('web.register') }}">
+                    <i class="fas fa-user"></i>
+                </a>
             </div>
 
         </div>
