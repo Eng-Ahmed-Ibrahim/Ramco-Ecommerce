@@ -96,6 +96,7 @@
                                      <th>Sub Category</th>
                                      <th>Price</th>
                                      <th>Thumbnail</th>
+                                     <th>Home Banner</th>
                                      <th>Best Seller</th>
                                      <th>Best Product</th>
 
@@ -124,6 +125,15 @@
                                              <img src="{{ asset('storage/' . $product->thumbnail) }}" width="50">
                                          </td>
                                          {{-- Switches --}}
+                                         <td>
+                                             <label class="switch">
+                                                 <input type="checkbox" class="toggle-home-banner"
+                                                     data-id="{{ $product->id }}"
+                                                     {{ $product->home_banner == 1 ? 'checked' : '' }}>
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </td>
+
                                          <td>
                                              <label class="switch">
                                                  <input type="checkbox" class="toggle-switch" data-id="{{ $product->id }}"
@@ -223,7 +233,7 @@
                  },
                  success: function(response) {
                      let fieldName = type.replace(/_/g, ' ').replace(/\b\w/g, char => char
-                 .toUpperCase());
+                         .toUpperCase());
                      toastr.success(fieldName + ' updated successfully');
                  },
                  error: function(xhr) {
@@ -231,6 +241,30 @@
                      // Rollback checkbox state on failure
                      $(this).prop('checked', !isChecked);
                  }.bind(this)
+             });
+         });
+     </script>
+     <script>
+         $('.toggle-home-banner').on('change', function() {
+             let productId = $(this).data('id');
+
+             $.ajax({
+                 url: '{{ route('admin.products.setHomeBanner') }}',
+                 method: 'POST',
+                 data: {
+                     _token: '{{ csrf_token() }}',
+                     id: productId
+                 },
+                 success: function(response) {
+                     // Uncheck all then recheck the clicked one
+                     $('.toggle-home-banner').prop('checked', false);
+                     $(`.toggle-home-banner[data-id="${productId}"]`).prop('checked', true);
+
+                     toastr.success('Home banner updated successfully');
+                 },
+                 error: function() {
+                     toastr.error('Something went wrong!');
+                 }
              });
          });
      </script>

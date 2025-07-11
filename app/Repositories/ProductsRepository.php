@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Helpers\Helpers;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsRepository
@@ -12,10 +14,12 @@ class ProductsRepository
     public function getProducts($filters)
     {
         $products = Product::filter($filters)
-            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'is_best_product')
+            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product')
             ->with(['category:id,name,slug', 'subCategory'])->paginate(16);
         return $products;
     }
+
+
     public function show($slug)
     {
         $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name,slug')->firstOrFail();
@@ -83,6 +87,8 @@ class ProductsRepository
             'cooling_power' => $data['cooling_power'],
             'category_id' => $data['category_id'],
             'sub_category_id' => $data['sub_category_id'],
+            "model" => $data['model'],
+            "description" => $data['description'],
         ]);
     }
     public function update($id, $data)
@@ -103,7 +109,15 @@ class ProductsRepository
             'cooling_power' => $data['cooling_power'] ?? $product->cooling_power,
             'category_id' => $data['category_id'] ?? $product->category_id,
             'sub_category_id' => $data['sub_category_id'] ?? $product->sub_category_id,
+            "model" => $data['model'] ?? $product->model,
+            "description" => $data['description'] ?? $product->description,
         ]);
+        if($product->home_banner)
+            Helpers::cache_home_banner();
+        if($product->is_best_seller)
+            Helpers::cache_best_sellers();
+        if($product->is_best_product)
+            Helpers::cache_best_products();
 
         return $product;
     }

@@ -3,6 +3,14 @@
     <input type="text" name="name" value="{{ old('name', $product->name ?? '') }}" class="form-control" required>
 </div>
 <div class="mb-4">
+    <label>Model</label>
+    <input type="text" name="model" value="{{ old('model', $product->model ?? '') }}" class="form-control" required>
+</div>
+<div class="mb-4">
+    <label>Description</label>
+    <textarea name="description" class="form-control" rows="4" required>{{ old('description', $product->description ?? '') }}</textarea>
+</div>
+<div class="mb-4">
     <label>Colors</label>
     <input type="text" name="colors" id="colorsInput" class="form-control" value='@json(old('colors', $product->colors ?? []))'
         placeholder="Type color and press Enter" required>

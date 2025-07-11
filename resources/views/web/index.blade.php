@@ -24,46 +24,41 @@
             <div class="container py-5">
                 <div class="row align-items-center desktop-flex">
                     <div class="col-md-6 col-sm-12 mb-3">
-                        <span class="hero-text">UNLEASH THE POWER With Blender RB-663</span>
+                        <span class="hero-text">{{ $home_banner->name }}</span>
                     </div>
                     <div class="col-md-6 col-sm-12 mb-3">
                         <div class="d-md-flex d-block text-md-start text-center align-items-center ">
 
-                            <img src="{{ asset('static/hero_image.png') }}" class="mb-3" alt="">
+                            <img src="{{ asset('storage/' . $home_banner->thumbnail) }}" class="mb-3" alt="">
                             <div>
 
-                                <div class="mb-3 hero-content">
-                                    ? 5-Speeds Control | ❄️ Ice-Crushing Magic
-                                    ? 1.5 liters Jar Capacity | ☕️ Coffee & Spices grinder
-                                    ⚙️ Powerful 17,000 RPM
-                                </div>
-                                <button class="main-btn">View details</button>
+                                <div class="mb-3 hero-content">{{ $home_banner->details }}</div>
+                                <a href="{{ route('web.products.show', [$home_banner->category->slug, $home_banner->slug]) }}"
+                                    class="main-btn">View details</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row align-items-center mobile-flex">
                     <div class="col-6 mb-3">
-                        <span class="hero-text">UNLEASH THE POWER With Blender RB-663 </span>
+                        <span class="hero-text">{{ $home_banner->name }} </span>
                         <div>
 
-                            <div class="my-3 hero-content">
-                                ? 5-Speeds Control | ❄️ Ice-Crushing Magic
-                                ? 1.5 liters Jar Capacity | ☕️ Coffee & Spices grinder
-                                ⚙️ Powerful 17,000 RPM
-                            </div>
-                            <button class="main-btn">View details</button>
+                            <div class="my-3 hero-content">{{ $home_banner->details }} </div>
+                            <a href="{{ route('web.products.show', [$home_banner->category->slug, $home_banner->slug]) }}"
+                                class="main-btn">View details</a>
                         </div>
                     </div>
                     <div class="col-6 mb-3">
 
-                            <img src="{{ asset('static/hero_image.png') }}" class="mb-3 max-width" alt="">
+                        <img src="{{ asset('storage/' . $home_banner->thumbnail) }}" class="mb-3 max-width" alt="">
 
                     </div>
                 </div>
             </div>
         </section>
 
+        @if(count($best_products) > 0)
         <section class="best_products mb-5">
             <div class="container">
                 <div class="row mb-5">
@@ -74,35 +69,27 @@
                 </div>
                 <div class="swiper-container position-relative" style="overflow: hidden;">
                     <div class="swiper-wrapper products">
-                        @for ($i = 0; $i < 10; $i++)
-                            @php
-                                $imageNumber = ($i % 3) + 1; // بيكرر 1،2،3 ثم يرجع تاني
-                                $index = $i % 3;
-                            @endphp
-                            @php
-                                $names = ['Blender', 'Washing Machine', 'Stand Mixer'];
-                                $descriptions = [
-                                    'Enjoy a variety of smoothies and refreshing beverages',
-                                    'Experience various washing cycles and efficient cleaning',
-                                    'Explore different mixing speeds and effective blending',
-                                ];
-                            @endphp
+                        @foreach ($best_products as $product)
+   
+
                             <div class="swiper-slide product">
                                 <div class="mb-4">
-                                    <div class="product-name">{{ $names[$index] }}</div>
-                                    <div class="product-description">{{ $descriptions[$index] }}</div>
+                                    <div class="product-name">{{ $product->name}}</div>
+                                    <div class="product-description">{{ $product->description }}</div>
                                 </div>
-                                <img src="{{ asset('static/product' . $imageNumber . '.png') }}" loading="lazy"
-                                    alt="Product {{ $imageNumber }}">
+                                <a href="{{ route('web.products.show',[$product->category->slug,$product->slug]) }}">
+                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" loading="lazy"
+                                    alt="Product {{ $product->name }}">
+                                </a>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
 
                     <!-- ✅ Row: See All | Scrollbar | Arrows -->
                     <div class="d-flex justify-content-between align-items-center mt-3 gap-3 ">
 
                         <!-- ✅ See All -->
-                        <a href="#" class="see-all-link text-decoration-none fw-bold" style="white-space: nowrap;">See
+                        <a href="{{ route('web.products.index','kitchen-appliances') }}" class="see-all-link text-decoration-none fw-bold" style="white-space: nowrap;">See
                             All</a>
                         <div class="swiper-scrollbar" style="height: 6px;"></div>
                         <div class="d-flex align-items-center ">
@@ -115,6 +102,7 @@
                 </div>
 
         </section>
+        @endif
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
             <video autoplay muted loop playsinline class="bg-video">
@@ -147,18 +135,15 @@
             <div class="col-4"></div>
         </section>
 
+        @if(count($best_sellers)>0)
         <section class="mb-5 best_seller ">
             <div class="container">
                 <div class="section-title mb-4">Best Sellers</div>
                 <div class="row">
 
 
-                    @for ($i = 0; $i < 3; $i++)
-                        @php
-                            $imgNumber = ($i % 3) + 4;
-                            $productsNames = ['Induction Cooker', 'Iron RST-870', 'Hair Dryer'];
-
-                        @endphp
+                    @foreach ($best_sellers as $product)
+  
                         <div class="col-md-4 col-sm-6 col-12 mb-3">
                             <div class="card">
                                 <div class="card-body ">
@@ -166,11 +151,11 @@
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <img src="{{ asset('static/product' . $imgNumber . '.png') }}" alt="">
+                                        <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $productsNames[$i] }}</span>
-                                        <span>27 $</span>
+                                        <span>{{ $product->name}}</span>
+                                        <span>{{ $product->price }} $</span>
                                     </div>
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
@@ -181,18 +166,19 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
 
 
                 </div>
             </div>
         </section>
+        @endif
 
         <section class="best-deal mb-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img src="{{ asset('static/best_deal.webp') }}" class="max-width"  >
+                        <img src="{{ asset('static/best_deal.webp') }}" class="max-width">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
