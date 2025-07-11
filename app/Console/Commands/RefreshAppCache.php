@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 class RefreshAppCache extends Command
 {
     protected $signature = 'custom:refresh-cache';
+    
     protected $description = 'Rebuild custom app cache (settings, categories, etc)';
 
     public function handle()
