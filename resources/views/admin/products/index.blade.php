@@ -154,14 +154,17 @@
 
                                          <td>
 
-                                             <a href="{{ route('admin.products.edit', $product) }}"
-                                                 class="btn btn-warning btn-sm">Edit</a>
-                                             <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
-                                                 style="display:inline-block">
-                                                 @csrf @method('DELETE')
-                                                 <button class="btn btn-danger btn-sm"
-                                                     onclick="return confirm('Are you sure?')">Delete</button>
-                                             </form>
+                                             <div class="d-flex align-items-center justify-content-center gap-2">
+
+                                                 <a href="{{ route('admin.products.edit', $product) }}"
+                                                     class="btn btn-warning btn-sm">Edit</a>
+                                                 <form action="{{ route('admin.products.destroy', $product) }}"
+                                                     method="POST" style="display:inline-block">
+                                                     @csrf @method('DELETE')
+                                                     <button class="btn btn-danger btn-sm"
+                                                         onclick="return confirm('Are you sure?')">Delete</button>
+                                                 </form>
+                                             </div>
 
                                          </td>
                                      </tr>

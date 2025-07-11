@@ -65,7 +65,9 @@
                 color: #fff !important;
 
             }
-
+            .card-body{
+                overflow-x: scroll ;
+            }
         </style>
 
 
