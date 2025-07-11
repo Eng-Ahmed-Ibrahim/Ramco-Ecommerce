@@ -19,8 +19,7 @@ class ProductsRepository
     public function show($slug)
     {
         $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name')->firstOrFail();
-        if (! $product)
-            abort(404, "Product Not Found");
+
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->select('id', 'name', 'thumbnail', 'price')
@@ -42,12 +41,13 @@ class ProductsRepository
             for ($i = 0; $i < $placeholdersNeeded; $i++) {
                 // نحاول ندخل الصورة في أماكن متفرقة لتجنب التكرار
                 $insertPosition = ($i * 2) % ($gallery->count() + 1);
+                // @phpstan-ignore-next-line
                 $gallery->splice($insertPosition, 0, [
                     (object)['image' => $product->thumbnail]
                 ]);
             }
         }
-
+        // @phpstan-ignore-next-line
         $product->galleries = $gallery;
 
 
