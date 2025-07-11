@@ -18,7 +18,7 @@ class ProductsRepository
     }
     public function show($slug)
     {
-        $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name')->firstOrFail();
+        $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name,slug')->firstOrFail();
 
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
