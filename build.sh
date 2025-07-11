@@ -23,11 +23,14 @@ else
   echo "ℹ️ Skipping api-platform install (not available)"
 fi
 
-echo "[5/6] 🧹 Clearing and caching config/routes/views"
+echo "[5/7] 🧹 Clearing and caching config/routes/views"
 php artisan config:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+
+echo "[6/7] Seed Data "
+php artisan db:seed
 
 echo "[6/6] 🛠️ Migrating database"
 php artisan migrate --force

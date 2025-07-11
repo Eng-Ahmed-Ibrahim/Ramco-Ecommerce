@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 Route::middleware(['guest_id'])->name('web.')->group(function () {
-
     Route::view('/', 'web.index')->name('index');
     Route::view('/about-us', 'web.about')->name('about');
     Route::view('/home-appliances', 'web.products.index')->name('products');
