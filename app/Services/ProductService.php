@@ -57,9 +57,7 @@ class ProductService
         try {
 
             return DB::transaction(function () use (&$thumbnailPath, $data, $galleryFiles, $product_id) {
-                // @phpstan-ignore-next-line
-                if ($thumbnailPath != null) {
-
+                if($data['thumbnail']){   
                     $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
                     $data['thumbnail'] = $thumbnailPath;
                 }
