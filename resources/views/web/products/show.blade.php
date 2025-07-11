@@ -158,7 +158,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
                         @if ($index == 0)
-                        <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }}">
+                        <div class="card swiper-slide align-top">
                                 <img src="{{ asset('storage/' . $product->thumbnail) }}" class="img-fluid" alt="Product">
                             </div>
                         @else

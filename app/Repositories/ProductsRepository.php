@@ -12,7 +12,7 @@ class ProductsRepository
     public function getProducts($filters)
     {
         $products = Product::filter($filters)
-            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id','is_best_seller','is_best_product')
+            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'is_best_product')
             ->with(['category:id,name,slug', 'subCategory'])->paginate(16);
         return $products;
     }
@@ -25,30 +25,39 @@ class ProductsRepository
             ->select('id', 'name', 'thumbnail', 'price')
             ->take(3)
             ->get();
+        
 
 
-        $gallery = $product->galleries;
+        $originalGallery = collect($product->galleries);
         $minCount = 5;
-        $currentCount = $gallery->count();
+        $finalGallery = collect();
 
-        if ($currentCount < $minCount) {
-            $placeholdersNeeded = $minCount - $currentCount;
+        // نجهز الصور الأساسية
+        $galleryImages = $originalGallery->all(); // array of gallery items
+        $thumbnail = (object)['image' => $product->thumbnail];
 
-            // حول إلى Collection لو مش Collection
-            $gallery = collect($gallery);
+        if ($originalGallery->isEmpty()) {
+            // مفيش صور → نحط 5 thumbnail
+            for ($i = 0; $i < $minCount; $i++) {
+                $finalGallery->push($thumbnail);
+            }
+        } else {
+            $i = 0;
+            while ($finalGallery->count() < $minCount) {
+                // نضيف من صور الجاليري
+                foreach ($galleryImages as $img) {
+                    if ($finalGallery->count() >= $minCount) break;
+                    $finalGallery->push($img);
+                }
 
-            // احسب خطوات الإدخال بشكل موزع
-            for ($i = 0; $i < $placeholdersNeeded; $i++) {
-                // نحاول ندخل الصورة في أماكن متفرقة لتجنب التكرار
-                $insertPosition = ($i * 2) % ($gallery->count() + 1);
-                // @phpstan-ignore-next-line
-                $gallery->splice($insertPosition, 0, [
-                    (object)['image' => $product->thumbnail]
-                ]);
+                // بعد كل لفة جاليري، نحط thumbnail
+                if ($finalGallery->count() < $minCount) {
+                    $finalGallery->push($thumbnail);
+                }
             }
         }
         // @phpstan-ignore-next-line
-        $product->galleries = $gallery;
+        $product->galleries = $finalGallery;
 
 
 
