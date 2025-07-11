@@ -25,24 +25,25 @@ class ProductsRepository
             ->select('id', 'name', 'thumbnail', 'price')
             ->take(3)
             ->get();
-        
+
 
 
         $originalGallery = collect($product->galleries);
         $minCount = 5;
         $finalGallery = collect();
 
-        // نجهز الصور الأساسية
-        $galleryImages = $originalGallery->all(); // array of gallery items
+        $galleryImages = $originalGallery->all();
         $thumbnail = (object)['image' => $product->thumbnail];
 
+        // أول صورة دايمًا thumbnail
+        $finalGallery->push($thumbnail);
+
         if ($originalGallery->isEmpty()) {
-            // مفيش صور → نحط 5 thumbnail
-            for ($i = 0; $i < $minCount; $i++) {
+            // لو مفيش صور → نكرر thumbnail لحد 5
+            for ($i = 1; $i < $minCount; $i++) {
                 $finalGallery->push($thumbnail);
             }
         } else {
-            $i = 0;
             while ($finalGallery->count() < $minCount) {
                 // نضيف من صور الجاليري
                 foreach ($galleryImages as $img) {
@@ -50,14 +51,16 @@ class ProductsRepository
                     $finalGallery->push($img);
                 }
 
-                // بعد كل لفة جاليري، نحط thumbnail
+                // نضيف thumbnail (ماعدا أول واحدة لأنها اتضافت فوق)
                 if ($finalGallery->count() < $minCount) {
                     $finalGallery->push($thumbnail);
                 }
             }
         }
+
         // @phpstan-ignore-next-line
         $product->galleries = $finalGallery;
+
 
 
 
