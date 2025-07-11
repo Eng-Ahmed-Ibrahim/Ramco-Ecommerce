@@ -7,16 +7,16 @@ echo "[0] 🔄 Resetting local changes"
 git reset --hard HEAD
 git clean -fd
 
-echo "[1/6] 📥 Pulling latest code from GitHub"
+echo "[1/7] 📥 Pulling latest code from GitHub"
 git pull origin main
 
-echo "[2/6] 🗃️ Creating database if one isn't found"
+echo "[2/7] 🗃️ Creating database if one isn't found"
 touch database/database.sqlite
 
-echo "[3/6] 📦 Installing packages using composer"
+echo "[3/7] 📦 Installing packages using composer"
 php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
 
-echo "[4/6] ⚙️ Publishing API Platform assets"
+echo "[4/7] ⚙️ Publishing API Platform assets"
 if php artisan list | grep -q "api-platform:"; then
   php artisan api-platform:install
 else
