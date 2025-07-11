@@ -29,7 +29,8 @@
             transition: transform 0.3s ease-in-out;
             height: 450px;
         }
-        .swiper-wrapper .card{
+
+        .swiper-wrapper .card {
             height: 450px;
         }
 
@@ -130,9 +131,10 @@
             outline: none;
             text-align: center
         }
+
         .card img {
-    height: 172px;
-}
+            height: 172px;
+        }
     </style>
 
 
@@ -141,11 +143,11 @@
     <section class="product-details my-5">
         <div class="container">
             <div class="mb-2">
-                <span class="muted-color">Home / </span> <span class="muted-color">Water Dispensers / </span>
-                <span>HomeAppliances </span>
+                <span class="muted-color">Home / </span> <span class="muted-color">{{ $product->category->name }} / </span>
+                <span>{{ $product->name }} </span>
             </div>
             <div class="my-4 d-flex justify-content-between align-items-center">
-                <div class="product-name">Water Dispenser RD-110</div>
+                <div class="product-name">{{ $product->name }}</div>
                 <i style="font-size: 20px" class="fa-regular fa-heart"></i>
 
             </div>
@@ -154,10 +156,16 @@
         <div class="swiper-container-wrapper">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    @foreach (['1', '2', '3', '1', '2', '3'] as $index => $img)
+                    @foreach ($product->galleries as $index => $img)
+                        @if ($index == 0)
                         <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }}">
-                            <img src="{{ asset('static/image 26.png') }}" class="img-fluid" alt="Product">
+                                <img src="{{ asset('storage/' . $product->thumbnail) }}" class="img-fluid" alt="Product">
+                            </div>
+                        @else
+                        <div class="card swiper-slide ">
+                            <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -165,9 +173,11 @@
 
         <div class="container my-5">
             <div class="title mb-3">Details</div>
-            @for ($i = 0; $i < 3; $i++)
-                <div class="titlemain-border-bottom p-2  ">High performance LG compressor</div>
-            @endfor
+            @foreach (preg_split("/\r\n|\n|\r/", $product->details) as $line)
+                @if (trim($line) !== '')
+                    <div class="main-border-bottom py-2  d-flex align-items-center justify-content-between">{{ $line }}</div>
+                @endif
+            @endforeach
 
             <div class="features  my-5">
 
@@ -177,9 +187,7 @@
                     <div>
                         <span class="number">01</span>Weight
                     </div>
-                    <div>
-                        14.4 kg
-                    </div>
+                    <div>{{ $product->weight }}</div>
                 </div>
 
 
@@ -187,17 +195,17 @@
                     <div>
                         <span class="number">02</span>Dimensions
                     </div>
-                    <div>
-                        34.5 × 37.5 × 92.0 cm
-                    </div>
+                    <div>{{ $product->dimensions }}</div>
                 </div>
 
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
                     <div>
                         <span class="number">03</span>Color
                     </div>
-                    <div>
-                        14.4 kg
+                    <div class="d-flex gap-2">
+                        @foreach ($product->colors as $color)
+                            <span class="color" style="background: {{ $color }};"></span>
+                        @endforeach
                     </div>
                 </div>
 
@@ -205,9 +213,7 @@
                     <div>
                         <span class="number">04</span>Cooling Power
                     </div>
-                    <div>
-                        85W
-                    </div>
+                    <div>{{ $product->cooling_power }}</div>
                 </div>
 
             </div>
@@ -221,12 +227,13 @@
                             <div>
                                 <div class="sub-title mb-2"> Color:</div>
                                 <div class="d-flex gap-2">
-                                    <span class="color" style="background: white;"></span>
-                                    <span class="color" style="background: black;"></span>
+                                    @foreach ($product->colors as $color)
+                                        <span class="color" style="background: {{ $color }};"></span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div>
-                                <div class="sub-title mb-2"> Price: 135 $</div>
+                                <div class="sub-title mb-2"> Price: {{ $product->price }} $</div>
                                 <div class="text-muted"> Include Taxes*</div>
                             </div>
                         </div>
@@ -253,17 +260,13 @@
                     </div>
                 </div>
             </div>
+            @if( count($relatedProducts ) > 0)
             <div class="mb-4">
                 <div class="title my-4">You Might Also Be Interested </div>
                 <div class="row">
 
 
-                    @for ($i = 0; $i < 3; $i++)
-                        @php
-                            $imgNumber = ($i % 3) + 4;
-                            $productsNames = ['Induction Cooker', 'Iron RST-870', 'Hair Dryer'];
-
-                        @endphp
+                    @foreach ($relatedProducts as $relatedProduct)
                         <div class="col-md-4 col-sm-6 col-12 mb-3">
                             <div class="card">
                                 <div class="card-body ">
@@ -271,11 +274,13 @@
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <img src="{{ asset('static/product' . $imgNumber . '.png') }}" alt="">
+                                        <a
+                                            href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"></a>
+                                        <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $productsNames[$i] }}</span>
-                                        <span>27 $</span>
+                                        <span>{{ $relatedProduct->name }}</span>
+                                        <span>{{ $relatedProduct->price }} $</span>
                                     </div>
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
@@ -286,18 +291,19 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
 
 
                 </div>
             </div>
+            @endif
         </div>
     </section>
 @endsection
 @section('js')
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
+            slidesPerView: 1,
             spaceBetween: 10,
             centeredSlides: true,
             loop: true,

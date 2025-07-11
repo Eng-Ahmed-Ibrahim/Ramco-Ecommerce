@@ -22,36 +22,50 @@
 
         <!-- ltr -->
         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
+            type="text/css" />
         <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}?v={{ time() }}" rel="stylesheet"
             type="text/css" />
         @yield('css')
 
         <style>
-            #kt_app_sidebar_toggle{
+            #kt_app_sidebar_toggle {
                 background: white !important;
             }
-            tr,th,td{
+
+            tr,
+            th,
+            td {
                 text-align: center
             }
-            textarea{
+
+            textarea {
                 resize: none;
             }
-            .btn-primary{
-   
-            background-color: #1F1F1F !important;
 
-            color: #fff !important;
+            .btn-primary {
 
-            }
-            .btn-check:checked + .btn.btn-primary, .btn-check:active + .btn.btn-primary, .btn.btn-primary:focus:not(.btn-active), .btn.btn-primary:hover:not(.btn-active), .btn.btn-primary:active:not(.btn-active), .btn.btn-primary.active, .btn.btn-primary.show, .show > .btn.btn-primary:hover{
-   
-            background-color: #1F1F1F !important;
+                background-color: #1F1F1F !important;
 
-            color: #fff !important;
+                color: #fff !important;
 
             }
+
+            .btn-check:checked+.btn.btn-primary,
+            .btn-check:active+.btn.btn-primary,
+            .btn.btn-primary:focus:not(.btn-active),
+            .btn.btn-primary:hover:not(.btn-active),
+            .btn.btn-primary:active:not(.btn-active),
+            .btn.btn-primary.active,
+            .btn.btn-primary.show,
+            .show>.btn.btn-primary:hover {
+
+                background-color: #1F1F1F !important;
+
+                color: #fff !important;
+
+            }
+
         </style>
 
 

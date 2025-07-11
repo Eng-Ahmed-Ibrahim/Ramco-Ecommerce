@@ -17,6 +17,7 @@ class ProductService
 
     public function getProducts($filters = [])
     {
+
         $products = $this->ProductsRepository->getProducts($filters);
         return $products;
     }
@@ -55,9 +56,12 @@ class ProductService
         $thumbnailPath = null;
         try {
 
-            return DB::transaction(function () use (&$thumbnailPath , $data, $galleryFiles, $product_id) {
-                $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
-                $data['thumbnail'] = $thumbnailPath;
+            return DB::transaction(function () use (&$thumbnailPath, $data, $galleryFiles, $product_id) {
+                if ($thumbnailPath != null) {
+
+                    $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
+                    $data['thumbnail'] = $thumbnailPath;
+                }
 
                 $data['colors'] = $this->formatColors($data['colors']);
                 $product = $this->ProductsRepository->update($product_id, $data);
@@ -65,7 +69,7 @@ class ProductService
                 return $product;
             });
         } catch (\Exception $e) {
-            
+
             // @phpstan-ignore-next-line
             if (!empty($thumbnailPath)  && Storage::disk('public')->exists($thumbnailPath))
                 Storage::disk('public')->delete($thumbnailPath);

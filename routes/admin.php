@@ -21,4 +21,5 @@ Route::resource('sub_category', SubCategoriesController::class)->except(['create
 
 Route::resource('products', ProductsController::class)->names('products');
 Route::post('/products/sort', [ProductsController::class, 'sort'])->name('products.sort');
+Route::post('/products/toggle-flag', [ProductsController::class, 'toggleFlag'])->name('products.toggleFlag');
 

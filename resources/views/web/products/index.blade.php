@@ -76,10 +76,9 @@
                 </div>
             </div>
             <div class="d-flex gap-3 align-items-center flex-wrap">
-                <button class="category-btn active">asfsaf</button>
-                <button class="category-btn ">asfsaf</button>
-                <button class="category-btn ">asfsaf</button>
-                <button class="category-btn ">asfsaf</button>
+                @foreach($sub_categories as $sub_category)
+                <button class="category-btn ">{{ $sub_category->name }}</button>
+                @endforeach
             </div>
             <div class="d-flex justify-content-between align-items-center my-3">
                 <div class="filters">Filters <i class="mx-2 fa-solid fa-chevron-down"></i></div>
@@ -87,29 +86,27 @@
             </div>
             <div class="mb-3 products">
                 <div class="row">
-                    @for ($i = 0; $i < 6; $i++)
-                        @php
-                            $imgNumber = ($i % 3) + 19;
-                            $index= ($i % 3 ) ; 
-                            $productsNames = ['Induction Cooker', 'Iron RST-870', 'Hair Dryer'];
-
-                        @endphp
+                    @forelse ($products as $product)
+              
                         <div class="col-md-6  col-12 mb-3 product">
                             <div class="card">
                                 <div class="card-body ">
                                     <div class="d-flex justify-content-between align-items-center my-3">
                                         <div class="d-flex gap-2">
-                                            <span class="color" style="background: white;"></span>
-                                            <span class="color" style="background: black;"></span>
+                                            @foreach($product->colors as $color)
+                                            <span class="color" style="background: {{ $color }};"></span>
+                                            @endforeach
                                         </div>
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <img src="{{ asset('static/image ' . $imgNumber . '.webp') }}" alt="">
+                                        <a href="{{ route("web.products.show",[$product->category->slug,$product->slug]) }}">
+                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
+                                        </a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $productsNames[$index] }}</span>
-                                        <span>27 $</span>
+                                        <span>{{ $product->name }}</span>
+                                        <span>{{ $product->price }} $</span>
                                     </div>
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
@@ -120,7 +117,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @empty
+                        <div class="col-12 text-center my-5">
+        <h4 class="text-muted">No products found</h4>
+    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

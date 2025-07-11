@@ -38,6 +38,7 @@ class Product extends Model
     public function scopeFilter($query, $filters)
     {
         return $query
+
             ->when(
                 !empty($filters['search']),
                 fn($q) =>

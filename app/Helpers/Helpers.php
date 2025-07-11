@@ -10,11 +10,17 @@ class Helpers
 {
     public static function get_categories()
     {
-
         $categories = Cache::rememberForever('categories', function () {
             return Category::latest()->get();
         });
         return $categories;
+    }
+    public static function get_sub_categories()
+    {
+        $sub_categories =Cache::rememberForever('sub_categories_model', function () {
+            return SubCategory::with('category')->latest()->get();
+        });
+        return $sub_categories;
     }
     public static function  cache_categories()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use App\Helpers\Helpers;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
@@ -21,13 +22,14 @@ class ProductsController extends Controller
     {
         $filters=[];
         $products = $this->ProductService->getProducts($filters);
+        
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = Cache::get('categories');
-        $subCategories = Cache::get('sub_categories_model');
+        $categories = Helpers::get_categories();
+        $subCategories = Helpers::get_sub_categories();
         return view('admin.products.create', compact('categories', 'subCategories'));
     }
 
@@ -116,4 +118,20 @@ class ProductsController extends Controller
 
         return response()->json(['status' => 'success']);
     }
+
+    public function toggleFlag(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:products,id',
+        'type' => 'required|in:is_best_seller,is_best_product',
+        'value' => 'required|boolean',
+    ]);
+
+    $product = \App\Models\Product::findOrFail($request->id);
+    $product->{$request->type} = $request->value;
+    $product->save();
+
+    return response()->json(['status' => 'success']);
+}
+
 }

@@ -8,22 +8,49 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductsRepository
 {
-    public function getProducts($filer)
+
+    public function getProducts($filters)
     {
-        $products = Product::filter($filer)
-        ->select('id','name','slug','price','thumbnail','category_id')
-        ->with(['category:id,name'])->paginate(16);
+        $products = Product::filter($filters)
+            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id','is_best_seller','is_best_product')
+            ->with(['category:id,name,slug', 'subCategory'])->paginate(16);
         return $products;
     }
     public function show($slug)
     {
-        $product = Product::with('galleries')->where('slug', $slug)->firstOrFail();
-
+        $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name')->firstOrFail();
+        if (! $product)
+            abort(404, "Product Not Found");
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
-            ->select('id','name','thumbnail','price')
+            ->select('id', 'name', 'thumbnail', 'price')
             ->take(3)
             ->get();
+
+
+        $gallery = $product->galleries;
+        $minCount = 5;
+        $currentCount = $gallery->count();
+
+        if ($currentCount < $minCount) {
+            $placeholdersNeeded = $minCount - $currentCount;
+
+            // حول إلى Collection لو مش Collection
+            $gallery = collect($gallery);
+
+            // احسب خطوات الإدخال بشكل موزع
+            for ($i = 0; $i < $placeholdersNeeded; $i++) {
+                // نحاول ندخل الصورة في أماكن متفرقة لتجنب التكرار
+                $insertPosition = ($i * 2) % ($gallery->count() + 1);
+                $gallery->splice($insertPosition, 0, [
+                    (object)['image' => $product->thumbnail]
+                ]);
+            }
+        }
+
+        $product->galleries = $gallery;
+
+
 
         return [
             'product' => $product,
