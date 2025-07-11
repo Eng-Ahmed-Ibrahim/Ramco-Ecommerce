@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CategoriesSeeder;
+use Database\Seeders\SubCategoriesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
                 // CategoriesSeeder::class,
+                SubCategoriesSeeder::class,
         ]);
     }
 }
