@@ -29,10 +29,11 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-echo "[6/7] Seed Data "
-php artisan db:seed
 
-echo "[6/6] 🛠️ Migrating database"
+echo "[6/7] 🛠️ Migrating database"
 php artisan migrate --force
+
+echo "[7/7] Seed Data "
+php artisan db:seed
 
 echo "✅ The app has been built successfully !"
