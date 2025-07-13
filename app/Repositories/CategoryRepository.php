@@ -15,6 +15,6 @@ class CategoryRepository
         if (!$category) {
             abort(404, "Category not found");
         }
-        return $category->id;
+        return $category;
     }
 }

@@ -49,7 +49,7 @@
 
         .products .product img {
             height: 335px;
-            transition: ease-in-out 0.2s ;
+            transition: ease-in-out 0.2s;
         }
 
         .products .card {
@@ -57,7 +57,7 @@
         }
 
 
-        .products .product img:hover{
+        .products .product img:hover {
             transform: scale(1.2);
         }
     </style>
@@ -76,8 +76,8 @@
                 </div>
             </div>
             <div class="d-flex gap-3 align-items-center flex-wrap">
-                @foreach($sub_categories as $sub_category)
-                <button class="category-btn ">{{ $sub_category->name }}</button>
+                @foreach ($sub_categories as $sub_category)
+                    <button class="category-btn ">{{ $sub_category->name }}</button>
                 @endforeach
             </div>
             <div class="d-flex justify-content-between align-items-center my-3">
@@ -87,20 +87,21 @@
             <div class="mb-3 products">
                 <div class="row">
                     @forelse ($products as $product)
-              
+
                         <div class="col-md-6  col-12 mb-3 product">
                             <div class="card">
                                 <div class="card-body ">
                                     <div class="d-flex justify-content-between align-items-center my-3">
                                         <div class="d-flex gap-2">
-                                            @foreach($product->colors as $color)
-                                            <span class="color" style="background: {{ $color }};"></span>
+                                            @foreach ($product->colors as $color)
+                                                <span class="color" style="background: {{ $color }};"></span>
                                             @endforeach
                                         </div>
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <a href="{{ route("web.products.show",[$product->category->slug,$product->slug]) }}">
+                                        <a
+                                            href="{{ route('web.products.show', [$category_id, $product->slug]) }}">
                                             <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
                                         </a>
                                     </div>
@@ -119,8 +120,8 @@
                         </div>
                     @empty
                         <div class="col-12 text-center my-5">
-        <h4 class="text-muted">No products found</h4>
-    </div>
+                            <h4 class="text-muted">No products found</h4>
+                        </div>
                     @endforelse
                 </div>
             </div>

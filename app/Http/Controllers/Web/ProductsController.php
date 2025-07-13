@@ -23,12 +23,14 @@ class ProductsController extends Controller
     }
     public function index($category_slug,Request $request)  {
         $category = $this->CategoryService->get_category($category_slug);
+        $category_id=$category->id;
         $filters=[
             "category_id"=>$category->id,
         ];
         $products=$this->ProductService->getProducts($filters);
         $sub_categories=$category->SubCategory;
-        return view('web.products.index',compact('products','sub_categories'));
+        
+        return view('web.products.index',compact('products','sub_categories','category_id'));
     }
     public function show($category_slug,$product_slug)  {
         $result=$this->ProductService->findProduct($product_slug);

@@ -19,8 +19,8 @@ class CategoryService
     public function get_category($slug )
     {
         
-        $category_id = $this->CategoryRepository->get_category_by_slug($slug);
-        return $category_id;
+        $category = $this->CategoryRepository->get_category_by_slug($slug);
+        return $category;
     }
 
 
