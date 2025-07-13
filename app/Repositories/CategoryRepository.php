@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryRepository
 {
-    public function get_category_id_by_slug($slug)
+    public function get_category_by_slug($slug)
     {
-        $category = Category::where("slug", $slug)->first();
+        $category = Category::where("slug", $slug)->with(['SubCategory'])->first();
         if (!$category) {
             abort(404, "Category not found");
         }

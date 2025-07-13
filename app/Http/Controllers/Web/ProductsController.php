@@ -22,12 +22,12 @@ class ProductsController extends Controller
         $this->SubcategoriesService=$SubcategoriesService;
     }
     public function index($category_slug,Request $request)  {
-        $category_id = $this->CategoryService->get_category_id($category_slug);
+        $category = $this->CategoryService->get_category($category_slug);
         $filters=[
-            "category_id"=>$category_id,
+            "category_id"=>$category->id,
         ];
         $products=$this->ProductService->getProducts($filters);
-        $sub_categories=$this->SubcategoriesService->get_sub_categories($category_id);
+        $sub_categories=$category->SubCategory;
         return view('web.products.index',compact('products','sub_categories'));
     }
     public function show($category_slug,$product_slug)  {

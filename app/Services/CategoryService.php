@@ -16,10 +16,10 @@ class CategoryService
         $this->CategoryRepository = $CategoryRepository;
     }
 
-    public function get_category_id($slug )
+    public function get_category($slug )
     {
         
-        $category_id = $this->CategoryRepository->get_category_id_by_slug($slug);
+        $category_id = $this->CategoryRepository->get_category_by_slug($slug);
         return $category_id;
     }
 
