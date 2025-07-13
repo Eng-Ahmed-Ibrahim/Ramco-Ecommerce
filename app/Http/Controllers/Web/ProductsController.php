@@ -12,31 +12,28 @@ class ProductsController extends Controller
 {
     private $ProductService;
     private $CategoryService;
-    private $SubcategoriesService;
-    function __construct(ProductService $ProductService,CategoryService $CategoryService,
-        SubcategoriesService $SubcategoriesService,
-        )
+    function __construct(ProductService $ProductService, CategoryService $CategoryService,)
     {
-        $this->ProductService=$ProductService;
-        $this->CategoryService=$CategoryService;
-        $this->SubcategoriesService=$SubcategoriesService;
+        $this->ProductService = $ProductService;
+        $this->CategoryService = $CategoryService;
     }
-    public function index($category_slug,Request $request)  {
+    public function index($category_slug, Request $request)
+    {
         $category = $this->CategoryService->get_category($category_slug);
-        $category_id=$category->id;
-        $filters=[
-            "category_id"=>$category->id,
+        $category_id = $category->id;
+        $filters = [
+            "category_id" => $category->id,
         ];
-        $products=$this->ProductService->getProducts($filters);
-        $sub_categories=$category->SubCategory;
-        
-        return view('web.products.index',compact('products','sub_categories','category_id'));
+        $products = $this->ProductService->getProducts($filters);
+        $sub_categories = $category->SubCategory;
+
+        return view('web.products.index', compact('products', 'sub_categories', 'category_id'));
     }
-    public function show($category_slug,$product_slug)  {
-        $result=$this->ProductService->findProduct($product_slug);
-        $product=$result['product'];
-        $relatedProducts=$result['relatedProducts'];
-        return view('web.products.show',compact('product','relatedProducts'));
-        
+    public function show($category_slug, $product_slug)
+    {
+        $result = $this->ProductService->findProduct($product_slug);
+        $product = $result['product'];
+        $relatedProducts = $result['relatedProducts'];
+        return view('web.products.show', compact('product', 'relatedProducts'));
     }
 }

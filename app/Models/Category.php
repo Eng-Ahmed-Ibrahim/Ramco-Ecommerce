@@ -10,6 +10,6 @@ class Category extends Model
     protected $guarded=[];
         public function SubCategory()
     {
-        return $this->hasMany(SubCategory::class);
+        return $this->hasMany(SubCategory::class,'category_id');
     }
 }
