@@ -92,16 +92,19 @@
                             <div class="card">
                                 <div class="card-body ">
                                     <div class="d-flex justify-content-between align-items-center my-3">
-                                        <div class="d-flex gap-2">
+
+                                        <div class="d-flex gap-2" id="color-options">
                                             @foreach ($product->colors as $color)
-                                                <span class="color" style="background: {{ $color }};"></span>
+                                                <span class="color"
+                                                    style="background: {{ $color }}; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"
+                                                    data-color="{{ $color }}"></span>
                                             @endforeach
                                         </div>
+                                        <input type="hidden" id="selected-color" value="">
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <a
-                                            href="{{ route('web.products.show', [$category_id, $product->slug]) }}">
+                                        <a href="{{ route('web.products.show', [$category_id, $product->slug]) }}">
                                             <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
                                         </a>
                                     </div>
@@ -112,7 +115,8 @@
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
                                             Now</button>
-                                        <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
+                                        <button onclick="addToCart('{{ $product->id }}',null , 'selected-color', this )" class="main-btn w-50"
+                                            style="border-radius: 10.504px;">Add To
                                             Cart</button>
                                     </div>
                                 </div>

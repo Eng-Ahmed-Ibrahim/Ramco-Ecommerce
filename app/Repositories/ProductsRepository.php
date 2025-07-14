@@ -138,4 +138,8 @@ class ProductsRepository
 
         return true;
     }
+    public function get_product_cart($product_id){
+        $product = Product::select('price','id','colors')->findOrFail($product_id);
+        return $product;
+    }
 }

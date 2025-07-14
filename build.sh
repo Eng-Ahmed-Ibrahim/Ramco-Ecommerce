@@ -15,6 +15,8 @@ touch database/database.sqlite
 
 echo "[3/8] 📦 Installing packages using composer"
 php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
+echo "[3.1] 🔁 Dumping Composer Autoload (for helpers/functions)"
+php composer.phar dump-autoload
 
 echo "[4/8] ⚙️ Publishing API Platform assets"
 if php artisan list | grep -q "api-platform:"; then

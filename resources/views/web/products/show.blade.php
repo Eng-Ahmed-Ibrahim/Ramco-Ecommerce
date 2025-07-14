@@ -138,6 +138,7 @@
     </style>
 
 
+
 @endsection
 @section('content')
     <section class="product-details my-5">
@@ -158,9 +159,8 @@
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
                         <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }}">
-                                <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
-                            </div>
-             
+                            <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -170,7 +170,8 @@
             <div class="title mb-3">Details</div>
             @foreach (preg_split("/\r\n|\n|\r/", $product->details) as $line)
                 @if (trim($line) !== '')
-                    <div class="main-border-bottom py-2  d-flex align-items-center justify-content-between">{{ $line }}</div>
+                    <div class="main-border-bottom py-2  d-flex align-items-center justify-content-between">
+                        {{ $line }}</div>
                 @endif
             @endforeach
 
@@ -221,11 +222,14 @@
 
                             <div>
                                 <div class="sub-title mb-2"> Color:</div>
-                                <div class="d-flex gap-2">
+                                <div class="d-flex gap-2" id="color-options">
                                     @foreach ($product->colors as $color)
-                                        <span class="color" style="background: {{ $color }};"></span>
+                                        <span class="color"
+                                            style="background: {{ $color }}; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"
+                                            data-color="{{ $color }}"></span>
                                     @endforeach
                                 </div>
+                                <input type="hidden" id="selected-color" value="">
                             </div>
                             <div>
                                 <div class="sub-title mb-2"> Price: {{ $product->price }} $</div>
@@ -240,57 +244,56 @@
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
 
-                                <input type="text" name="quantity" id="quantity" value="1" min="1" readonly
-                                    style="width: 60px; text-align: center;">
+                                <input type="text" name="quantity" id="product-show-quantity" value="1"
+                                    min="1" readonly style="width: 60px; text-align: center;">
 
                                 <button type="button" class="main-btn-no-bg" id="minusBtn">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                             </div>
-
-
-
-                            <button class="main-btn w-50">Add To Cart</button>
+                            <button onclick="addToCart('{{ $product->id }}' , 'product-show-quantity' , 'selected-color' ,this )"
+                                class="main-btn w-50">Add To Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
-            @if( count($relatedProducts ) > 0)
-            <div class="mb-4">
-                <div class="title my-4">You Might Also Be Interested </div>
-                <div class="row">
+            @if (count($relatedProducts) > 0)
+                <div class="mb-4">
+                    <div class="title my-4">You Might Also Be Interested </div>
+                    <div class="row">
 
 
-                    @foreach ($relatedProducts as $relatedProduct)
-                        <div class="col-md-4 col-sm-6 col-12 mb-3">
-                            <div class="card">
-                                <div class="card-body ">
-                                    <div class="text-end my-3">
-                                        <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <a
-                                            href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"></a>
-                                        <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $relatedProduct->name }}</span>
-                                        <span>{{ $relatedProduct->price }} $</span>
-                                    </div>
-                                    <div class="d-flex gap-3 my-3">
-                                        <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
-                                            Now</button>
-                                        <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
-                                            Cart</button>
+                        @foreach ($relatedProducts as $relatedProduct)
+                            <div class="col-md-4 col-sm-6 col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-body ">
+                                        <div class="text-end my-3">
+                                            <i style="font-size: 20px" class="fa-regular fa-heart"></i>
+                                        </div>
+                                        <div class="text-center">
+                                            <a
+                                                href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"></a>
+                                            <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span>{{ $relatedProduct->name }}</span>
+                                            <span>{{ $relatedProduct->price }} $</span>
+                                        </div>
+                                        <div class="d-flex gap-3 my-3">
+                                            <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
+                                                Now</button>
+                                            <button class="main-btn w-50" onclick="addToCart('{{ $product->id }}',null,null,this)"
+                                                style="border-radius: 10.504px;">Add To
+                                                Cart</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
 
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </section>
@@ -332,4 +335,23 @@
             }
         });
     </script>
+    <script>
+        document.getElementById('plusBtn').addEventListener('click', function() {
+            let input = document.getElementById('product-show-quantity');
+            let current = parseInt(input.value) || 1;
+            input.value = current + 1;
+        });
+
+        document.getElementById('minusBtn').addEventListener('click', function() {
+            let input = document.getElementById('product-show-quantity');
+            let current = parseInt(input.value) || 1;
+            if (current > 1) {
+                input.value = current - 1;
+            }
+        });
+    </script>
+<script>
+
+</script>
+
 @endsection

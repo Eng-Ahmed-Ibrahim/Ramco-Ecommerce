@@ -23,8 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('web.*', function ($view) {
+
             $siteSettings = [
                 'categories' => Helpers::get_categories(),
+                'cart_count' => CartNumber(),
+
             ];
 
             $view->with('siteSettings', $siteSettings);
