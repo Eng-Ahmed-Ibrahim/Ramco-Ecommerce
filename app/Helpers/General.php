@@ -50,3 +50,4 @@ if (!function_exists('CartNumber')) {
         return $cartCount;
     }
 }
+
