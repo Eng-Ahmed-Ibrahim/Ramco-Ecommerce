@@ -45,7 +45,7 @@ if (!function_exists('CartNumber')) {
 
         $cartCount = \App\Models\Cart::withCount('items')
             ->where($column, $value)
-            ->first()?->items_count ?? 0;
+            ->first()->items_count ?? 0;
 
         return $cartCount;
     }

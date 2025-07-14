@@ -11,6 +11,7 @@ class CartRepository
     {
         $user = getUser();
 
+        // @phpstan-ignore-next-line
         $cart = Cart::with('items', 'items.product:id,thumbnail,name,model')
             ->when($user->type == 'user', function ($query) use ($user) {
                 $query->where('user_id', $user->user_id);
@@ -19,7 +20,7 @@ class CartRepository
             })
             ->first();
 
-        return $cart?->items ?? [];
+        return $cart->items ?? [];
     }
 
     public function get_user_cart($item_id = null)
