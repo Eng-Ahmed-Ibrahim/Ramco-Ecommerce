@@ -42,7 +42,7 @@
             <i class="fas fa-globe"></i>
         </div>
         <a class="navbar-brand" href="{{ route('web.pages.home') }}"><img class="logo"
-                src="{{ asset('static/logoـkasem.png') }}" alt=""></a>
+                src="{{ asset('static/logo_header_f1.png') }}" alt=""></a>
 
         {{-- Cart & User  --}}
         <div class="mobile mx-2">
