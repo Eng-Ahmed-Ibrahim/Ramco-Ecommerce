@@ -7,17 +7,22 @@
             background: #f5f5f5;
         }
 
+        .video-content{
+            padding: 20px !important;
+            background: #00000059;
+        }
         .video-section .full-image {
             width: 100%;
             height: 100%;
             display: block;
             position: absolute;
             opacity: 0.9;
+            padding: 0;
 
         }
 
         .about-description {
-            color: #000;
+            color: white;
 
             font-size: 19px;
             font-style: normal;
@@ -62,7 +67,7 @@
                 <div class="video-content col-md-4 col-sm-6 col-12">
                     <div class="container ">
 
-                        <div class="video-title black-color">Our history</div>
+                        <div class="video-title ">Our history</div>
                         <div class="about-description">
                             <span class="main-color">Kasem Group </span>for Engineering Industries, RAMCO Brand, well known,
                             and famous company, was established in 1993. It is specialized in electric household appliances.
@@ -80,7 +85,7 @@
                     <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         OUR SUCCESS
                     </div>
-                    <div class="about-description">
+                    <div class="about-description text-black">
                         After sales service is one of the key success factors of Kasem Group, where a comprehensive team,
                         call centre, home maintenance team and maintenance centres in Damascus, Aleppo and other
                         territories. Maintenance is fully free during warranty and only cost out of it.
@@ -90,7 +95,7 @@
                     <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         OUR VISION
                     </div>
-                    <div class="about-description">
+                    <div class="about-description text-black">
                         Our vision is based on building distinguished relation with our customers, either sellers or
                         consumers, through long team strategy based on partnership and trust rather than market share or
                         profit.
@@ -107,7 +112,7 @@
                     <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         +50 Products
                     </div>
-                    <div class="about-description">
+                    <div class="about-description text-black">
                         Kasem Group produces more than fifty different products (Water Dispenser, Washing Machine, Air
                         conditioning, Vacuum Cleaner, Fan, Mixer, Meat Grinder, Juice Extractor, Hair Dryer, Iron, and so
                         on).

@@ -24,6 +24,9 @@
             left: 0;
     }
 }
+.navbar-brand{
+    margin: 0;
+}
 
 </style>
 <nav class="navbar navbar-expand-lg px-md-5 p-md-4 p-2 py-4">
@@ -39,7 +42,7 @@
             <i class="fas fa-globe"></i>
         </div>
         <a class="navbar-brand" href="{{ route('web.pages.home') }}"><img class="logo"
-                src="{{ asset('static/logo.webp') }}" alt=""></a>
+                src="{{ asset('static/logoـkasem.png') }}" alt=""></a>
 
         {{-- Cart & User  --}}
         <div class="mobile mx-2">
@@ -91,9 +94,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.repair') }}">Repair </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.news') }}">News </a>
-                </li>
+       
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.contact') }}">Contact Us </a>
                 </li>
