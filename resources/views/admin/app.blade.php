@@ -85,6 +85,11 @@
                 border-color: var(--bs-danger-active);
                 background-color: #f1416c !important;
             }
+            @media (max-width: 425px) {
+                table{
+                    width: max-content !important;
+                }
+            }
         </style>
 
 

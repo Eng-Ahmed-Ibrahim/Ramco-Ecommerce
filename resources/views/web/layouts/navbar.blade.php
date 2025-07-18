@@ -74,7 +74,7 @@
                 @foreach ($siteSettings['categories'] as $category)
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                            href="{{ route('web.products.index', $category->slug) }}#">
+                            href="{{ route('web.products.index', $category->slug) }}">
                             {{ $category->name }}
                         </a>
                     </li>

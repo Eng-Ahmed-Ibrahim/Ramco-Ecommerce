@@ -94,6 +94,30 @@
 
 					<div class="menu-item pt-5">
 						<div class="menu-content">
+							<span class="menu-heading fw-bold text-uppercase fs-7">Coupons</span>
+						</div>
+					</div>
+					<!-- Dashboard -->
+					<div class="menu-item">
+						<!--begin:Menu link-->
+						<a class="menu-link" href="{{ route('admin.coupons.index') }}">
+							<span class="menu-icon">
+								<i class="ki-duotone ki-element-11 fs-2">
+									<span class="path1"></span>
+									<span class="path2"></span>
+									<span class="path3"></span>
+									<span class="path4"></span>
+									<span class="path5"></span>
+									<span class="path6"></span>
+								</i>
+							</span>
+							<span class="menu-title">Coupons</span>
+						</a>
+						<!--end:Menu link-->
+					</div>
+					
+					<div class="menu-item pt-5">
+						<div class="menu-content">
 							<span class="menu-heading fw-bold text-uppercase fs-7">Products</span>
 						</div>
 					</div>

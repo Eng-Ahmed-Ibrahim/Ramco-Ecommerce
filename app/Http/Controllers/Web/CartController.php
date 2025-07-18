@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers\Web;
 
+use Exception;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use App\Services\CouponService;
 use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
     private $CartService;
-    function __construct(CartService $CartService)
+    private $CouponService;
+    function __construct(CartService $CartService, CouponService $CouponService)
     {
         $this->CartService = $CartService;
+        $this->CouponService = $CouponService;
     }
     public function index()
     {
@@ -59,6 +64,23 @@ class CartController extends Controller
                 "message" => $result['message'],
                 "code" => 422
             ], 422);
+        }
+    }
+
+    public function applyDiscount(Request $request)
+    {
+        try {
+            $coupon = $this->CouponService->apply_coupon($request->code);
+
+            return response()->json([
+                'discount' => $coupon['discount'],
+                'total' => $coupon['total'],
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'message' => $e->getMessage(), // يظهر "Invalid Coupon Code"
+            ], 400); // 400 يعني Bad Request
         }
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\PagesController;
 use App\Http\Controllers\Web\ProductsController;
 
@@ -31,5 +32,7 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
         Route::post('/add-to-cart', 'add_to_cart')->name('add_to_cart');
         Route::delete('/delete-item', 'delete_item')->name('delete_item');
     });
-    
+    Route::post('/creat-order',[OrderController::class, 'create_order'])->name('order.create');
+    Route::post('/apply-discount', [CartController::class, 'applyDiscount']);
+
 });

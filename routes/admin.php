@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -23,4 +24,4 @@ Route::resource('products', ProductsController::class)->names('products');
 Route::post('/products/sort', [ProductsController::class, 'sort'])->name('products.sort');
 Route::post('/products/toggle-flag', [ProductsController::class, 'toggleFlag'])->name('products.toggleFlag');
 Route::post('/products/set-home-banner', [ProductsController::class, 'setHomeBanner'])->name('products.setHomeBanner');
-
+Route::resource('coupons', CouponController::class);

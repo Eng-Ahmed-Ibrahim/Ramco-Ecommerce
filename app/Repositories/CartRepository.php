@@ -7,7 +7,7 @@ use App\Models\CartItems;
 
 class CartRepository
 {
-    public function get_items($item_id = null)
+    public function get_cart($item_id = null)
     {
         $user = getUser();
 
@@ -20,23 +20,17 @@ class CartRepository
             })
             ->first();
 
-        return $cart->items ?? [];
+        return $cart;
     }
-
-    public function get_user_cart($item_id = null)
+    public function get_total_price($cart = null)
     {
-        $user = getUser();
-
-        $cart = Cart::when($user->type == 'user', function ($query) use ($user) {
-            $query->where('user_id', $user->user_id);
-        }, function ($query) use ($user) {
-            $query->where('guest_id', $user->guest_id);
-        })
-            ->first();
-
-        return $cart ?? null;
+        $cart = $cart ?? $this->get_cart();
+        $total = 0;
+        foreach ($cart->items as $item) {
+            $total += $item->total;
+        }
+        return $total;
     }
-
     public function delete_item($item_id, $cart_id)
     {
         $item = CartItems::where("id", $item_id)->where("cart_id", $cart_id)->first();
@@ -62,5 +56,15 @@ class CartRepository
             "product_id" => $product_id,
             "color" => $selectedColor,
         ])->first();
+    }
+
+    public function clear_cart(){
+        $user = getUser();
+        $cart = Cart::where($user->type === 'user' ? 'user_id' : 'guest_id', $user->type === 'user' ? $user->user_id : $user->guest_id)->first();
+        if ($cart) {
+            $cart->delete();
+            return true;
+        }
+        return false;
     }
 }

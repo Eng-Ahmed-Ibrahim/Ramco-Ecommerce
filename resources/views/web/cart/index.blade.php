@@ -52,12 +52,21 @@
             font-size: 14px;
         }
 
-        #discount {
+        .discount {
             border: none !important;
             border-bottom: 1px solid var(--Colors-Primary-300, #6A6A6A) !important;
-            border-radius: 0;
+            border-radius: 0 !important;
+        }
+        html body .is-valid {
+            border-color: #28a745 !important;
+        }
+
+        html body .is-invalid {
+            border-color: #dc3545 !important;
         }
     </style>
+
+
 @endsection
 @section('content')
     <section class="products my-5">
@@ -67,7 +76,9 @@
             </div>
 
             <div class="row mb-3 ">
-                <form class="col-md-6 col-12 mb-3">
+                <form action="{{ route('web.order.create') }}" method="POST" class="col-md-6 col-12 mb-3">
+                    @csrf
+                    <input type="text" name="coupon_code" id="coupon_code" value="{{ old('coupon_code') }}" hidden>
                     <div class="muted-color mb-2">1 of 3</div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div> Personal data</div>
@@ -77,13 +88,15 @@
                         <label for="email" class="mb-2"> Email</label>
                         <div class="input-wrapper">
                             <i class="fa fa-envelope icon"></i>
-                            <input type="email" id="email" placeholder="e-mail address" />
+                            <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                placeholder="e-mail address" required />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="mb-2"> Full Name</label>
                         <div class="input-wrapper">
-                            <input type="text" id="name" placeholder="Name" />
+                            <input type="text" id="name" name="full_name" value="{{ old('full_name') }}"
+                                placeholder="Name" required />
                         </div>
                     </div>
                     <div class="mb-3">
@@ -91,7 +104,10 @@
                         <div class="input-wrapper">
                             <i class="fa fa-phone icon"></i>
 
-                            <input type="text" id="phone-number" placeholder="Number" />
+                            <input type="text" name="phone" value="{{ old('phone') }}" pattern="^\+?\d{7,15}$"
+                                title="Enter a valid phone number (e.g. +123456789)" id="phone-number" placeholder="Number"
+                                required />
+
                         </div>
                     </div>
                     <div class="muted-color mb-2">2 of 3</div>
@@ -99,35 +115,31 @@
                         <label for="city" class="mb-2"> City</label>
                         <div class="input-wrapper">
                             <i class="fa fa-city icon"></i>
-                            <input type="text" id="city" placeholder="City" />
+                            <input type="text" id="city" name="city" value="{{ old('city') }}"
+                                placeholder="City" required />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="mb-2"> Address</label>
                         <div class="input-wrapper">
                             <i class="fa fa-map-marker-alt icon"></i>
-                            <input type="text" id="address" placeholder="Address" />
+                            <input type="text" id="address" name="address" value="{{ old('address') }}"
+                                placeholder="Address" required />
                         </div>
                     </div>
                     <div class="muted-color mb-2">3 of 3</div>
+
                     <div class="mb-3">
                         <div class="input-radio ">
-                            <input type="radio" id="visa" />
-                            <label for="visa" class="mx-1">
-                                Visa,Master Card
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="input-radio ">
-                            <input type="radio" id="cash_on-delivery" checked />
+                            <input type="radio" name="payment_method" value="cash" id="cash_on-delivery" checked />
                             <label for="cash_on-delivery " class="mx-1">
                                 Cash On Delivery
                             </label>
                         </div>
                     </div>
-                    <button class="w-100 main-btn desktop">Place Order</button>
-
+                    @if (count($items) > 0)
+                        <button type="submit" class="w-100 main-btn desktop">Place Order</button>
+                    @endif
                 </form>
                 <div class="col-md-6 col-12 mb-3">
                     <div class="card">
@@ -169,7 +181,7 @@
                                         <div class="mb-3">
                                             <div class="input-wrapper">
                                                 <i class="fa fa-ticket icon"></i>
-                                                <input type="text" id="discount" placeholder="Discount Code" />
+                                                <input type="text" class="discount" id="discount" placeholder="Discount Code" />
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +192,8 @@
                                         </div>
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Discount</div>
-                                            <div class="muted-color">{{ $order_summary['discount'] }} $ </div>
+                                            <div class="muted-color" id="cart-discount">{{ $order_summary['discount'] }}
+                                                $ </div>
                                         </div>
 
                                     </div>
@@ -191,7 +204,7 @@
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div>Total</div>
-                                            <div>{{ $order_summary['total'] }} $ </div>
+                                            <div id="cart-total">{{ $order_summary['total'] }} $ </div>
                                         </div>
                                     </div>
 
@@ -209,6 +222,56 @@
         </div>
     </section>
 @endsection
-@section('js')
 
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#discount').on('blur', function() {
+                let code = $(this).val().trim();
+                let $input = $(this);
+                let errorBoxId = 'coupon-error-msg';
+
+                // إزالة الرسالة والخط الأحمر القديم
+                $('#' + errorBoxId).remove();
+                $input.removeClass('is-invalid');
+
+                if (code === '') return;
+
+                $.ajax({
+                    url: '/apply-discount',
+                    method: 'POST',
+                    data: {
+                        code: code,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(data) {
+                        $input.removeClass('is-invalid is-valid'); // إزالة أي كلاس سابق
+
+                        if (data.error) {
+                            $input.addClass('is-invalid');
+                            $(`<div id="${errorBoxId}" class="text-danger mt-1">${data.error}</div>`)
+                                .insertAfter($input);
+                        } else {
+                            $input.addClass('is-valid'); // ✅ إضافة حدود خضراء
+
+                            $('#cart-discount').text(`${data.discount} $`);
+                            $('#cart-total').text(`${data.total} $`);
+                            $('#coupon_code').val(code)
+                        }
+                    },
+
+                    error: function(xhr) {
+                        let message = 'An error occurred.';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            message = xhr.responseJSON.error;
+                        }
+
+                        $input.addClass('is-invalid');
+                        $(`<div id="${errorBoxId}" class="text-danger mt-1">${message}</div>`)
+                            .insertAfter($input);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

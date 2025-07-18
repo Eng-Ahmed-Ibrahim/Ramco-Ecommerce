@@ -17,7 +17,7 @@ class CartService
     }
     public function get_items()
     {
-        return $this->CartRepository->get_items();
+        return $this->CartRepository->get_cart()->items ?? [];
     }
     public function order_summary($items)
     {
@@ -33,7 +33,7 @@ class CartService
         ];
     }
     private function get_user_cart(){
-        return $this->CartRepository->get_user_cart();
+        return $this->CartRepository->get_cart();
 
     }
     public function add_to_cart($product_id, $quantity = 1, $selectedColor = null)

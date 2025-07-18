@@ -31,9 +31,9 @@ return new class extends Migration
             
             $table->timestamps();
         });
+        
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->uuid('guest_id')->nullable(); // للزوار
             $table->foreignId('coupon_id')->nullable()->constrained()->onDelete('set null');
