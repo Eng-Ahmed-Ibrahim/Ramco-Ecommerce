@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Gallery;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\ProductFeatures;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,6 +34,25 @@ class Product extends Model
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features()
+    {
+        return $this->hasMany(ProductFeatures::class, 'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relatedProducts()
+    {
+        return $this->hasMany(self::class, 'category_id', 'category_id')
+            ->where('id', '!=', $this->id)
+            ->select('id', 'name', 'thumbnail', 'price')
+            ->orderBy('position')
+            ->limit(3);
     }
 
     public function scopeFilter($query, $filters)

@@ -22,27 +22,58 @@
         required>
 </div>
 
-<div class="mb-4">
-    <label>Weight</label>
-    <input type="text" name="weight" value="{{ old('weight', $product->weight ?? '') }}" class="form-control"
-        required>
-</div>
 
-<div class="mb-4">
-    <label>Dimensions</label>
-    <input type="text" name="dimensions" value="{{ old('dimensions', $product->dimensions ?? '') }}"
-        class="form-control" required>
-</div>
-
-<div class="mb-4">
-    <label>Cooling Power</label>
-    <input type="text" name="cooling_power" value="{{ old('cooling_power', $product->cooling_power ?? '') }}"
-        class="form-control" required>
-</div>
 <div class="mb-4">
     <label>Details</label>
     <textarea name="details" class="form-control" rows="4" required>{{ old('details', $product->details ?? '') }}</textarea>
 </div>
+
+<div class="mb-5">
+    <label class="form-label">Features</label>
+    <div id="feature-container">
+        @php $featureIndex = 0; @endphp
+        @if (!empty($product->features))
+            @foreach ($product->features as $feature)
+                <div class="row mb-2 feature-row">
+                    <div class="col-md-5">
+                        <input type="text" name="features[{{ $featureIndex }}][key]" class="form-control"
+                            value="{{ old("features.$featureIndex.key", $feature->key) }}" placeholder="Feature Name">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="features[{{ $featureIndex }}][value]" class="form-control"
+                            value="{{ old("features.$featureIndex.value", $feature->value) }}"
+                            placeholder="Feature Description">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger remove-feature">
+                            <i class="fa-solid fa-xmark p-0" style="font-size: 18px;color:white;"></i>
+                        </button>
+                    </div>
+                </div>
+                @php $featureIndex++; @endphp
+            @endforeach
+        @else
+            <div class="row mb-2 feature-row">
+                <div class="col-md-5">
+                    <input type="text" name="features[0][key]" class="form-control" placeholder="Feature Name">
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="features[0][value]" class="form-control"
+                        placeholder="Feature Description">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger remove-feature">
+                        <i class="fa-solid fa-xmark p-0" style="font-size: 18px;color:white;"></i>
+                    </button>
+                </div>
+            </div>
+            @php $featureIndex = 1; @endphp
+        @endif
+    </div>
+
+    <button type="button" class="btn btn-sm btn-secondary" id="add-feature">Add Feature</button>
+</div>
+
 
 
 <div class="mb-4">
@@ -70,7 +101,8 @@
 <div class="mb-4">
     <label>Thumbnail</label>
     <input type="file" name="thumbnail" class="form-control" id="thumbnailInput" accept="image/*">
-    <img id="thumbnailPreview" src="{{ !empty($product->thumbnail) ? asset('storage/' . $product->thumbnail) : '' }}" width="80" class="mt-2" style="{{ empty($product->thumbnail) ? 'display: none;' : '' }}">
+    <img id="thumbnailPreview" src="{{ !empty($product->thumbnail) ? asset('storage/' . $product->thumbnail) : '' }}"
+        width="80" class="mt-2" style="{{ empty($product->thumbnail) ? 'display: none;' : '' }}">
 </div>
 <div class="mb-4">
     <label>Gallery Images</label>
@@ -106,7 +138,7 @@
 {{-- Privew thumbnail and galleries --}}
 <script>
     // ✅ Preview for Thumbnail
-    document.getElementById('thumbnailInput')?.addEventListener('change', function (e) {
+    document.getElementById('thumbnailInput')?.addEventListener('change', function(e) {
         const [file] = this.files;
         if (file) {
             const preview = document.getElementById('thumbnailPreview');
@@ -116,7 +148,7 @@
     });
 
     // ✅ Preview for Gallery Images
-    document.getElementById('galleriesInput')?.addEventListener('change', function (e) {
+    document.getElementById('galleriesInput')?.addEventListener('change', function(e) {
         const previewContainer = document.getElementById('galleryPreview');
         // previewContainer.innerHTML = ''; // Clear old previews
 
@@ -130,3 +162,34 @@
     });
 </script>
 
+
+
+<script>
+    let featureIndex = 1;
+
+    document.getElementById('add-feature').addEventListener('click', function() {
+        const container = document.getElementById('feature-container');
+        const html = `
+        <div class="row mb-2 feature-row">
+            <div class="col-md-5">
+                <input type="text" name="features[${featureIndex}][key]" class="form-control" placeholder="Feature Name">
+            </div>
+            <div class="col-md-5">
+                <input type="text" name="features[${featureIndex}][value]" class="form-control" placeholder="Feature description">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger remove-feature">
+                    <i class="fa-solid fa-xmark p-0" style="font-size: 18px;color:white;"></i>
+                </button>
+            </div>
+        </div>`;
+        container.insertAdjacentHTML('beforeend', html);
+        featureIndex++;
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-feature')) {
+            e.target.closest('.feature-row').remove();
+        }
+    });
+</script>

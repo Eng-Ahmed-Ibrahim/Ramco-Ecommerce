@@ -35,6 +35,8 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'colors' => 'required|string',
@@ -43,12 +45,10 @@ class ProductsController extends Controller
             'description' => 'required|string',
             'details' => 'required|string',
             'thumbnail' => 'required|image',
-            'weight' => 'required|string',
-            'dimensions' => 'required|string',
-            'cooling_power' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'galleries.*' => 'nullable|image',
+            "features" => 'nullable|array',
         ]);
 
         $validated['thumbnail'] = $request->file('thumbnail');
@@ -78,14 +78,13 @@ class ProductsController extends Controller
             'price' => 'required|numeric',
             'details' => 'required|string',
             'thumbnail' => 'nullable|image',
-            'weight' => 'required|string',
-            'dimensions' => 'required|string',
-            'cooling_power' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'galleries.*' => 'nullable|image',
             'model' => 'required|string',
             'description' => 'required|string',
+            "features" => 'nullable|array',
+
         ]);
 
         $data = $validated;
@@ -133,9 +132,9 @@ class ProductsController extends Controller
         $product = \App\Models\Product::findOrFail($request->id);
         $product->{$request->type} = $request->value;
         $product->save();
-        if($request->type == "is_best_seller"){
+        if ($request->type == "is_best_seller") {
             Helpers::cache_best_sellers();
-        }elseif($request->type == "is_best_product"){
+        } elseif ($request->type == "is_best_product") {
             Helpers::cache_best_products();
         }
 

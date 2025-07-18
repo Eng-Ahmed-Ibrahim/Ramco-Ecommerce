@@ -38,6 +38,12 @@ class ProductService
                 $data['thumbnail'] = $thumbnailPath;
                 $data['colors'] = $this->formatColors($data['colors']);
                 $product = $this->ProductsRepository->store($data);
+                if (!empty($data['features'])) {
+                    $features = collect($data['features'])
+                    ->filter(fn($f) => !empty($f['key']) && !empty($f['value']))
+                    ->values();
+                    $product->features()->createMany($features);
+                                }
                 $this->upload_galleries($galleryFiles, $product);
                 return $product;
             });
@@ -57,13 +63,20 @@ class ProductService
         try {
 
             return DB::transaction(function () use (&$thumbnailPath, $data, $galleryFiles, $product_id) {
-                if($data['thumbnail']){   
+                if ($data['thumbnail']) {
                     $thumbnailPath = $data['thumbnail']->store('products/thumbnail', 'public');
                     $data['thumbnail'] = $thumbnailPath;
                 }
 
                 $data['colors'] = $this->formatColors($data['colors']);
                 $product = $this->ProductsRepository->update($product_id, $data);
+                if (!empty($data['features'])) {
+                    $product->features()->delete();
+                    $features = collect($data['features'])
+                    ->filter(fn($f) => !empty($f['key']) && !empty($f['value']))
+                    ->values();
+                    $product->features()->createMany($features);
+                }
                 $this->upload_galleries($galleryFiles, $product);
                 return $product;
             });

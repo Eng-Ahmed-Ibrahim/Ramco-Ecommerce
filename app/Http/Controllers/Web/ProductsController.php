@@ -34,6 +34,7 @@ class ProductsController extends Controller
         $result = $this->ProductService->findProduct($product_slug);
         $product = $result['product'];
         $relatedProducts = $result['relatedProducts'];
-        return view('web.products.show', compact('product', 'relatedProducts'));
+        $features = $product->features;
+        return view('web.products.show', compact('product', 'relatedProducts','features'));
     }
 }

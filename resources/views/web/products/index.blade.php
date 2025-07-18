@@ -50,6 +50,7 @@
         .products .product img {
             height: 335px;
             transition: ease-in-out 0.2s;
+            max-width: 100%;;
         }
 
         .products .card {
@@ -57,9 +58,7 @@
         }
 
 
-        .products .product img:hover {
-            transform: scale(1.2);
-        }
+
     </style>
 @endsection
 @section('content')
@@ -104,7 +103,7 @@
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <a href="{{ route('web.products.show', [$category_id, $product->slug]) }}">
+                                        <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
                                             <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
                                         </a>
                                     </div>

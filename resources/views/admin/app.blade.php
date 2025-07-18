@@ -26,7 +26,7 @@
         <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}?v={{ time() }}" rel="stylesheet"
             type="text/css" />
-                <link rel="icon" href="{{ asset('static/logo.webp') }}">
+        <link rel="icon" href="{{ asset('static/logo.webp') }}">
 
         @yield('css')
 
@@ -67,8 +67,23 @@
                 color: #fff !important;
 
             }
-            .card-body{
-                overflow-x: scroll ;
+
+            .card-body {
+                overflow-x: scroll;
+            }
+
+
+            html body .btn-check:checked+.btn.btn-danger,
+            .btn-check:active+.btn.btn-danger,
+            .btn.btn-danger:focus:not(.btn-active),
+            .btn.btn-danger:hover:not(.btn-active),
+            .btn.btn-danger:active:not(.btn-active),
+            .btn.btn-danger.active,
+            .btn.btn-danger.show,
+            .show>.btn.btn-danger {
+                color: var(--bs-danger-inverse);
+                border-color: var(--bs-danger-active);
+                background-color: #f1416c !important;
             }
         </style>
 

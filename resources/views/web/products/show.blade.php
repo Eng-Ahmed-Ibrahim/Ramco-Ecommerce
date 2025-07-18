@@ -143,15 +143,19 @@
 @section('content')
     <section class="product-details my-5">
         <div class="container">
-            <div class="mb-2">
+            <div class="mb-4">
                 <span class="muted-color">Home / </span> <span class="muted-color">{{ $product->category->name }} / </span>
                 <span>{{ $product->name }} </span>
             </div>
-            <div class="my-4 d-flex justify-content-between align-items-center">
+            <div class="my-2 d-flex justify-content-between align-items-center">
                 <div class="product-name">{{ $product->name }}</div>
                 <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-
             </div>
+            <div class="mb-4">
+                {{ $product->description }}
+            </div>
+
+
         </div>
         <!-- Swiper -->
         <div class="swiper-container-wrapper">
@@ -179,24 +183,19 @@
 
                 <div class="title mb-2">Features</div>
 
+
+                @foreach($features as $index => $feature)
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="number">01</span>Weight
+                        <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        {{  $feature->key }}
                     </div>
-                    <div>{{ $product->weight }}</div>
+                    <div >{{  $feature->value }}</div>
                 </div>
-
-
+                @endforeach
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="number">02</span>Dimensions
-                    </div>
-                    <div>{{ $product->dimensions }}</div>
-                </div>
-
-                <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
-                    <div>
-                        <span class="number">03</span>Color
+                        <span class="number"> {{ str_pad(count($features) + 1 , 2, '0', STR_PAD_LEFT) }}</span>Color
                     </div>
                     <div class="d-flex gap-2">
                         @foreach ($product->colors as $color)
@@ -205,12 +204,6 @@
                     </div>
                 </div>
 
-                <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
-                    <div>
-                        <span class="number">04</span>Cooling Power
-                    </div>
-                    <div>{{ $product->cooling_power }}</div>
-                </div>
 
             </div>
 

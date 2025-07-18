@@ -22,14 +22,19 @@ class ProductsRepository
 
     public function show($slug)
     {
-        $product = Product::with('galleries')->where('slug', $slug)->with('category:id,name,slug')->firstOrFail();
+        $product = Product::
+            select('id', 'name', 'slug', 'thumbnail', 'description', 'details', 'colors','price', 'category_id')
+            ->where('slug', $slug)
+            ->with([
+                'category:id,name,slug',
+                'galleries:id,product_id,image',
+                'features:id,key,value,product_id',
+                'relatedProducts:id,name,price,thumbnail,category_id',
+            ])
+            ->firstOrFail();
 
-        $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->select('id', 'name', 'thumbnail', 'price')
-            ->take(3)
-            ->get();
 
+        $relatedProducts = $product->relatedProducts;
 
 
         $originalGallery = collect($product->galleries);
@@ -82,9 +87,6 @@ class ProductsRepository
             'details' => $data['details'],
             'price' => $data['price'],
             'thumbnail' => $data['thumbnail'],
-            'weight' => $data['weight'],
-            'dimensions' => $data['dimensions'],
-            'cooling_power' => $data['cooling_power'],
             'category_id' => $data['category_id'],
             'sub_category_id' => $data['sub_category_id'],
             "model" => $data['model'],
@@ -104,19 +106,16 @@ class ProductsRepository
             'colors' => $data['colors'] ?? $product->colors,
             'details' => $data['details'] ?? $product->details,
             'price' => $data['price'] ?? $product->price,
-            'weight' => $data['weight'] ?? $product->weight,
-            'dimensions' => $data['dimensions'] ?? $product->dimensions,
-            'cooling_power' => $data['cooling_power'] ?? $product->cooling_power,
             'category_id' => $data['category_id'] ?? $product->category_id,
             'sub_category_id' => $data['sub_category_id'] ?? $product->sub_category_id,
             "model" => $data['model'] ?? $product->model,
             "description" => $data['description'] ?? $product->description,
         ]);
-        if($product->home_banner)
+        if ($product->home_banner)
             Helpers::cache_home_banner();
-        if($product->is_best_seller)
+        if ($product->is_best_seller)
             Helpers::cache_best_sellers();
-        if($product->is_best_product)
+        if ($product->is_best_product)
             Helpers::cache_best_products();
 
         return $product;
@@ -138,8 +137,9 @@ class ProductsRepository
 
         return true;
     }
-    public function get_product_cart($product_id){
-        $product = Product::select('price','id','colors')->findOrFail($product_id);
+    public function get_product_cart($product_id)
+    {
+        $product = Product::select('price', 'id', 'colors')->findOrFail($product_id);
         return $product;
     }
 }
