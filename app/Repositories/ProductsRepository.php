@@ -15,6 +15,9 @@ class ProductsRepository
     {
         $products = Product::filter($filters)
             ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product')
+            ->with([
+                'category:id,name,slug',
+            ])
             ->paginate(16);
         return $products;
     }

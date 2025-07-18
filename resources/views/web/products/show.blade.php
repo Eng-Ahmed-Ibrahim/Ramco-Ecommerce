@@ -142,17 +142,20 @@
 @endsection
 @section('content')
     <section class="product-details my-5">
-        <div class="container">
-            <div class="mb-4">
+        <div class="container ">
+            <div class="mb-4 ">
                 <span class="muted-color">Home / </span> <span class="muted-color">{{ $product->category->name }} / </span>
                 <span>{{ $product->name }} </span>
             </div>
-            <div class="my-2 d-flex justify-content-between align-items-center">
+            <div class="  my-2 d-flex justify-content-between align-items-center">
                 <div class="product-name">{{ $product->name }}</div>
                 <i style="font-size: 20px" class="fa-regular fa-heart"></i>
             </div>
-            <div class="mb-4">
-                {{ $product->description }}
+            <div class="row">
+
+                <div class="mb-4 col-md-7 col-12">
+                    {{ $product->description }}
+                </div>
             </div>
 
 
