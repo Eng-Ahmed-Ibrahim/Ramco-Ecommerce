@@ -153,7 +153,7 @@
             </div>
             <div class="row">
 
-                <div class="mb-4 col-md-7 col-12">
+                <div class="mb-4 col-md-8 col-12">
                     {{ $product->description }}
                 </div>
             </div>

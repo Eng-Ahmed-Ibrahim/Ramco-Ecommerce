@@ -58,50 +58,51 @@
             </div>
         </section>
 
-        @if(count($best_products) > 0)
-        <section class="best_products mb-5">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-md-6 col-12 section-title">
-                        Find the best <span class="main-color">Ramco</span>
-                        product for every need
+        @if (count($best_products) > 0)
+            <section class="best_products mb-5">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-md-6 col-12 section-title">
+                            Find the best <span class="main-color">Ramco</span>
+                            product for every need
+                        </div>
                     </div>
-                </div>
-                <div class="swiper-container position-relative" style="overflow: hidden;">
-                    <div class="swiper-wrapper products">
-                        @foreach ($best_products as $product)
-   
-
-                            <div class="swiper-slide product">
-                                <div class="mb-4">
-                                    <div class="product-name">{{ $product->name}}</div>
-                                    <div class="product-description">{{ $product->description }}</div>
+                    <div class="swiper-container position-relative" style="overflow: hidden;">
+                        <div class="swiper-wrapper products">
+                            @foreach ($best_products as $product)
+                                <div class="swiper-slide product">
+                                    <div class="mb-4">
+                                        <div class="product-name">{{ $product->name }}</div>
+                                        <div class="product-description">
+                                            {{ \Illuminate\Support\Str::limit($product->description, 50) }}
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
+                                        <img src="{{ asset('storage/' . $product->thumbnail) }}" loading="lazy"
+                                            alt="Product {{ $product->name }}">
+                                    </a>
                                 </div>
-                                <a href="{{ route('web.products.show',[$product->category->slug,$product->slug]) }}">
-                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" loading="lazy"
-                                    alt="Product {{ $product->name }}">
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <!-- ✅ Row: See All | Scrollbar | Arrows -->
-                    <div class="d-flex justify-content-between align-items-center mt-3 gap-3 ">
-
-                        <!-- ✅ See All -->
-                        <a href="{{ route('web.products.index','kitchen-appliances') }}" class="see-all-link text-decoration-none fw-bold" style="white-space: nowrap;">See
-                            All</a>
-                        <div class="swiper-scrollbar" style="height: 6px;"></div>
-                        <div class="d-flex align-items-center ">
-
-                            <div class="swiper-button-prev mx-3" style="position: relative;top:10px;"></div>
-                            <div class="swiper-button-next" style="position: relative;top:10px;"></div>
+                            @endforeach
                         </div>
 
-                    </div>
-                </div>
+                        <!-- ✅ Row: See All | Scrollbar | Arrows -->
+                        <div class="d-flex justify-content-between align-items-center mt-3 gap-3 ">
 
-        </section>
+                            <!-- ✅ See All -->
+                            <a href="{{ route('web.products.index', 'kitchen-appliances') }}"
+                                class="see-all-link text-decoration-none fw-bold" style="white-space: nowrap;">See
+                                All</a>
+                            <div class="swiper-scrollbar" style="height: 6px;"></div>
+                            <div class="d-flex align-items-center ">
+
+                                <div class="swiper-button-prev mx-3" style="position: relative;top:10px;"></div>
+                                <div class="swiper-button-next" style="position: relative;top:10px;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            </section>
         @endif
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
@@ -135,43 +136,42 @@
             <div class="col-4"></div>
         </section>
 
-        @if(count($best_sellers)>0)
-        <section class="mb-5 best_seller ">
-            <div class="container">
-                <div class="section-title mb-4">Best Sellers</div>
-                <div class="row">
+        @if (count($best_sellers) > 0)
+            <section class="mb-5 best_seller ">
+                <div class="container">
+                    <div class="section-title mb-4">Best Sellers</div>
+                    <div class="row">
 
 
-                    @foreach ($best_sellers as $product)
-  
-                        <div class="col-md-4 col-sm-6 col-12 mb-3">
-                            <div class="card">
-                                <div class="card-body ">
-                                    <div class="text-end my-3">
-                                        <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $product->name}}</span>
-                                        <span>{{ $product->price }} $</span>
-                                    </div>
-                                    <div class="d-flex gap-3 my-3">
-                                        <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
-                                            Now</button>
-                                        <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
-                                            Cart</button>
+                        @foreach ($best_sellers as $product)
+                            <div class="col-md-4 col-sm-6 col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-body ">
+                                        <div class="text-end my-3">
+                                            <i style="font-size: 20px" class="fa-regular fa-heart"></i>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span>{{ $product->name }}</span>
+                                            <span>{{ $product->price }} $</span>
+                                        </div>
+                                        <div class="d-flex gap-3 my-3">
+                                            <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
+                                                Now</button>
+                                            <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
+                                                Cart</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
 
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
         @endif
 
         <section class="best-deal mb-5">
