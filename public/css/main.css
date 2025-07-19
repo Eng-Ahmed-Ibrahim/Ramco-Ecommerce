@@ -18,6 +18,9 @@ body {
 html{
         overflow-x: hidden;
 }
+section{
+    overflow-x: hidden;
+}
 
 :root {
     --main-color: #E2211C;
