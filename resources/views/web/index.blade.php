@@ -106,10 +106,12 @@
         @endif
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
-            <video autoplay muted loop playsinline class="bg-video">
-                <source src="{{ asset('static/video.mp4') }}" type="video/mp4">
-                Your browser does not support HTML5 video.
+            <video class="lazy-video bg-video " preload="none" autoplay muted loop playsinline  >
+                <source data-src="{{ asset('static/video.mp4') }}"   type="video/mp4">
             </video>
+
+
+
 
             <div class="video-content col-md-4 col-sm-6 col-12">
                 <div class="container mx-4 mx-md-auto">

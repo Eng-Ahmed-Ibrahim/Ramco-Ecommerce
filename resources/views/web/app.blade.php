@@ -174,6 +174,26 @@
     </script>
 
 
+    <script>
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        function loadVisibleVideos() {
+            document.querySelectorAll('video.lazy-video').forEach(function(video) {
+                const source = video.querySelector('source');
+                if (!source.src && isInViewport(video)) {
+                    source.src = source.dataset.src;
+                    video.load();
+                    video.play().catch(() => {});
+                }
+            });
+        }
+
+        window.addEventListener('scroll', loadVisibleVideos);
+        window.addEventListener('load', loadVisibleVideos);
+    </script>
 
 </body>
 
