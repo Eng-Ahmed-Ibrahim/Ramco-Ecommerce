@@ -48,7 +48,7 @@
                 font-size: 25px;
                 font-style: normal;
                 font-weight: 700;
-                line-height: 50px;
+                line-height: 39px;
             }
         }
     </style>
