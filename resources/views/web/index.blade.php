@@ -106,10 +106,10 @@
         @endif
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
-            <video class="lazy-video bg-video" preload="none" muted autoplay loop playsinline>
+            <video class="lazy-video bg-video" muted autoplay loop playsinline>
                 <source data-src="{{ asset('static/video.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
+
 
 
 
@@ -291,10 +291,9 @@
         function loadVisibleVideos() {
             document.querySelectorAll('video.lazy-video').forEach(function(video) {
                 const source = video.querySelector('source');
-                if (!source.src && isInViewport(video)) {
-                    source.src = source.dataset.src;
+                if (!source.getAttribute('src') && isInViewport(video)) {
+                    source.setAttribute('src', source.dataset.src);
                     video.load();
-                    video.playsInline = true;
                     video.play().catch((e) => {
                         console.warn("Playback error:", e);
                     });
