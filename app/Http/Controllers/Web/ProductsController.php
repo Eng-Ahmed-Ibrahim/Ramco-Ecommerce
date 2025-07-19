@@ -24,6 +24,9 @@ class ProductsController extends Controller
         $filters = [
             "category_id" => $category->id,
         ];
+        if($request->has('sub_category_id')) {
+            $filters['sub_category_id'] = $request->sub_category_id;
+        }
         $products = $this->ProductService->getProducts($filters);
         $sub_categories = $category->SubCategory;
 

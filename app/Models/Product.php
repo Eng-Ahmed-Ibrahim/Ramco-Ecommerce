@@ -79,6 +79,11 @@ class Product extends Model
                 fn($q) =>
                 $q->where('category_id', $filters['category_id'])
             )
+            ->when(
+                !empty($filters['sub_category_id']),
+                fn($q) =>
+                $q->where('sub_category_id', $filters['sub_category_id'])
+            )
             // cases of prices 
             ->when(
                 !empty($filters['price_range']),

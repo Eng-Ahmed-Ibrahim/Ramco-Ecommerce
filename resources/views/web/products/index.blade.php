@@ -5,7 +5,8 @@
         .category-btn {
             transition: ease-in 0.3s;
             border-radius: var(--12, 12px);
-            border: 1px solid var(--black-10, rgba(0, 0, 0, 0.10));
+            border: 1px solid var(--black-10, rgba(0, 0, 0, 0.10)) !important;
+            color: var(--Colors-Primary-400, #444);
             display: flex;
             padding: var(--8, 8px) var(--16, 16px);
             justify-content: center;
@@ -14,7 +15,11 @@
             background: transparent;
 
         }
-
+        .category-btn.active {
+            background:  #1F1F1F;
+            color: white;
+        }
+            
         .active {
             /* background: var(--Colors-Primary-500, #1F1F1F); */
             color: #fff;
@@ -50,15 +55,13 @@
         .products .product img {
             height: 335px;
             transition: ease-in-out 0.2s;
-            max-width: 100%;;
+            max-width: 100%;
+            ;
         }
 
         .products .card {
             border-radius: var(--Radius-10, 28px);
         }
-
-
-
     </style>
 @endsection
 @section('content')
@@ -76,8 +79,11 @@
             </div>
             <div class="d-flex gap-3 align-items-center flex-wrap">
                 @foreach ($sub_categories as $sub_category)
-                    <button class="category-btn ">{{ $sub_category->name }}</button>
+                    <a href="?sub_category_id={{ $sub_category->id }}" class="category-btn {{ request('sub_category_id') == $sub_category->id ? 'active' : '' }}">
+                        {{ $sub_category->name }}
+                    </a>
                 @endforeach
+
             </div>
             <div class="d-flex justify-content-between align-items-center my-3">
                 <div class="filters">Filters <i class="mx-2 fa-solid fa-chevron-down"></i></div>
@@ -103,7 +109,8 @@
                                         <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                     </div>
                                     <div class="text-center">
-                                        <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
+                                        <a
+                                            href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
                                             <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
                                         </a>
                                     </div>
@@ -114,8 +121,8 @@
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
                                             Now</button>
-                                        <button onclick="addToCart('{{ $product->id }}',null , 'selected-color', this )" class="main-btn w-50"
-                                            style="border-radius: 10.504px;">Add To
+                                        <button onclick="addToCart('{{ $product->id }}',null , 'selected-color', this )"
+                                            class="main-btn w-50" style="border-radius: 10.504px;">Add To
                                             Cart</button>
                                     </div>
                                 </div>
