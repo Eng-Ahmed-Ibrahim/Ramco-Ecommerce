@@ -173,40 +173,7 @@
         }
     </script>
 
-    <script>
-        function isInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return rect.top < window.innerHeight && rect.bottom > 0;
-        }
 
-        function loadVisibleVideos() {
-            document.querySelectorAll('video.lazy-video').forEach(function(video) {
-                const source = video.querySelector('source');
-                if (!source.src && isInViewport(video)) {
-                    source.src = source.dataset.src;
-                    video.load();
-                    video.play().catch(() => {});
-                }
-            });
-        }
-
-        function loadLazyImages() {
-            document.querySelectorAll('img.lazy-img').forEach(function(img) {
-                if (!img.src && isInViewport(img)) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-            });
-        }
-
-        function handleLazyLoad() {
-            loadVisibleVideos();
-            loadLazyImages();
-        }
-
-        window.addEventListener('load', handleLazyLoad);
-        window.addEventListener('scroll', handleLazyLoad);
-    </script>
 
 
 </body>

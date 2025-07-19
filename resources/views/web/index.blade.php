@@ -106,10 +106,10 @@
         @endif
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
-            <video class="lazy-video bg-video " preload="none" autoplay muted loop playsinline  >
-                <source data-src="{{ asset('static/video.mp4') }}"   type="video/mp4">
+            <video class="lazy-video bg-video" preload="none" muted autoplay loop playsinline>
+                <source data-src="{{ asset('static/video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
-
 
 
 
@@ -180,7 +180,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img data-src="{{ asset('static/best_deal.webp') }}" loading="lazy" class="max-width lazy-img">
+                        <img data-src="{{ asset('static/best_deal.webp') }}" class="max-width lazy-img" alt="Best Deal">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
@@ -282,4 +282,59 @@
             },
         });
     </script>
+    <script>
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        function loadVisibleVideos() {
+            document.querySelectorAll('video.lazy-video').forEach(function(video) {
+                const source = video.querySelector('source');
+                if (!source.src && isInViewport(video)) {
+                    source.src = source.dataset.src;
+                    video.load();
+                    video.playsInline = true;
+                    video.play().catch((e) => {
+                        console.warn("Playback error:", e);
+                    });
+                }
+            });
+        }
+
+        function loadLazyImages() {
+            let lazyImages = [].slice.call(document.querySelectorAll("img.lazy-img"));
+
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove("lazy-img");
+                            lazyImageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(img) {
+                    lazyImageObserver.observe(img);
+                });
+            } else {
+                lazyImages.forEach(function(img) {
+                    img.src = img.dataset.src;
+                    img.classList.remove("lazy-img");
+                });
+            }
+        }
+
+        function handleLazyLoad() {
+            loadVisibleVideos();
+            loadLazyImages();
+        }
+
+        window.addEventListener('load', handleLazyLoad);
+        window.addEventListener('scroll', handleLazyLoad);
+    </script>
+
 @endsection
