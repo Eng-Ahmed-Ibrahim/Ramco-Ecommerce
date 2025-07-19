@@ -180,7 +180,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img src="{{ asset('static/best_deal.webp') }}" loading="lazy" class="max-width">
+                        <img data-src="{{ asset('static/best_deal.webp') }}" loading="lazy" class="max-width lazy-img">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">

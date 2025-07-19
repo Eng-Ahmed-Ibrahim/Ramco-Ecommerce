@@ -173,10 +173,9 @@
         }
     </script>
 
-
     <script>
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
+        function isInViewport(el) {
+            const rect = el.getBoundingClientRect();
             return rect.top < window.innerHeight && rect.bottom > 0;
         }
 
@@ -191,9 +190,24 @@
             });
         }
 
-        window.addEventListener('scroll', loadVisibleVideos);
-        window.addEventListener('load', loadVisibleVideos);
+        function loadLazyImages() {
+            document.querySelectorAll('img.lazy-img').forEach(function(img) {
+                if (!img.src && isInViewport(img)) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+            });
+        }
+
+        function handleLazyLoad() {
+            loadVisibleVideos();
+            loadLazyImages();
+        }
+
+        window.addEventListener('load', handleLazyLoad);
+        window.addEventListener('scroll', handleLazyLoad);
     </script>
+
 
 </body>
 
