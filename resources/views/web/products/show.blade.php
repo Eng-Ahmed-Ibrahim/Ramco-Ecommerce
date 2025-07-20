@@ -195,7 +195,7 @@
                         <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         {{  $feature->key }}
                     </div>
-                    <div style="font-size: 16px">{{  $feature->value }}</div>
+                    <div style="font-size: 16px;text-align:right;">{{  $feature->value }}</div>
                 </div>
                 @endforeach
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
@@ -270,8 +270,9 @@
                                         </div>
                                         <div class="text-center">
                                             <a
-                                                href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"></a>
-                                            <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
+                                                href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
+                                                <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
+                                            </a>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <span>{{ $relatedProduct->name }}</span>
