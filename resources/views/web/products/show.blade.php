@@ -27,12 +27,13 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease-in-out;
-            height: 450px;
+                max-height: 450px;
+            min-height: 350px;
         }
 
-        .swiper-wrapper .card {
+        /* .swiper-wrapper .card {
             height: 450px;
-        }
+        } */
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
