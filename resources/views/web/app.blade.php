@@ -27,6 +27,12 @@
     @include('web.layouts.navbar')
     @yield('content')
     @include('web.layouts.footer')
+
+
+
+    <img src="{{ asset('static/call-us.png') }}" class="customer-service" alt="Call Us">
+    {{-- <img src="{{ asset('static/30-years.png') }}" class="years" alt="Call Us"> --}}
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
 
