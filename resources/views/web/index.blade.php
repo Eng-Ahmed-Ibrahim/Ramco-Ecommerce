@@ -257,7 +257,7 @@
                             product for every need
                         </div>
                     </div>
-                    <div class="swiper-container position-relative" style="overflow: hidden;">
+                    <div class=" swiper-container position-relative" style="overflow: hidden;">
                         <div class="swiper-wrapper products">
                             @foreach ($best_products as $product)
                                 <div class="swiper-slide product">
@@ -442,16 +442,16 @@
         const swiper = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
-                delay: 10000000,
+                delay: 10000,
                 disableOnInteraction: false,
             },
             pagination: {
-                el: ".swiper-pagination",
+                el: ".mySwiper .swiper-pagination",
                 clickable: true,
             },
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+                nextEl: ".mySwiper .swiper-button-next",
+                prevEl: ".mySwiper .swiper-button-prev",
             },
             speed: 100,
             effect: "slide",
@@ -459,39 +459,39 @@
     </script>
 
     <script>
-        const swiper = new Swiper('.swiper-container', {
-            spaceBetween: 16,
-            freeMode: true,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            scrollbar: {
-                el: '.swiper-scrollbar',
-                draggable: true,
-                hide: false,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            // ✅ Responsive behavior
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                },
-                576: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1200: {
-                    slidesPerView: 3,
-                },
-            },
-        });
+ const productSwiper = new Swiper('.swiper-container', {
+    spaceBetween: 16,
+    freeMode: true,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+        hide: false,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+        1200: {
+            slidesPerView: 3,
+        },
+    },
+});
+
     </script>
     <script>
         function isInViewport(el) {
