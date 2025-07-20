@@ -41,8 +41,9 @@
         }
 
         .swiper-slide-active img {
-            height: 350px !important;
+            max-height: 350 !important;
             opacity: 1;
+            max-width: 100%;
         }
 
         .product-details {
@@ -67,7 +68,7 @@
         }
 
         .swiper-slide.swiper-slide-next img {
-            height: 250px;
+            max-height: 250px;
         }
 
         .title {
