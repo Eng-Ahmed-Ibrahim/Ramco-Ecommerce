@@ -32,7 +32,7 @@ class ProductsRepository
                 'category:id,name,slug',
                 'galleries:id,product_id,image',
                 'features:id,key,value,product_id',
-                'relatedProducts:id,name,price,thumbnail,category_id',
+                'relatedProducts:id,name,slug,price,thumbnail,category_id',
             ])
             ->firstOrFail();
 
