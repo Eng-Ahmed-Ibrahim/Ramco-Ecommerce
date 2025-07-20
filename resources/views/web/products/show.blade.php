@@ -58,7 +58,7 @@
         }
 
         .swiper-slide.swiper-slide-prev img {
-            height: 250px;
+            max-height: 250px;
         }
 
         .swiper-slide.swiper-slide-next {
