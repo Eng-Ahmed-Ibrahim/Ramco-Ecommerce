@@ -191,11 +191,11 @@
 
                 @foreach($features as $index => $feature)
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
-                    <div>
+                    <div style="font-size: 18px">
                         <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         {{  $feature->key }}
                     </div>
-                    <div >{{  $feature->value }}</div>
+                    <div style="font-size: 16px">{{  $feature->value }}</div>
                 </div>
                 @endforeach
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
