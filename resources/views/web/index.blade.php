@@ -205,7 +205,7 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide left"
-                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/000-1.jpg');">
+                    style="background-image: url('{{ asset('static/111.jpg') }}');">
                     <div class="overlay"></div>
 
                     <div class="slide-content">
@@ -218,7 +218,7 @@
                 </div>
 
                 <div class="swiper-slide right"
-                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/blender-0.jpg');">
+                    style="background-image: url('{{ asset('static/222.jpg') }}');">
                     <div class="overlay"></div>
 
                     <div class="slide-content">
@@ -231,7 +231,7 @@
                 </div>
 
                 <div class="swiper-slide right"
-                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/cooler20.jpg');">
+                    style="background-image: url('{{ asset('static/000.jpg') }}');">
                     <div class="overlay"></div>
                     <div class="slide-content">
                         <div class="section-title main-color">COOL PERFORMANCE</div>
