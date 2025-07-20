@@ -59,7 +59,7 @@ class ProductsRepository
             while ($finalGallery->count() < $minCount) {
                 // نضيف من صور الجاليري
                 foreach ($galleryImages as $img) {
-                    if ($finalGallery->count() >= $minCount) break;
+                    // if ($finalGallery->count() >= $minCount) break;
                     $finalGallery->push($img);
                 }
 

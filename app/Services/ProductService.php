@@ -17,7 +17,6 @@ class ProductService
 
     public function getProducts($filters = [])
     {
-
         $products = $this->ProductsRepository->getProducts($filters);
         return $products;
     }
