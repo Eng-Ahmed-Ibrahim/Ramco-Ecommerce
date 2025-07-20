@@ -42,7 +42,7 @@
         }
 
         .swiper-slide-active img {
-            max-height: 350 !important;
+            max-height: 350px !important;
             opacity: 1;
             max-width: 100%;
         }
