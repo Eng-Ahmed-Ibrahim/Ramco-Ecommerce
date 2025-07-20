@@ -16,47 +16,223 @@
             color: black;
         }
     </style>
+
+    <style>
+        /* .mySwiper {
+                width: 100%;
+                height: 80vh;
+                margin-bottom: 50px;
+                position: relative;
+
+                
+            } */
+        .mySwiper {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 7;
+            /* يحافظ على نسبة العرض إلى الارتفاع */
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .mySwiper {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mySwiper {
+                aspect-ratio: 1 / 1;
+            }
+        }
+
+        .mySwiper .overlay {
+            height: 100%;
+            width: 100%;
+            background: #00000034;
+            position: absolute;
+            left: 0;
+        }
+
+        .mySwiper .swiper-slide {
+            position: relative;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            transition: transform 0.6s ease-in-out;
+            border-radius: 0% !important;
+        }
+        .mySwiper .swiper-slide.right{
+            background-position: left;
+
+        }
+        .mySwiper .swiper-slide.left{
+            background-position: right;
+
+        }
+
+        .mySwiper .swiper-slide.left {
+            justify-content: flex-start;
+        }
+
+        .mySwiper .swiper-slide.right {
+            justify-content: flex-end;
+        }
+
+        .mySwiper .slide-content {
+            color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin-left: 60px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .mySwiper .swiper-slide.left .slide-content {
+            transform: translateX(-50px);
+        }
+
+        .mySwiper .swiper-slide-active.left .slide-content,
+        .mySwiper .swiper-slide-active.right .slide-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mySwiper .slide-content h2 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .mySwiper .slide-content p {
+            font-size: 1rem;
+        }
+
+        .mySwiper .slide-content a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #d83131;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .mySwiper .swiper-button-next:after,
+        .mySwiper .swiper-rtl .swiper-button-prev:after {
+            content: 'next';
+            font-size: 20px;
+            color: white;
+        }
+
+        .mySwiper .swiper-button-prev:after,
+        .mySwiper .swiper-rtl .swiper-button-next:after {
+            content: 'prev';
+            font-size: 20px;
+            color: white;
+        }
+
+        .mySwiper .swiper-button-prev,
+        .mySwiper .swiper-rtl .swiper-button-next {
+            left: var(--swiper-navigation-sides-offset, 10px);
+            right: auto;
+            border: 1px solid white;
+            border-radius: 100%;
+            padding: 20px;
+        }
+
+        .mySwiper .swiper-button-next,
+        .mySwiper .swiper-rtl .swiper-button-prev {
+            right: var(--swiper-navigation-sides-offset, 10px);
+            left: auto;
+            border: 1px solid white;
+            border-radius: 100%;
+            padding: 20px;
+        }
+
+        .mySwiper .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,
+        .mySwiper .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4px);
+            height: 12px;
+            width: 12px;
+            border: 2px solid white !important;
+            opacity: 1;
+            background: transparent;
+        }
+
+        .mySwiper .swiper-pagination-bullet-active {
+            opacity: var(--swiper-pagination-bullet-opacity, 1);
+            background: white !important;
+        }
+
+        .mySwiper .swiper-button-next,
+        .mySwiper .swiper-button-prev {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* لما تعمل hover على السلايدر */
+        .mySwiper:hover .swiper-button-next,
+        .mySwiper:hover .swiper-button-prev {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 @endsection
 @section('content')
     <section class="home mb-5">
 
-        <section class="hero mb-5">
-            <div class="container py-5">
-                <div class="row align-items-center desktop-flex">
-                    <div class="col-md-6 col-sm-12 mb-3">
-                        <span class="hero-text">{{ $home_banner->name }}</span>
-                    </div>
-                    <div class="col-md-6 col-sm-12 mb-3">
-                        <div class="d-md-flex d-block text-md-start text-center align-items-center ">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide left"
+                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/000-1.jpg');">
+                    <div class="overlay"></div>
 
-                            <img src="{{ asset('storage/' . $home_banner->thumbnail) }}" class="mb-3" alt="">
-                            <div>
-
-                                <div class="mb-3 hero-content">{{ $home_banner->details }}</div>
-                                <a href="{{ route('web.products.show', [$home_banner->category->slug, $home_banner->slug]) }}"
-                                    class="main-btn">View details</a>
-                            </div>
-                        </div>
+                    <div class="slide-content">
+                        <h2>QUIT</h2>
+                        <h3>ANTI-VIBRATION</h3>
+                        <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
+                            Restart – Addwash Feature – Drum Clean Program</p>
+                        <a href="#">Check the product</a>
                     </div>
                 </div>
-                <div class="row align-items-center mobile-flex">
-                    <div class="col-6 mb-3">
-                        <span class="hero-text">{{ $home_banner->name }} </span>
-                        <div>
 
-                            <div class="my-3 hero-content">{{ $home_banner->details }} </div>
-                            <a href="{{ route('web.products.show', [$home_banner->category->slug, $home_banner->slug]) }}"
-                                class="main-btn">View details</a>
-                        </div>
+                <div class="swiper-slide right"
+                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/blender-0.jpg');">
+                    <div class="overlay"></div>
+
+                    <div class="slide-content">
+                        <h2>UNLEASH THE POWER</h2>
+                        <h3>With Blender RB-663</h3>
+                        <p>⚙️ 5-Speeds Control | ❄️ Ice-Crushing Magic | 🥄 1.5 Liters Jar Capacity | ☕ Coffee & Spices
+                            Grinder | ⚡ Powerful 17,000 RPM</p>
+                        <a href="#">Check the product</a>
                     </div>
-                    <div class="col-6 mb-3">
+                </div>
 
-                        <img src="{{ asset('storage/' . $home_banner->thumbnail) }}" class="mb-3 max-width" alt="">
-
+                <div class="swiper-slide right"
+                    style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/cooler20.jpg');">
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>COOL PERFORMANCE</h2>
+                        <h3>Energy-Efficient Air Cooler</h3>
+                        <p>🌬️ Turbo Cooling | 🌡️ Adjustable Thermostat | 🧊 Large Water Tank | 🔇 Quiet Operation | 🔋
+                            Energy Saving</p>
+                        <a href="#">Check the product</a>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
 
         @if (count($best_products) > 0)
             <section class="best_products mb-5">
@@ -247,6 +423,27 @@
     </section>
 @endsection
 @section('js')
+
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 10000000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            speed: 100,
+            effect: "slide",
+        });
+    </script>
+
     <script>
         const swiper = new Swiper('.swiper-container', {
             spaceBetween: 16,
