@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                    width: 100%;
-                    height: 80vh;
-                    margin-bottom: 50px;
-                    position: relative;
+                        width: 100%;
+                        height: 80vh;
+                        margin-bottom: 50px;
+                        position: relative;
 
-                    
-                } */
+                        
+                    } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -94,8 +94,9 @@
             transform: translateX(50px);
             transition: all 0.8s ease-in-out;
         }
+
         @media (max-width: 768px) {
-             .mySwiper .slide-content {
+            .mySwiper .slide-content {
                 color: #fff;
                 padding: 20px;
                 border-radius: 10px;
@@ -208,7 +209,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <div  class="section-title main-color ">QUIT</div>
+                        <div class="section-title main-color ">QUIT</div>
                         <h3>ANTI-VIBRATION</h3>
                         <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
                             Restart – Addwash Feature – Drum Clean Program</p>
@@ -233,7 +234,7 @@
                     style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/cooler20.jpg');">
                     <div class="overlay"></div>
                     <div class="slide-content">
-                        <div  class="section-title main-color">COOL PERFORMANCE</div>
+                        <div class="section-title main-color">COOL PERFORMANCE</div>
                         <h3>Energy-Efficient Air Cooler</h3>
                         <p>🌬️ Turbo Cooling | 🌡️ Adjustable Thermostat | 🧊 Large Water Tank | 🔇 Quiet Operation | 🔋
                             Energy Saving</p>
@@ -267,12 +268,13 @@
                                             {{ \Illuminate\Support\Str::limit($product->description, 50) }}
                                         </div>
                                     </div>
-          <div class="product-image-wrapper d-flex align-items-center" style="height: 250px;">
-    <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}" class="mx-auto">
-        <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width" loading="lazy"
-            alt="Product {{ $product->name }}">
-    </a>
-</div>
+                                    <div class="product-image-wrapper d-flex align-items-center justify-content-center" style="height: 250px;">
+                                        <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
+                                            class="mx-auto">
+                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
+                                                loading="lazy" alt="Product {{ $product->name }}">
+                                        </a>
+                                    </div>
 
                                 </div>
                             @endforeach
@@ -458,44 +460,42 @@
             },
             speed: 100,
             effect: "slide",
-        });  
-
+        });
     </script>
 
     <script>
- const productSwiper = new Swiper('.swiper-container', {
-    spaceBetween: 16,
-    freeMode: true,
-    loop: true,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-    scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-        hide: false,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        576: {
-            slidesPerView: 2,
-        },
-        768: {
-            slidesPerView: 3,
-        },
-        1200: {
-            slidesPerView: 3,
-        },
-    },
-});
-
+        const productSwiper = new Swiper('.swiper-container', {
+            spaceBetween: 16,
+            freeMode: true,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+                hide: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                576: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1200: {
+                    slidesPerView: 3,
+                },
+            },
+        });
     </script>
     <script>
         function isInViewport(el) {
