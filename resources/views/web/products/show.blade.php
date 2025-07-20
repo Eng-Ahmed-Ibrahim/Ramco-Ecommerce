@@ -270,7 +270,7 @@
                                         </div>
                                         <div class="text-center">
                                             <a
-                                                href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
+                                                href="{{ route('web.products.show', [$product->category->slug, $relatedProduct->slug]) }}">
                                                 <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
                                             </a>
                                         </div>
