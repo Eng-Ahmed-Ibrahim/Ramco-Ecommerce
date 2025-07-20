@@ -58,4 +58,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.APP_PATH }}
+            chmod +x build.sh
             ./build.sh
