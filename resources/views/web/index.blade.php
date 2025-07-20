@@ -265,7 +265,7 @@
                                     <div class="mb-4">
                                         <div class="product-name">{{ $product->name }}</div>
                                         <div class="product-description">
-                                            {{ \Illuminate\Support\Str::limit($product->description, 50) }}
+                                            {{ \Illuminate\Support\Str::limit($product->description, 45) }}
                                         </div>
                                     </div>
                                     <div class="product-image-wrapper d-flex align-items-center justify-content-center" style="height: 250px;">
