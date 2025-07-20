@@ -30,7 +30,7 @@ class ProductsController extends Controller
         $products = $this->ProductService->getProducts($filters);
         $sub_categories = $category->SubCategory;
 
-        return view('web.products.index', compact('products', 'sub_categories', 'category_id'));
+        return view('web.products.index', compact('products', 'sub_categories', 'category_id','category'));
     }
     public function show($category_slug, $product_slug)
     {

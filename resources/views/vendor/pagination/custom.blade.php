@@ -11,7 +11,7 @@
     padding: 10px 15px;
     margin: 0 5px;
     text-decoration: none;
-    color: #007bff;
+    color: #1F1F1F;
     border: 1px solid #ddd;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -22,7 +22,7 @@
 }
 
 .pagination-link.current {
-    background-color: #007bff;
+    background-color: #1F1F1F;
     color: white;
     cursor: default;
 }

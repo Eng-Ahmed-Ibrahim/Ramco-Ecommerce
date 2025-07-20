@@ -15,11 +15,12 @@
             background: transparent;
 
         }
+
         .category-btn.active {
-            background:  #1F1F1F;
+            background: #1F1F1F;
             color: white;
         }
-            
+
         .active {
             /* background: var(--Colors-Primary-500, #1F1F1F); */
             color: #fff;
@@ -53,7 +54,7 @@
         }
 
         .products .product img {
-            height: 335px;
+            max-height: 335px;
             transition: ease-in-out 0.2s;
             max-width: 100%;
             ;
@@ -68,10 +69,10 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-2">
-                <span class="muted-color">Home</span> / <span>Home Appliances </span>
+                <span class="muted-color">Home</span> / <span>{{ $category->name }}</span>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-                <div class="section-title black-color my-4">Home Appliances </div>
+                <div class="section-title black-color my-4">{{ $category->name }}</div>
                 <div class="description ">
                     Discover RAMCO iconic range of home appliances, it includes induction cookers, washing machines water
                     dispensers and others
@@ -79,7 +80,8 @@
             </div>
             <div class="d-flex gap-3 align-items-center flex-wrap">
                 @foreach ($sub_categories as $sub_category)
-                    <a href="?sub_category_id={{ $sub_category->id }}" class="category-btn {{ request('sub_category_id') == $sub_category->id ? 'active' : '' }}">
+                    <a href="?sub_category_id={{ $sub_category->id }}"
+                        class="category-btn {{ request('sub_category_id') == $sub_category->id ? 'active' : '' }}">
                         {{ $sub_category->name }}
                     </a>
                 @endforeach
@@ -128,11 +130,13 @@
                                 </div>
                             </div>
                         </div>
+                        {{ $products->links('vendor.pagination.custom') }}
                     @empty
                         <div class="col-12 text-center my-5">
                             <h4 class="text-muted">No products found</h4>
                         </div>
                     @endforelse
+
                 </div>
             </div>
         </div>
