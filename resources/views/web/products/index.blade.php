@@ -130,12 +130,12 @@
                                 </div>
                             </div>
                         </div>
-                        {{ $products->links('vendor.pagination.custom') }}
-                    @empty
+                        @empty
                         <div class="col-12 text-center my-5">
                             <h4 class="text-muted">No products found</h4>
                         </div>
-                    @endforelse
+                        @endforelse
+                        {{ $products->links('vendor.pagination.custom') }}
 
                 </div>
             </div>
