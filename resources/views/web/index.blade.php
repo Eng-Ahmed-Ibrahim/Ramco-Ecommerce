@@ -455,7 +455,7 @@
             },
             speed: 100,
             effect: "slide",
-        });
+        });  
     </script>
 
     <script>
