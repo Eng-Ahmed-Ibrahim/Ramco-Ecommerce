@@ -12,7 +12,7 @@
     margin: 0 5px;
     text-decoration: none;
     color: #1F1F1F;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
