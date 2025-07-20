@@ -175,6 +175,7 @@
                                  @endforelse
                              </tbody>
                          </table>
+                        {{ $products->links('vendor.pagination.custom') }}
 
 
                      </div>
