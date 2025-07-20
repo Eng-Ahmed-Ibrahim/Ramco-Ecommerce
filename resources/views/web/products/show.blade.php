@@ -151,7 +151,7 @@
 }
 
 .zoom-container:hover img {
-    transform: scale(1.5);
+    transform: scale(2);
     cursor: zoom-in;
 }
     .zoom-image {
