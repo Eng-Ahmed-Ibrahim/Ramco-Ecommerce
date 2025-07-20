@@ -267,10 +267,13 @@
                                             {{ \Illuminate\Support\Str::limit($product->description, 50) }}
                                         </div>
                                     </div>
-                                    <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
-                                        <img src="{{ asset('storage/' . $product->thumbnail) }}" loading="lazy"
-                                            alt="Product {{ $product->name }}">
-                                    </a>
+          <div class="product-image-wrapper d-flex align-items-center" style="height: 250px;">
+    <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}" class="mx-auto">
+        <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width" loading="lazy"
+            alt="Product {{ $product->name }}">
+    </a>
+</div>
+
                                 </div>
                             @endforeach
                         </div>
@@ -456,7 +459,7 @@
             speed: 100,
             effect: "slide",
         });  
-        
+
     </script>
 
     <script>
