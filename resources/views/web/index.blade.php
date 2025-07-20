@@ -348,7 +348,7 @@
                                             <i style="font-size: 20px" class="fa-regular fa-heart"></i>
                                         </div>
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
+                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt=""  loading="lazy">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <span>{{ $product->name }}</span>
@@ -375,7 +375,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img data-src="{{ asset('static/best_deal.webp') }}" class="max-width lazy-img" alt="Best Deal">
+                        <img data-src="{{ asset('static/best_deal.webp') }}"  loading="lazy" class="max-width lazy-img" alt="Best Deal">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
@@ -416,7 +416,7 @@
                                             <div class="description">Request repair service Conveniently online</div>
                                         </div>
                                         <div class=" col-4">
-                                            <img src="{{ asset('static/icon1.svg') }}" alt="">
+                                            <img src="{{ asset('static/icon1.svg') }}"  loading="lazy" alt="">
                                         </div>
                                     </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
