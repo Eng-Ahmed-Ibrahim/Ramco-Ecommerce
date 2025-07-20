@@ -27,13 +27,13 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease-in-out;
-                max-height: 450px;
+            max-height: 450px;
             min-height: 350px;
         }
 
         /* .swiper-wrapper .card {
-            height: 450px;
-        } */
+                height: 450px;
+            } */
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
@@ -139,6 +139,46 @@
         }
     </style>
 
+    <style>
+.zoom-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.zoom-container img {
+    transition: transform 0.3s ease, transform-origin 0.3s ease;
+    transform: scale(1);
+}
+
+.zoom-container:hover img {
+    transform: scale(1.5);
+    cursor: zoom-in;
+}
+    .zoom-image {
+        transition: transform 0.3s ease;
+    }
+
+    .zoom-image:hover {
+        transform: scale(1.2);
+        cursor: zoom-in;
+    }
+        .zoom-container {
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .zoom-container img {
+        transition: all 0.3s ease;
+    }
+
+    .zoom-container:hover img {
+        width: 120%; /* يكبر العرض */
+        height: auto;
+        cursor: zoom-in;
+    }
+</style>
+
+    </style>
 
 
 @endsection
@@ -168,11 +208,14 @@
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
                         <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }}">
-                            <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
+                            <div class="zoom-container">
+                                <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
+                            </div>
                         </div>
                     @endforeach
                 </div>
             </div>
+
         </div>
 
         <div class="container my-5">
@@ -189,18 +232,18 @@
                 <div class="title mb-2">Features</div>
 
 
-                @foreach($features as $index => $feature)
-                <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
-                    <div style="font-size: 18px">
-                        <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        {{  $feature->key }}
+                @foreach ($features as $index => $feature)
+                    <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
+                        <div style="font-size: 18px">
+                            <span class="number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            {{ $feature->key }}
+                        </div>
+                        <div style="font-size: 16px;text-align:right;">{{ $feature->value }}</div>
                     </div>
-                    <div style="font-size: 16px;text-align:right;">{{  $feature->value }}</div>
-                </div>
                 @endforeach
                 <div class=" feature main-border-bottom p-2  d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="number"> {{ str_pad(count($features) + 1 , 2, '0', STR_PAD_LEFT) }}</span>Color
+                        <span class="number"> {{ str_pad(count($features) + 1, 2, '0', STR_PAD_LEFT) }}</span>Color
                     </div>
                     <div class="d-flex gap-2">
                         @foreach ($product->colors as $color)
@@ -249,7 +292,8 @@
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                             </div>
-                            <button onclick="addToCart('{{ $product->id }}' , 'product-show-quantity' , 'selected-color' ,this )"
+                            <button
+                                onclick="addToCart('{{ $product->id }}' , 'product-show-quantity' , 'selected-color' ,this )"
                                 class="main-btn w-50">Add To Cart</button>
                         </div>
                     </div>
@@ -271,7 +315,8 @@
                                         <div class="text-center">
                                             <a
                                                 href="{{ route('web.products.show', [$product->category->slug, $relatedProduct->slug]) }}">
-                                                <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}" alt="">
+                                                <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}"
+                                                    alt="">
                                             </a>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
@@ -281,7 +326,8 @@
                                         <div class="d-flex gap-3 my-3">
                                             <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
                                                 Now</button>
-                                            <button class="main-btn w-50" onclick="addToCart('{{ $product->id }}',null,null,this)"
+                                            <button class="main-btn w-50"
+                                                onclick="addToCart('{{ $product->id }}',null,null,this)"
                                                 style="border-radius: 10.504px;">Add To
                                                 Cart</button>
                                         </div>
@@ -298,6 +344,24 @@
     </section>
 @endsection
 @section('js')
+<script>
+    document.querySelectorAll('.zoom-container').forEach(container => {
+        const img = container.querySelector('img');
+
+        container.addEventListener('mousemove', function(e) {
+            const rect = container.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            img.style.transformOrigin = `${x}% ${y}%`;
+        });
+
+        container.addEventListener('mouseleave', function() {
+            img.style.transformOrigin = 'center center';
+        });
+    });
+</script>
+
+
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
@@ -349,8 +413,6 @@
             }
         });
     </script>
-<script>
-
-</script>
+    <script></script>
 
 @endsection
