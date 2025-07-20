@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                width: 100%;
-                height: 80vh;
-                margin-bottom: 50px;
-                position: relative;
+                    width: 100%;
+                    height: 80vh;
+                    margin-bottom: 50px;
+                    position: relative;
 
-                
-            } */
+                    
+                } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -65,11 +65,13 @@
             transition: transform 0.6s ease-in-out;
             border-radius: 0% !important;
         }
-        .mySwiper .swiper-slide.right{
+
+        .mySwiper .swiper-slide.right {
             background-position: left;
 
         }
-        .mySwiper .swiper-slide.left{
+
+        .mySwiper .swiper-slide.left {
             background-position: right;
 
         }
@@ -91,6 +93,18 @@
             opacity: 0;
             transform: translateX(50px);
             transition: all 0.8s ease-in-out;
+        }
+        @media (max-width: 768px) {
+             .mySwiper .slide-content {
+                color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 500px;
+                margin-left: 0px;
+                opacity: 0;
+                transform: translateX(50px);
+                transition: all 0.8s ease-in-out;
+            }
         }
 
         .mySwiper .swiper-slide.left .slide-content {
@@ -194,7 +208,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <h2>QUIT</h2>
+                        <div  class="section-title main-color ">QUIT</div>
                         <h3>ANTI-VIBRATION</h3>
                         <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
                             Restart – Addwash Feature – Drum Clean Program</p>
@@ -207,7 +221,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <h2>UNLEASH THE POWER</h2>
+                        <div class="section-title main-color">UNLEASH THE POWER</div>
                         <h3>With Blender RB-663</h3>
                         <p>⚙️ 5-Speeds Control | ❄️ Ice-Crushing Magic | 🥄 1.5 Liters Jar Capacity | ☕ Coffee & Spices
                             Grinder | ⚡ Powerful 17,000 RPM</p>
@@ -219,7 +233,7 @@
                     style="background-image: url('http://ramco-sy.net/wp-content/uploads/2023/09/cooler20.jpg');">
                     <div class="overlay"></div>
                     <div class="slide-content">
-                        <h2>COOL PERFORMANCE</h2>
+                        <div  class="section-title main-color">COOL PERFORMANCE</div>
                         <h3>Energy-Efficient Air Cooler</h3>
                         <p>🌬️ Turbo Cooling | 🌡️ Adjustable Thermostat | 🧊 Large Water Tank | 🔇 Quiet Operation | 🔋
                             Energy Saving</p>
