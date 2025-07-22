@@ -299,17 +299,17 @@
             border: none;
             cursor: pointer;
             background: transparent;
-
+            color: black
         }
 
         .subcategory-btn.active {
             border-bottom: 2px solid #3D4FA2;
-
         }
 
 
         .subcategory-slider .swiper-slide {
             width: auto !important;
+            padding: 0 !important;
         }
     </style>
 
@@ -739,7 +739,7 @@
         let swiperSubcategory = new Swiper('.subcategory-slider', {
             slidesPerView: 'auto',
             spaceBetween: 8,
-            loop: true,
+            // loop: true,
             navigation: {
                 nextEl: '.subcategory-slider .swiper-button-next',
                 prevEl: '.subcategory-slider .swiper-button-prev',
@@ -748,7 +748,7 @@
 
 
         let swiperProducts = new Swiper('.best-sellers-slider', {
-            slidesPerView: 'auto',
+            slidesPerView: 4,
             spaceBetween: 0,
             navigation: {
                 nextEl: '.swiper-button-next',
