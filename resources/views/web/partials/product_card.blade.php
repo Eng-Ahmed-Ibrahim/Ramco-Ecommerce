@@ -56,7 +56,7 @@
     @php  
     $category = $category ?? $product->category;
     @endphp
-    <a href="{{ route('web.product.show',[$category->slug, $product->slug]) }}" class="product-card"
+    <a href="{{ route('web.products.show',[$category->slug, $product->slug]) }}" class="product-card"
         style="background-image: url('{{asset('storage/' . $product->thumbnail)}}');">
         <div class="product-overlay">
             <div class="d-flex justify-content-between align-items-start">
