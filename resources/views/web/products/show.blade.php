@@ -59,7 +59,7 @@
         }
 
         .swiper-slide.swiper-slide-prev img {
-            max-height: 250px;
+            /* max-height: 250px; */
         }
 
         .swiper-slide.swiper-slide-next {
@@ -69,7 +69,7 @@
         }
 
         .swiper-slide.swiper-slide-next img {
-            max-height: 250px;
+            /* max-height: 250px; */
         }
 
         .title {
