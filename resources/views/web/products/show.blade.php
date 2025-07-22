@@ -37,7 +37,7 @@
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
-            max-height: 450px;
+            height: 300px;
             opacity: 0.6;
         }
 
@@ -59,7 +59,8 @@
         }
 
         .swiper-slide.swiper-slide-prev img {
-            /* max-height: 250px; */
+            height: 300px;
+
         }
 
         .swiper-slide.swiper-slide-next {
@@ -69,7 +70,7 @@
         }
 
         .swiper-slide.swiper-slide-next img {
-            /* max-height: 250px; */
+            height: 300px;
         }
 
         .title {
