@@ -259,6 +259,31 @@
             border: 1px solid #e62119;
             margin: 0 17px;
         }
+        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    content: 'prev';
+    font-size: 20px;
+    color: #e62119;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    font-size: 20px;
+    color: #e62119;
+}
+.swiper-scrollbar {
+    border-radius: var(--swiper-scrollbar-border-radius, 10px);
+    position: relative;
+    touch-action: none;
+    background: #e62119;
+}.swiper-scrollbar-drag {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: black;
+    border-radius: var(--swiper-scrollbar-border-radius, 10px);
+    left: 0;
+    top: 0;
+}
+
     </style>
 
 @endsection
@@ -481,6 +506,7 @@
 
                     <!-- Slider 2 (repair requests) -->
                     <div class="swiper repair-request-slider">
+                        
                         <div class="swiper-wrapper">
                             @for ($i = 0; $i < 3; $i++)
                                 <div class="swiper-slide">
