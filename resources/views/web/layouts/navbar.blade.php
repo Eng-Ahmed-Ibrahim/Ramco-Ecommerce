@@ -3,8 +3,8 @@
     position: absolute;
     top: -6px;
     left: -20px;
-    background-color: red;
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 50%;
     padding: 2px 6px;
     font-size: 12px;
@@ -45,8 +45,9 @@
             <span>En</span>
             <i class="fas fa-globe"></i>
         </div>
-        <a class="navbar-brand" href="{{ route('web.pages.home') }}"><img class="logo"
-                src="{{ asset('static/header_logo_fa.png') }}" alt=""></a>
+        <a class="navbar-brand" href="{{ route('web.pages.home') }}">
+            <img class="logo" src="{{ asset('static/header_logo_ff.png') }}" >
+            </a>
 
         {{-- Cart & User  --}}
         <div class="mobile mx-2">

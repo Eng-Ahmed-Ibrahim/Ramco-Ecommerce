@@ -208,7 +208,7 @@
             border-radius: var(--swiper-scrollbar-border-radius, 10px);
             position: relative;
             touch-action: none;
-            background: #e62119;
+            background: #3D4FA2;
         }
 
         .best_seller .swiper-scrollbar-drag {
@@ -225,14 +225,14 @@
         .swiper-rtl .swiper-button-next:after {
             content: 'prev';
             font-size: 20px;
-            color: #e62119;
+            color: #3D4FA2;
         }
 
         .best_seller .swiper-button-next:after,
         .swiper-rtl .swiper-button-prev:after {
             content: 'next';
             font-size: 20px;
-            color: #e62119;
+            color: #3D4FA2;
         }
     </style>
     <style>
@@ -248,7 +248,7 @@
             right: 0;
             border-radius: 100%;
             padding: 20px;
-            border: 1px solid #e62119;
+            border: 1px solid #B1B3B6;
             margin: 0 17px;
         }
 
@@ -256,29 +256,29 @@
             left: 0;
             border-radius: 100%;
             padding: 20px;
-            border: 1px solid #e62119;
+            border: 1px solid #B1B3B6;
             margin: 0 17px;
         }
         .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
     content: 'prev';
     font-size: 20px;
-    color: #e62119;
+    color: #B1B3B6;
 }
 .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
     content: 'next';
     font-size: 20px;
-    color: #e62119;
+    color: #B1B3B6;
 }
 .swiper-scrollbar {
     border-radius: var(--swiper-scrollbar-border-radius, 10px);
     position: relative;
     touch-action: none;
-    background: #e62119;
+    background: #3D4FA2 ;
 }.swiper-scrollbar-drag {
     height: 100%;
     width: 100%;
     position: relative;
-    background: black;
+    background: #B1B3B6;
     border-radius: var(--swiper-scrollbar-border-radius, 10px);
     left: 0;
     top: 0;
@@ -296,7 +296,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <div class="section-title main-color ">QUIT</div>
+                        <div class="section-title text-black ">QUIT</div>
                         <h3>ANTI-VIBRATION</h3>
                         <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
                             Restart – Addwash Feature – Drum Clean Program</p>
@@ -308,7 +308,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <div class="section-title main-color">UNLEASH THE POWER</div>
+                        <div class="section-title text-black">UNLEASH THE POWER</div>
                         <h3>With Blender RB-663</h3>
                         <p>⚙️ 5-Speeds Control | ❄️ Ice-Crushing Magic | 🥄 1.5 Liters Jar Capacity | ☕ Coffee & Spices
                             Grinder | ⚡ Powerful 17,000 RPM</p>
@@ -319,7 +319,7 @@
                 <div class="swiper-slide right" style="background-image: url('{{ asset('static/000.jpg') }}');">
                     <div class="overlay"></div>
                     <div class="slide-content">
-                        <div class="section-title main-color">COOL PERFORMANCE</div>
+                        <div class="section-title text-black">COOL PERFORMANCE</div>
                         <h3>Energy-Efficient Air Cooler</h3>
                         <p>🌬️ Turbo Cooling | 🌡️ Adjustable Thermostat | 🧊 Large Water Tank | 🔇 Quiet Operation | 🔋
                             Energy Saving</p>
@@ -423,7 +423,7 @@
         @if (count($best_sellers) > 0)
             <section class="mb-5 best_seller ">
                 <div class="container">
-                    <div class="section-title mb-4">Best Sellers</div>
+                    <div class="section-title  blue-color mb-4">Best Sellers</div>
                     <div class="row">
 
                         <!-- Slider 1 (best_sellers) -->

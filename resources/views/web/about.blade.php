@@ -69,7 +69,7 @@
 
                         <div class="video-title ">Our history</div>
                         <div class="about-description">
-                            <span class="main-color">Kasem Group </span>for Engineering Industries, RAMCO Brand, well known,
+                            <span class="blue-color">Kasem Group </span>for Engineering Industries, RAMCO Brand, well known,
                             and famous company, was established in 1993. It is specialized in electric household appliances.
                             It is located near the Syrian capital Damascus, in Adra Industrial City, Damascus suburb, on a
                             land of 40,000 SQM, with 6 building and 300 employees.
@@ -82,7 +82,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-6 col-12 mb-3">
-                    <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
+                    <div class="section-title blue-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         OUR SUCCESS
                     </div>
                     <div class="about-description text-black">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-12 mb-3">
-                    <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
+                    <div class="section-title blue-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         OUR VISION
                     </div>
                     <div class="about-description text-black">
@@ -102,14 +102,14 @@
                     </div>
                 </div>
             </div>
-            <div class="my-5 main-color our-products text-center">
+            <div class="my-5 blue-color our-products text-center">
                 Our products known, and trusted not just locally, but also in Lebanon, Jordan, Iraq and Turkey. We have
                 distributers in all around countries.
 
             </div>
             <div class="row mb-3 align-items-center">
                 <div class="col-md-5 col-12 order-2 order-md-1 mb-3">
-                    <div class="section-title main-color main-border-bottom px-2 mb-3" style="font-size: 30px">
+                    <div class="section-title blue-color main-border-bottom px-2 mb-3" style="font-size: 30px">
                         +50 Products
                     </div>
                     <div class="about-description text-black">
