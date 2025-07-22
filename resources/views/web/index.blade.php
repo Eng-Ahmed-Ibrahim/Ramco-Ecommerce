@@ -389,14 +389,14 @@
                                             {{ \Illuminate\Support\Str::limit($product->description, 45) }}
                                         </div>
                                     </div>
-                                    <div class="product-image-wrapper product-card d-flex align-items-center justify-content-center"
+                                    <a  href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}" class="product-image-wrapper product-card d-flex align-items-center justify-content-center"
                                         style="background-image:url('{{ asset('storage/' . $product->thumbnail) }}') ;">
-                                        <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
+                                        <a 
                                             class="mx-auto">
                                             {{-- <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
                                                 loading="lazy" alt="Product {{ $product->name }}"> --}}
                                         </a>
-                                    </div>
+                                    </a>
 
                                 </div>
                             @endforeach
