@@ -143,6 +143,7 @@
 .zoom-container {
     overflow: hidden;
     position: relative;
+    width: 100%;
 }
 
 .zoom-container img {
@@ -169,6 +170,8 @@
 
     .zoom-container img {
         transition: all 0.3s ease;
+        width: 100%;
+    height: auto;
     }
 
     .zoom-container:hover img {
@@ -176,9 +179,17 @@
         height: auto;
         cursor: zoom-in;
     }
+    .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    max-height: 450px;
+    min-height: 350px;
+    padding: 9px;
+}
 </style>
 
-    </style>
 
 
 @endsection

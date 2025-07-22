@@ -12,26 +12,26 @@ use Illuminate\Support\Facades\Cache;
 
 class SubCategoriesController extends Controller
 {
-     public function index(Request $request)
+    public function index(Request $request)
     {
         Cache::forget('sub_categories');
 
-        $categories = Cache::rememberForever("categories",function(){
+        $categories = Cache::rememberForever("categories", function () {
             return Category::latest()->get();
-        }); 
+        });
 
         $sub_categories = SubCategory::filter($request->only(['category_id', 'name']))
             ->latest()
             ->paginate(15);
 
-        return view('admin.sub_categories.index', compact('sub_categories','categories'));
+        return view('admin.sub_categories.index', compact('sub_categories', 'categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:sub_categories,name',
-            "category_id"=>"required|exists:categories,id",
+            "category_id" => "required|exists:categories,id",
         ]);
 
         SubCategory::create([
@@ -48,9 +48,9 @@ class SubCategoriesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:sub_categories,name,' . $id,
-            
+
         ]);
-        $sub_category=SubCategory::findOrfail($id);
+        $sub_category = SubCategory::findOrfail($id);
         $sub_category->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -62,8 +62,11 @@ class SubCategoriesController extends Controller
 
     public function destroy(SubCategory $sub_category)
     {
+        if ($sub_category->products()->exists()) {
+            return redirect()->back()->with('error', 'Cannot delete subcategory because it has related products.');
+        }
         $sub_category->delete();
-                Helpers::cache_sub_categories();
+        Helpers::cache_sub_categories();
 
         return redirect()->back()->with('success', 'Sub Category deleted successfully.');
     }

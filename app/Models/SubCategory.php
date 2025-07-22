@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +17,10 @@ class SubCategory extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'sub_category_id');
+    }
     public function scopeFilter($query, $filters)
     {
         if (!empty($filters['category_id'])) {
