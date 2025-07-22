@@ -154,7 +154,7 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-2">
-                <span class="muted-color">Home</span> / <span>Repair </span>
+                <span class="muted-color">Home</span> / <span  class="text-black">Repair </span>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <div class="section-title black-color my-4">Request a repair </div>

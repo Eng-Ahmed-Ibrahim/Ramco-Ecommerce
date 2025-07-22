@@ -72,7 +72,7 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-4">
-                <span class="muted-color">Home</span> / <span>Cart </span>
+                <span class="muted-color">Home</span> / <span  class="text-black">Cart </span>
             </div>
 
             <div class="row mb-3 ">

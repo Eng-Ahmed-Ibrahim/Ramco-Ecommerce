@@ -187,7 +187,7 @@
         <div class="container ">
             <div class="mb-4 ">
                 <span class="muted-color">Home / </span> <span class="muted-color">{{ $product->category->name }} / </span>
-                <span>{{ $product->name }} </span>
+                <span  class="text-black">{{ $product->name }} </span>
             </div>
             <div class="  my-2 d-flex justify-content-between align-items-center">
                 <div class="product-name">{{ $product->name }}</div>

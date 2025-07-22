@@ -25,7 +25,7 @@
     <section class="about my-5">
         <div class="container">
             <div class="mb-3">
-                <span class="muted-color">Home</span> / <span>Contact Us </span>
+                <span class="muted-color">Home</span> / <span  class="text-black">Contact Us </span>
             </div>
             <h3 class="mb-5">Contact Us</h3>
             <div class="row mb-3">

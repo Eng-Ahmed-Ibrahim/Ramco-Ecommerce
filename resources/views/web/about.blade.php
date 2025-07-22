@@ -57,7 +57,7 @@
     <section class="about my-5">
         <div class="container">
             <div class="mb-5">
-                <span class="muted-color">Home</span> / <span>About Us </span>
+                <span class="muted-color">Home</span> / <span class="text-black">About Us </span>
             </div>
             <div class="section-title black-color my-4">About Us </div>
 
