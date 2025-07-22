@@ -117,8 +117,8 @@
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span>{{ $product->name }}</span>
-                                        <span>{{ $product->price }} $</span>
+                                        <span class="black-color"> {{ $product->name }}</span>
+                                        <span  class="black-color">{{ $product->price }} $</span>
                                     </div>
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
