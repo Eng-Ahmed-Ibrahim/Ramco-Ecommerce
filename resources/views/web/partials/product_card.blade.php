@@ -56,17 +56,17 @@
     @php  
     $category = $category ?? $product->category;
     @endphp
-    <a href="{{ route('web.products.show',[$category->slug, $product->slug]) }}" class="product-card"
+    <div  class="product-card"
         style="background-image: url('{{asset('storage/' . $product->thumbnail)}}');">
-        <div class="product-overlay">
+        <a  href="{{ route('web.products.show',[$category->slug, $product->slug]) }}" class="product-overlay">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="d-flex gap-2">
                     <span class="color-dot" style="background-color: black;"></span>
                 </div>
                 <i class="fa-regular fa-heart"></i>
             </div>
-        </div>
-    </a>
+        </a>
+    </div>
     <div class="product-info">
         <div class="d-flex align-items-center justify-content-between">
             <span class="black-color"> {{ $product->name }}</span>
