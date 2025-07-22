@@ -58,13 +58,13 @@
             @if ($i == $paginator->currentPage())
                 <div class="pagination-link current">{{ $i }}</div>
             @else
-                <a href="{{ $paginator->url($i) }}&category_id={{ request('category_id') }}" class="pagination-link">{{ $i }}</a>
+                <a href="{{ $paginator->url($i) }}" class="pagination-link">{{ $i }}</a>
             @endif
         @endfor
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <a href="{{ $paginator->nextPageUrl() }}&category_id={{ request('category_id') }}" class="pagination-link">
+            <a href="{{ $paginator->nextPageUrl() }}" class="pagination-link">
                 <i class="fa-solid fa-angle-right"></i>
             </a>
         @else
