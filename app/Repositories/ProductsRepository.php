@@ -23,7 +23,7 @@ class ProductsRepository
             return $query->get();
         }
 
-        return $query->paginate(16);
+        return $query->paginate(15);
     }
 
 
