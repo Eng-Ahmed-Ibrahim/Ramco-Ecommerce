@@ -388,7 +388,7 @@
             border-radius: 10px;
             overflow: hidden;
             position: relative;
-            background-image:url('https://ramco.mass-fluence.com/storage/products/thumbnail/jCwuCkrqyZt5cvzjNBk2BaEu354k6Lyh6NbKHb2h.png') ;">
+            background-image:url('{{ asset('storage/' . $product->thumbnail) }}') ;">
                                         <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
                                             class="mx-auto">
                                             {{-- <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
