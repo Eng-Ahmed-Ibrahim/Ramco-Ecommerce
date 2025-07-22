@@ -31,8 +31,11 @@ section {
     --black-color: #1F1F1F;
     --blue-color:#3D4FA2;
     --dark-color:#353535 ;
+    --gray-color:#B1B3B6;
 }
-
+.gray-color{
+    color: var(--gray-color) !important;
+}
 .blue-color {
     color: var(--blue-color) !important;
 }

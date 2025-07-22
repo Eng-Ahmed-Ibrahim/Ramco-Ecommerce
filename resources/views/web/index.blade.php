@@ -131,7 +131,7 @@
             display: inline-block;
             margin-top: 15px;
             padding: 10px 20px;
-            background-color: #d83131;
+            background-color: var(--gray-color);
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
@@ -519,7 +519,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="{{ asset('static/icon1.svg') }}" loading="lazy"
+                                                    <img src="{{ asset('static/icon21.svg') }}" loading="lazy"
                                                         alt="">
                                                 </div>
                                             </div>
