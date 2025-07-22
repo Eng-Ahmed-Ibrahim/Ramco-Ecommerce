@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                                                    width: 100%;
-                                                    height: 80vh;
-                                                    margin-bottom: 50px;
-                                                    position: relative;
+                                                        width: 100%;
+                                                        height: 80vh;
+                                                        margin-bottom: 50px;
+                                                        position: relative;
 
-                                                    
-                                                } */
+                                                        
+                                                    } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -235,6 +235,32 @@
             color: #e62119;
         }
     </style>
+    <style>
+        .custom-swiper-button {
+            color: #000;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .swiper-button-next.custom-swiper-button {
+            right: 0;
+            border-radius: 100%;
+            padding: 20px;
+            border: 1px solid #e62119;
+            margin: 0 17px;
+        }
+
+        .swiper-button-prev.custom-swiper-button {
+            left: 0;
+            border-radius: 100%;
+            padding: 20px;
+            border: 1px solid #e62119;
+            margin: 0 17px;
+        }
+    </style>
+
 @endsection
 @section('content')
     <section class="home mb-5">
@@ -377,6 +403,9 @@
 
                         <!-- Slider 1 (best_sellers) -->
                         <div class="swiper best-sellers-slider">
+                            <div class="swiper-button-prev custom-swiper-button"></div>
+                            <div class="swiper-button-next custom-swiper-button"></div>
+
                             <div class="swiper-wrapper">
                                 @foreach ($best_sellers as $product)
                                     <div class="swiper-slide">
@@ -404,6 +433,7 @@
                                     </div>
                                 @endforeach
                             </div>
+
                         </div>
 
 
@@ -554,6 +584,10 @@
             slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
             breakpoints: {
                 0: { // موبايل
                     slidesPerView: 1
@@ -571,6 +605,10 @@
             slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
             breakpoints: {
                 0: {
                     slidesPerView: 1
