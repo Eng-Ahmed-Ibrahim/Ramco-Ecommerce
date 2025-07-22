@@ -348,7 +348,7 @@
                             @foreach ($best_products as $product)
                                 <div class="swiper-slide product">
                                     <div class="mb-4">
-                                        <div class="product-name">{{ \Illuminate\Support\Str::limit($product->name, 35) }}
+                                        <div class="product-name">{{ \Illuminate\Support\Str::limit($product->name, 33) }}
                                         </div>
                                         <div class="product-description">
                                             {{ \Illuminate\Support\Str::limit($product->description, 45) }}
