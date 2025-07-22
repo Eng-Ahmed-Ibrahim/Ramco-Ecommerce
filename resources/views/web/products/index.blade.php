@@ -63,13 +63,15 @@
         .products .card {
             border-radius: var(--Radius-10, 28px);
         }
+
     </style>
+
 @endsection
 @section('content')
     <section class="products my-5">
         <div class="container">
             <div class="mb-2">
-                <span class="muted-color">Home</span> / <span  class="text-black">{{ $category->name }}</span>
+                <span class="muted-color">Home</span> / <span class="text-black">{{ $category->name }}</span>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <div class="section-title black-color my-4">{{ $category->name }}</div>
@@ -94,8 +96,7 @@
             <div class="mb-3 products">
                 <div class="row">
                     @forelse ($products as $product)
-
-                        <div class="col-md-6  col-12 mb-3 product">
+                        {{-- <div class="col-md-6  col-12 mb-3 product">
                             <div class="card">
                                 <div class="card-body ">
                                     <div class="d-flex justify-content-between align-items-center my-3">
@@ -118,7 +119,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <span class="black-color"> {{ $product->name }}</span>
-                                        <span  class="black-color">{{ $product->price }} $</span>
+                                        <span class="black-color">{{ $product->price }} $</span>
                                     </div>
                                     <div class="d-flex gap-3 my-3">
                                         <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
@@ -129,13 +130,19 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+
+                        <div class="col-md-6 col-12 mb-4">
+                                 @include('web.partials.product_card', ['product' => $product])
+
                         </div>
-                        @empty
+
+                    @empty
                         <div class="col-12 text-center my-5">
                             <h4 class="text-muted">No products found</h4>
                         </div>
-                        @endforelse
-                        {{ $products->links('vendor.pagination.custom') }}
+                    @endforelse
+                    {{ $products->links('vendor.pagination.custom') }}
 
                 </div>
             </div>

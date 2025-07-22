@@ -382,11 +382,17 @@
                                         </div>
                                     </div>
                                     <div class="product-image-wrapper d-flex align-items-center justify-content-center"
-                                        style="height: 250px;">
+                                        style="            background-size: cover;
+            background-position: center;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            background-image:url('https://ramco.mass-fluence.com/storage/products/thumbnail/jCwuCkrqyZt5cvzjNBk2BaEu354k6Lyh6NbKHb2h.png') ;">
                                         <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
                                             class="mx-auto">
-                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
-                                                loading="lazy" alt="Product {{ $product->name }}">
+                                            {{-- <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
+                                                loading="lazy" alt="Product {{ $product->name }}"> --}}
                                         </a>
                                     </div>
 
@@ -714,11 +720,11 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
+            // loop: true,
+            // autoplay: {
+            //     delay: 3000,
+            //     disableOnInteraction: false,
+            // },
             
             breakpoints: {
                 0: { // موبايل
