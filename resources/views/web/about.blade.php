@@ -5,8 +5,19 @@
         .video-section {
             overflow-x: hidden;
             background: #f5f5f5;
-        }
+            background-image: url('{{ asset('static/about_desk.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
+        }
+        @media (max-width: 768px) {
+            .video-section{
+            background-image: url('{{ asset('static/about_mobile.png') }}');
+            background-position: center;
+
+            }
+        }
         .video-content{
             padding: 20px !important;
             background: #00000059;
@@ -61,8 +72,7 @@
             </div>
             <div class="section-title black-color my-4">About Us </div>
 
-            <section class="video-section mb-5 row justify-content-around align-items-center">
-                <img src="{{ asset('static/about.webp') }}" alt="About" class="full-image">
+            <section class="video-section mb-5 row justify-content-around align-items-center" >
 
                 <div class="video-content col-md-4 col-sm-6 col-12">
                     <div class="container ">
