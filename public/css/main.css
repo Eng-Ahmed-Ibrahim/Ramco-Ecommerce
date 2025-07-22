@@ -8,7 +8,8 @@
 body {
     font-family: 'Oswald', sans-serif;
     min-height: 100vh;
-    background-image: url('/static/pattern.svg');
+    /* background-image: url('/static/pattern.svg'); */
+    background: #80808012;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -67,7 +68,7 @@ a {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    background-color: var(--black-color);
+    background-color: var(--main-color);
     border-radius: 20px;
     border: none;
     color: #fff;
@@ -102,11 +103,21 @@ a {
     align-items: center;
     gap: 126px;
     flex-shrink: 0;
-    background: #D9D9D9;
+    /* background: #D9D9D9; */
+    background: #e62119;
     box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.10);
     backdrop-filter: blur(20px);
     font-weight: bold;
 }
+/* updated colors */
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: white;
+}
+.navbar i,span{
+    color: white;
+ 
+}
+
 
 .container-fluid {
     position: relative;
@@ -330,7 +341,8 @@ a {
 }
 
 .home .products .product .product-name {
-    color: #444;
+    /* color: #444; */
+    color: #e62119;
     text-align: center;
 
     font-size: 20px;
@@ -404,7 +416,8 @@ a {
 }
 
 footer {
-    background: #1F1F1F;
+    /* background: #1F1F1F; */
+    background: #ffffff;
 
 }
 
@@ -475,7 +488,8 @@ footer ul li {
 }
 
 footer ul li a {
-    color: #B2B1AA;
+    /* color: #B2B1AA; */
+    color: #e62119;
 }
 
 footer .sub-title {
@@ -497,7 +511,8 @@ footer .sub-title-active {
 }
 
 footer .sub-description {
-    color: #B2B1AA;
+    /* color: #B2B1AA; */
+    color: #e62119;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -596,7 +611,8 @@ footer .footer-copyright {
 }
 
 .see-all-link {
-    color: var(--Colors-Primary-400, #444);
+    /* color: var(--Colors-Primary-400, #444); */
+    color: #e62119;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -656,7 +672,8 @@ footer .footer-copyright {
 }
 
 .help .title {
-    color: var(--Colors-Primary-500, #1F1F1F);
+    color: #e62119;
+    /* color: var(--Colors-Primary-500, #1F1F1F); */
     font-size: 30px;
     font-style: normal;
     font-weight: 700;

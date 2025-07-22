@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                        width: 100%;
-                        height: 80vh;
-                        margin-bottom: 50px;
-                        position: relative;
+                                                    width: 100%;
+                                                    height: 80vh;
+                                                    margin-bottom: 50px;
+                                                    position: relative;
 
-                        
-                    } */
+                                                    
+                                                } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -197,6 +197,43 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Updated Colors */
+        .best_seller .card-body {
+            background: white;
+            border-radius: 9px;
+        }
+
+        .best_seller .swiper-scrollbar {
+            border-radius: var(--swiper-scrollbar-border-radius, 10px);
+            position: relative;
+            touch-action: none;
+            background: #e62119;
+        }
+
+        .best_seller .swiper-scrollbar-drag {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            background: black;
+            border-radius: var(--swiper-scrollbar-border-radius, 10px);
+            left: 0;
+            top: 0;
+        }
+
+        .best_seller .swiper-button-prev:after,
+        .swiper-rtl .swiper-button-next:after {
+            content: 'prev';
+            font-size: 20px;
+            color: #e62119;
+        }
+
+        .best_seller .swiper-button-next:after,
+        .swiper-rtl .swiper-button-prev:after {
+            content: 'next';
+            font-size: 20px;
+            color: #e62119;
+        }
     </style>
 @endsection
 @section('content')
@@ -204,8 +241,7 @@
 
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide left"
-                    style="background-image: url('{{ asset('static/111.jpg') }}');">
+                <div class="swiper-slide left" style="background-image: url('{{ asset('static/111.jpg') }}');">
                     <div class="overlay"></div>
 
                     <div class="slide-content">
@@ -217,8 +253,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide right"
-                    style="background-image: url('{{ asset('static/222.jpg') }}');">
+                <div class="swiper-slide right" style="background-image: url('{{ asset('static/222.jpg') }}');">
                     <div class="overlay"></div>
 
                     <div class="slide-content">
@@ -230,8 +265,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide right"
-                    style="background-image: url('{{ asset('static/000.jpg') }}');">
+                <div class="swiper-slide right" style="background-image: url('{{ asset('static/000.jpg') }}');">
                     <div class="overlay"></div>
                     <div class="slide-content">
                         <div class="section-title main-color">COOL PERFORMANCE</div>
@@ -263,12 +297,14 @@
                             @foreach ($best_products as $product)
                                 <div class="swiper-slide product">
                                     <div class="mb-4">
-                                        <div class="product-name">{{ \Illuminate\Support\Str::limit($product->name,35) }}</div>
+                                        <div class="product-name">{{ \Illuminate\Support\Str::limit($product->name, 35) }}
+                                        </div>
                                         <div class="product-description">
                                             {{ \Illuminate\Support\Str::limit($product->description, 45) }}
                                         </div>
                                     </div>
-                                    <div class="product-image-wrapper d-flex align-items-center justify-content-center" style="height: 250px;">
+                                    <div class="product-image-wrapper d-flex align-items-center justify-content-center"
+                                        style="height: 250px;">
                                         <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
                                             class="mx-auto">
                                             <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
@@ -339,31 +375,37 @@
                     <div class="section-title mb-4">Best Sellers</div>
                     <div class="row">
 
-
-                        @foreach ($best_sellers as $product)
-                            <div class="col-md-4 col-sm-6 col-12 mb-3">
-                                <div class="card">
-                                    <div class="card-body ">
-                                        <div class="text-end my-3">
-                                            <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-                                        </div>
-                                        <div class="text-center">
-                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt=""  loading="lazy">
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <span>{{ $product->name }}</span>
-                                            <span>{{ $product->price }} $</span>
-                                        </div>
-                                        <div class="d-flex gap-3 my-3">
-                                            <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
-                                                Now</button>
-                                            <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
-                                                Cart</button>
+                        <!-- Slider 1 (best_sellers) -->
+                        <div class="swiper best-sellers-slider">
+                            <div class="swiper-wrapper">
+                                @foreach ($best_sellers as $product)
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <div class="text-end my-3">
+                                                    <i style="font-size: 20px" class="fa-regular fa-heart"></i>
+                                                </div>
+                                                <div class="text-center">
+                                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" alt=""
+                                                        loading="lazy">
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span>{{ $product->name }}</span>
+                                                    <span>{{ $product->price }} $</span>
+                                                </div>
+                                                <div class="d-flex gap-3 my-3">
+                                                    <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
+                                                        Now</button>
+                                                    <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
+                                                        Cart</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
+
 
 
                     </div>
@@ -375,7 +417,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <img data-src="{{ asset('static/best_deal.webp') }}"  loading="lazy" class="max-width lazy-img" alt="Best Deal">
+                        <img data-src="{{ asset('static/best_deal.webp') }}" loading="lazy" class="max-width lazy-img"
+                            alt="Best Deal">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
@@ -405,33 +448,40 @@
                     <p>We're here to provide all the help you need</p>
                 </div>
                 <div class="row">
-                    @for ($i = 0; $i < 3; $i++)
-                        <div class="col-md-4 col-sm-6 col-12 mb-3">
-                            <div class="card pt-5 pb-3 px-2 " style="border-radius:24px;">
-                                <div class="card-body">
 
-                                    <div class="row align-items-center mb-5">
-                                        <div class=" col-8">
-                                            <div class="title mb-3">Repair request</div>
-                                            <div class="description">Request repair service Conveniently online</div>
-                                        </div>
-                                        <div class=" col-4">
-                                            <img src="{{ asset('static/icon1.svg') }}"  loading="lazy" alt="">
+                    <!-- Slider 2 (repair requests) -->
+                    <div class="swiper repair-request-slider">
+                        <div class="swiper-wrapper">
+                            @for ($i = 0; $i < 3; $i++)
+                                <div class="swiper-slide">
+                                    <div class="card pt-5 pb-3 px-2 " style="border-radius:24px;">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-5">
+                                                <div class="col-8">
+                                                    <div class="title mb-3">Repair request</div>
+                                                    <div class="description">Request repair service Conveniently online
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="{{ asset('static/icon1.svg') }}" loading="lazy"
+                                                        alt="">
+                                                </div>
+                                            </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
+                                                viewBox="0 0 83 83" fill="none">
+                                                <path
+                                                    d="M37.8051 24.3042C36.6845 23.2038 34.884 23.2202 33.7836 24.3408C32.6832 25.4613 32.7004 27.2625 33.8208 28.3629L33.8255 28.3676L33.8469 28.3887L33.9359 28.4768C34.015 28.5554 34.1327 28.6729 34.2834 28.8247C34.5851 29.1285 35.0185 29.5693 35.5395 30.1115C36.5841 31.1984 37.9694 32.6808 39.348 34.2768C40.7368 35.8846 42.0698 37.5514 43.0397 39.015C43.5254 39.7479 43.8817 40.3729 44.1075 40.8724C44.2709 41.2338 44.3216 41.4334 44.3371 41.5C44.3216 41.5667 44.2709 41.7663 44.1075 42.1276C43.8817 42.6272 43.5254 43.2521 43.0397 43.985C42.0698 45.4486 40.7368 47.1154 39.348 48.7231C37.9694 50.3191 36.5841 51.8014 35.5395 52.8883C35.0184 53.4305 34.5851 53.8713 34.2834 54.1751C34.1326 54.3269 34.0149 54.4444 33.9358 54.523L33.8469 54.6111L33.8254 54.6322L33.8198 54.6378C32.6994 55.7382 32.6831 57.5385 33.7835 58.659C34.8839 59.7797 36.6848 59.7956 37.8054 58.6952L37.8085 58.6922L37.8434 58.6577L37.9447 58.5574C38.0322 58.4704 38.1589 58.344 38.3192 58.1826C38.6396 57.8599 39.0949 57.3968 39.6402 56.8294C40.7285 55.697 42.1869 54.1371 43.652 52.441C45.107 50.7567 46.6177 48.8817 47.7807 47.1268C48.3614 46.2505 48.8937 45.3471 49.29 44.4708C49.6635 43.6445 50.0313 42.5966 50.0313 41.5C50.0312 40.4035 49.6635 39.3556 49.2899 38.5293C48.8937 37.653 48.3614 36.7495 47.7807 35.8732C46.6177 34.1184 45.107 32.2433 43.6521 30.5589C42.187 28.8628 40.7286 27.3029 39.6403 26.1705C39.095 25.6031 38.6397 25.14 38.3193 24.8173C38.159 24.6559 38.0323 24.5295 37.9448 24.4425L37.8435 24.3421L37.8162 24.3152L37.8051 24.3042Z"
+                                                    fill="#444444"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M41.5 0.739502C18.9887 0.739502 0.739594 18.9886 0.739594 41.4999C0.739594 64.0113 18.9887 82.2603 41.5 82.2603C64.0114 82.2603 82.2604 64.0113 82.2604 41.4999C82.2604 18.9886 64.0114 0.739502 41.5 0.739502ZM6.42709 41.4999C6.42709 22.1297 22.1298 6.427 41.5 6.427C60.8702 6.427 76.5729 22.1297 76.5729 41.4999C76.5729 60.8702 60.8702 76.5728 41.5 76.5728C22.1298 76.5728 6.42709 60.8702 6.42709 41.4999Z"
+                                                    fill="#444444"></path>
+                                            </svg>
                                         </div>
                                     </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
-                                        viewBox="0 0 83 83" fill="none">
-                                        <path
-                                            d="M37.8051 24.3042C36.6845 23.2038 34.884 23.2202 33.7836 24.3408C32.6832 25.4613 32.7004 27.2625 33.8208 28.3629L33.8255 28.3676L33.8469 28.3887L33.9359 28.4768C34.015 28.5554 34.1327 28.6729 34.2834 28.8247C34.5851 29.1285 35.0185 29.5693 35.5395 30.1115C36.5841 31.1984 37.9694 32.6808 39.348 34.2768C40.7368 35.8846 42.0698 37.5514 43.0397 39.015C43.5254 39.7479 43.8817 40.3729 44.1075 40.8724C44.2709 41.2338 44.3216 41.4334 44.3371 41.5C44.3216 41.5667 44.2709 41.7663 44.1075 42.1276C43.8817 42.6272 43.5254 43.2521 43.0397 43.985C42.0698 45.4486 40.7368 47.1154 39.348 48.7231C37.9694 50.3191 36.5841 51.8014 35.5395 52.8883C35.0184 53.4305 34.5851 53.8713 34.2834 54.1751C34.1326 54.3269 34.0149 54.4444 33.9358 54.523L33.8469 54.6111L33.8254 54.6322L33.8198 54.6378C32.6994 55.7382 32.6831 57.5385 33.7835 58.659C34.8839 59.7797 36.6848 59.7956 37.8054 58.6952L37.8085 58.6922L37.8434 58.6577L37.9447 58.5574C38.0322 58.4704 38.1589 58.344 38.3192 58.1826C38.6396 57.8599 39.0949 57.3968 39.6402 56.8294C40.7285 55.697 42.1869 54.1371 43.652 52.441C45.107 50.7567 46.6177 48.8817 47.7807 47.1268C48.3614 46.2505 48.8937 45.3471 49.29 44.4708C49.6635 43.6445 50.0313 42.5966 50.0313 41.5C50.0312 40.4035 49.6635 39.3556 49.2899 38.5293C48.8937 37.653 48.3614 36.7495 47.7807 35.8732C46.6177 34.1184 45.107 32.2433 43.6521 30.5589C42.187 28.8628 40.7286 27.3029 39.6403 26.1705C39.095 25.6031 38.6397 25.14 38.3193 24.8173C38.159 24.6559 38.0323 24.5295 37.9448 24.4425L37.8435 24.3421L37.8162 24.3152L37.8051 24.3042Z"
-                                            fill="#444444" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M41.5 0.739502C18.9887 0.739502 0.739594 18.9886 0.739594 41.4999C0.739594 64.0113 18.9887 82.2603 41.5 82.2603C64.0114 82.2603 82.2604 64.0113 82.2604 41.4999C82.2604 18.9886 64.0114 0.739502 41.5 0.739502ZM6.42709 41.4999C6.42709 22.1297 22.1298 6.427 41.5 6.427C60.8702 6.427 76.5729 22.1297 76.5729 41.4999C76.5729 60.8702 60.8702 76.5728 41.5 76.5728C22.1298 76.5728 6.42709 60.8702 6.42709 41.4999Z"
-                                            fill="#444444" />
-                                    </svg>
                                 </div>
-                            </div>
+                            @endfor
                         </div>
-                    @endfor
+                    </div>
                 </div>
             </div>
 
@@ -497,6 +547,45 @@
             },
         });
     </script>
+
+
+    <script>
+        new Swiper('.best-sellers-slider', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            breakpoints: {
+                0: { // موبايل
+                    slidesPerView: 1
+                },
+                768: { // تابلت
+                    slidesPerView: 2
+                },
+                992: { // ديسكتوب
+                    slidesPerView: 3
+                }
+            }
+        });
+
+        new Swiper('.repair-request-slider', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                992: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+
+
     <script>
         function isInViewport(el) {
             const rect = el.getBoundingClientRect();
