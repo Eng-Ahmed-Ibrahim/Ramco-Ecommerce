@@ -707,7 +707,7 @@
                 }
             }
         });
-        new Swiper('.best-sellers-slider', {
+       let swiperProducts =  new Swiper('.best-sellers-slider', {
             slidesPerView: 3,
             spaceBetween: 20,
             navigation: {
@@ -747,14 +747,6 @@
         });
 
 
-        let swiperProducts = new Swiper('.best-sellers-slider', {
-            slidesPerView: 4,
-            spaceBetween: 0,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
 
         $('.subcategory-btn').on('click', function() {
             if ($(this).hasClass('active')) return; // تمنع تكرار نفس الضغط
