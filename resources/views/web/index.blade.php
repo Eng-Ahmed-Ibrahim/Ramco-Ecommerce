@@ -609,6 +609,10 @@
         new Swiper('.best-sellers-slider', {
             slidesPerView: 3,
             spaceBetween: 20,
+                  navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
             loop: true,
             autoplay: {
                 delay: 5000,
