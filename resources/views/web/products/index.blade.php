@@ -132,8 +132,8 @@
                             </div>
                         </div> --}}
 
-                        <div class="col-md-6 col-12 mb-4">
-                                 @include('web.partials.product_card', ['product' => $product])
+                        <div class="col-md-4 col-sm-6 col-12 mb-4">
+                            @include('web.partials.product_card', ['product' => $product,'category'=>$category])
 
                         </div>
 

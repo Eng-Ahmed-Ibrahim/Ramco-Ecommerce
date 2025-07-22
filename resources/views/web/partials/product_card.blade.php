@@ -53,7 +53,10 @@
             margin-top: 0.5rem;
         }
     </style>
-    <div class="product-card"
+    @php  
+    $category = $category ?? $product->category;
+    @endphp
+    <a href="{{ route('web.product.show',[$category->slug, $product->slug]) }}" class="product-card"
         style="background-image: url('{{asset('storage/' . $product->thumbnail)}}');">
         <div class="product-overlay">
             <div class="d-flex justify-content-between align-items-start">
@@ -63,7 +66,7 @@
                 <i class="fa-regular fa-heart"></i>
             </div>
         </div>
-    </div>
+    </a>
     <div class="product-info">
         <div class="d-flex align-items-center justify-content-between">
             <span class="black-color"> {{ $product->name }}</span>

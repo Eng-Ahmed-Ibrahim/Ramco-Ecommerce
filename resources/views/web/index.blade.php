@@ -311,6 +311,14 @@
             width: auto !important;
             padding: 0 !important;
         }
+        .product-card{
+                        background-size: cover;
+            background-position: center;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
     </style>
 
 @endsection
@@ -381,14 +389,8 @@
                                             {{ \Illuminate\Support\Str::limit($product->description, 45) }}
                                         </div>
                                     </div>
-                                    <div class="product-image-wrapper d-flex align-items-center justify-content-center"
-                                        style="            background-size: cover;
-            background-position: center;
-            aspect-ratio: 1/1;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            background-image:url('{{ asset('storage/' . $product->thumbnail) }}') ;">
+                                    <div class="product-image-wrapper product-card d-flex align-items-center justify-content-center"
+                                        style="background-image:url('{{ asset('storage/' . $product->thumbnail) }}') ;">
                                         <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
                                             class="mx-auto">
                                             {{-- <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
