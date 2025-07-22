@@ -65,12 +65,12 @@
     </style>
 @endsection
 @section('content')
-    <section class="about my-5">
+    <section class="about my-4 ">
         <div class="container">
-            <div class="mb-5">
+            <div class="mb-3">
                 <span class="muted-color">Home</span> / <span class="text-black">About Us </span>
             </div>
-            <div class="section-title black-color my-4">About Us </div>
+            <div class="section-title black-color my-3">About Us </div>
 
             <section class="video-section mb-5 row justify-content-around align-items-center" >
 
