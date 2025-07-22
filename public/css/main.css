@@ -607,11 +607,11 @@ footer .footer-copyright {
 
 .swiper-slide {
     width: auto;
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .swiper-slide {
-    min-width: 220px;
+    /* min-width: 220px; */
     border-radius: 10px;
     padding: 16px;
 }

@@ -14,7 +14,8 @@ class PagesController extends Controller
         $home_banner = Helpers::get_home_banner();
         $best_products = Helpers::get_best_products();
         $best_sellers = Helpers::get_best_sellers();
-        return view('web.index',compact('home_banner','best_products','best_sellers'));
+        $subcategories = Helpers::get_sub_categories();
+        return view('web.index',compact('home_banner','best_products','best_sellers','subcategories'));
     }
     public function about(){
         return view('web.about');

@@ -13,20 +13,23 @@ class ProductsRepository
 
     public function getProducts($filters)
     {
-        $products = Product::filter($filters)
+        $query = Product::filter($filters)
             ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product')
             ->with([
                 'category:id,name,slug',
-            ])
-            ->paginate(16);
-        return $products;
+            ]);
+
+        if (!empty($filters['no_paginate'])) {
+            return $query->get();
+        }
+
+        return $query->paginate(16);
     }
 
 
     public function show($slug)
     {
-        $product = Product::
-            select('id', 'name', 'slug', 'thumbnail', 'description', 'details', 'colors','price', 'category_id')
+        $product = Product::select('id', 'name', 'slug', 'thumbnail', 'description', 'details', 'colors', 'price', 'category_id')
             ->where('slug', $slug)
             ->with([
                 'category:id,name,slug',

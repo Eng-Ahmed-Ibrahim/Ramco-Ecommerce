@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                                                                                                    width: 100%;
-                                                                                                    height: 80vh;
-                                                                                                    margin-bottom: 50px;
-                                                                                                    position: relative;
+                                                        width: 100%;
+                                                        height: 80vh;
+                                                        margin-bottom: 50px;
+                                                        position: relative;
 
-                                                                                                    
-                                                                                                } */
+                                                        
+                                                    } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -259,58 +259,31 @@
             border: 1px solid #B1B3B6;
             margin: 0 17px;
         }
+        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    content: 'prev';
+    font-size: 20px;
+    color: #B1B3B6;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    font-size: 20px;
+    color: #B1B3B6;
+}
+.swiper-scrollbar {
+    border-radius: var(--swiper-scrollbar-border-radius, 10px);
+    position: relative;
+    touch-action: none;
+    background: #3D4FA2 ;
+}.swiper-scrollbar-drag {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: #B1B3B6;
+    border-radius: var(--swiper-scrollbar-border-radius, 10px);
+    left: 0;
+    top: 0;
+}
 
-        .swiper-button-prev:after,
-        .swiper-rtl .swiper-button-next:after {
-            content: 'prev';
-            font-size: 20px;
-            color: #B1B3B6;
-        }
-
-        .swiper-button-next:after,
-        .swiper-rtl .swiper-button-prev:after {
-            content: 'next';
-            font-size: 20px;
-            color: #B1B3B6;
-        }
-
-        .swiper-scrollbar {
-            border-radius: var(--swiper-scrollbar-border-radius, 10px);
-            position: relative;
-            touch-action: none;
-            background: #3D4FA2;
-        }
-
-        .swiper-scrollbar-drag {
-            height: 100%;
-            width: 100%;
-            position: relative;
-            background: #B1B3B6;
-            border-radius: var(--swiper-scrollbar-border-radius, 10px);
-            left: 0;
-            top: 0;
-        }
-    </style>
-
-    <style>
-        .subcategory-btn {
-            padding: 8px 16px;
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-            background: transparent;
-
-        }
-
-        .subcategory-btn.active {
-            border-bottom: 2px solid #3D4FA2;
-
-        }
-
-
-        .subcategory-slider .swiper-slide {
-            width: auto !important;
-        }
     </style>
 
 @endsection
@@ -450,27 +423,7 @@
         @if (count($best_sellers) > 0)
             <section class="mb-5 best_seller ">
                 <div class="container">
-                    <div class="section-title  blue-color mb-2">Best Sellers</div>
-                    <!-- Subcategories Slider -->
-                    <div class="swiper subcategory-slider mb-4">
-
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <button class="subcategory-btn active" data-id="all">All</button>
-                            </div>
-                            @foreach ($subcategories as $subcategory)
-                                <div class="swiper-slide">
-                                    <button class="subcategory-btn" data-id="{{ $subcategory->id }}">
-                                        {{ $subcategory->name }}
-                                    </button>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-
-
-
+                    <div class="section-title  blue-color mb-4">Best Sellers</div>
                     <div class="row">
 
                         <!-- Slider 1 (best_sellers) -->
@@ -479,9 +432,31 @@
                             <div class="swiper-button-next custom-swiper-button"></div>
 
                             <div class="swiper-wrapper">
-
-                                @include('web.partials.best_sellers', ['products' => $best_sellers])
-
+                                @foreach ($best_sellers as $product)
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card-body ">
+                                                <div class="text-end my-3">
+                                                    <i style="font-size: 20px" class="fa-regular fa-heart"></i>
+                                                </div>
+                                                <div class="text-center">
+                                                    <img src="{{ asset('storage/' . $product->thumbnail) }}" alt=""
+                                                        loading="lazy">
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span class="black-color">{{ $product->name }}</span>
+                                                    <span class="black-color">{{ $product->price }} $</span>
+                                                </div>
+                                                <div class="d-flex gap-3 my-3">
+                                                    <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
+                                                        Now</button>
+                                                    <button class="main-btn w-50" style="border-radius: 10.504px;">Add To
+                                                        Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
 
                         </div>
@@ -531,7 +506,7 @@
 
                     <!-- Slider 2 (repair requests) -->
                     <div class="swiper repair-request-slider">
-
+                        
                         <div class="swiper-wrapper">
                             @for ($i = 0; $i < 3; $i++)
                                 <div class="swiper-slide">
@@ -575,7 +550,6 @@
 @section('js')
 
     <script>
-        // home banner
         const swiper = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
@@ -632,6 +606,55 @@
 
 
     <script>
+        new Swiper('.best-sellers-slider', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+                  navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: { // موبايل
+                    slidesPerView: 1
+                },
+                768: { // تابلت
+                    slidesPerView: 2
+                },
+                992: { // ديسكتوب
+                    slidesPerView: 3
+                }
+            }
+        });
+
+        new Swiper('.repair-request-slider', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                992: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+
+
+    <script>
         function isInViewport(el) {
             const rect = el.getBoundingClientRect();
             return rect.top < window.innerHeight && rect.bottom > 0;
@@ -683,130 +706,6 @@
 
         window.addEventListener('load', handleLazyLoad);
         window.addEventListener('scroll', handleLazyLoad);
-    </script>
-
-
-    <script>
-        new Swiper('.repair-request-slider', {
-            slidesPerView: 3,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1
-                },
-                768: {
-                    slidesPerView: 2
-                },
-                992: {
-                    slidesPerView: 3
-                }
-            }
-        });
-        new Swiper('.best-sellers-slider', {
-            slidesPerView: 3,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            
-            breakpoints: {
-                0: { // موبايل
-                    slidesPerView: 1
-                },
-                768: { // تابلت
-                    slidesPerView: 2
-                },
-                992: { // ديسكتوب
-                    slidesPerView: 3
-                }
-            }
-        });
-
-
-
-
-        let swiperSubcategory = new Swiper('.subcategory-slider', {
-            slidesPerView: 'auto',
-            spaceBetween: 8,
-            loop: true,
-            navigation: {
-                nextEl: '.subcategory-slider .swiper-button-next',
-                prevEl: '.subcategory-slider .swiper-button-prev',
-            },
-        });
-
-
-        let swiperProducts = new Swiper('.best-sellers-slider', {
-            slidesPerView: 'auto',
-            spaceBetween: 0,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
-
-        $('.subcategory-btn').on('click', function() {
-            if ($(this).hasClass('active')) return; // تمنع تكرار نفس الضغط
-
-            $('.subcategory-btn').removeClass('active');
-            $(this).addClass('active');
-
-            let id = $(this).data('id');
-            $('#loading').show();
-
-            $.ajax({
-                url: '{{ route('web.products.fetch.by.subcategory') }}',
-                type: 'GET',
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    $('#loading').hide();
-
-                    if (swiperProducts) {
-                        swiperProducts.destroy(true, true);
-                    }
-
-                    $('.best-sellers-slider .swiper-wrapper').html(response.html);
-
-                    swiperProducts = new Swiper('.best-sellers-slider', {
-                        slidesPerView: 3,
-                        spaceBetween: 20,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        loop: true,
-                        autoplay: {
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        },
-                        breakpoints: {
-                            0: {
-                                slidesPerView: 1
-                            },
-                            768: {
-                                slidesPerView: 2
-                            },
-                            992: {
-                                slidesPerView: 3
-                            }
-                        }
-                    });
-                }
-            });
-        });
     </script>
 
 @endsection

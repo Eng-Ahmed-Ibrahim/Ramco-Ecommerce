@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Services\CategoryService;
@@ -40,4 +41,22 @@ class ProductsController extends Controller
         $features = $product->features;
         return view('web.products.show', compact('product', 'relatedProducts','features'));
     }
+    public function fetchBySubcategory(Request $request)
+{
+    if ($request->id == 'all') {
+        $products = Helpers::get_best_sellers();
+    } else {
+        $products = $this->ProductService->getProducts([
+            'sub_category_id' => $request->id,
+            'is_best_seller'=>true,
+            'no_paginate' => true,
+        ]);
+        
+    }
+
+    $html = view('web.partials.best_sellers', compact('products'))->render();
+
+    return response()->json(['html' => $html]);
+}
+
 }

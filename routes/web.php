@@ -17,6 +17,8 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     Route::controller(ProductsController::class)->name('products.')->group(function () {
         Route::get('/products/{category_slug}', 'index')->name('index');
         Route::get('/products/{category_slug}/{product_slug}', 'show')->name('show');
+        Route::get('/subcategory-products' ,'fetchBySubcategory')->name('fetch.by.subcategory');
+
     });
 
     Route::view('/repair', 'web.repair.index')->name('repair');

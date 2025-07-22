@@ -80,6 +80,11 @@ class Product extends Model
                 $q->where('category_id', $filters['category_id'])
             )
             ->when(
+                !empty($filters['is_best_seller']),
+                fn($q) =>
+                $q->where('is_best_seller', $filters['is_best_seller'])
+            )
+            ->when(
                 !empty($filters['sub_category_id']),
                 fn($q) =>
                 $q->where('sub_category_id', $filters['sub_category_id'])
