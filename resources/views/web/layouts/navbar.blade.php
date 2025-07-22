@@ -29,8 +29,12 @@
 }
 
 </style>
-<nav class="navbar navbar-expand-lg px-md-5 p-md-4 p-2 py-4">
-    <div class="container-fluid d-flex align-items-center  gap-2 p-0">
+<nav class="navbar navbar-expand-lg p-0">
+    <div class="container-fluid d-flex align-items-center  gap-2 ">
+
+
+        <div class="d-flex justify-content-between align-items-center width-100-mobile py-3 mobile">
+
         <button class="navbar-toggler" type="button" style="border: none" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -55,13 +59,14 @@
             </a>
         </div>
 
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="mobile mt-3">
-                <form role="search">
+                <form role="search" class=" align-items-center d-flex justify-content-center">
                     <div class="search-container">
                         <i class="fas fa-search search-icon"></i>
                         <input type="search" class="form-control search-input w-100"
-                            style="background: transparent;border: 1px solid rgba(0, 0, 0, 0.40);"
                             placeholder="Search" />
                     </div>
                 </form>

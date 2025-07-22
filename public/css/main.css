@@ -99,6 +99,7 @@ a {
 
     display: flex;
     padding: 30px 16px;
+    padding-bottom: 0;
     justify-content: center;
     align-items: center;
     gap: 126px;
@@ -109,13 +110,17 @@ a {
     backdrop-filter: blur(20px);
     font-weight: bold;
 }
+
 /* updated colors */
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
     color: white;
 }
-.navbar i,span{
+
+.navbar i,
+span {
     color: white;
- 
+
 }
 
 
@@ -149,12 +154,25 @@ a {
 }
 
 .navbar .logo {
-    height: 34px;
+    height: 44px !important;
 }
 
 @media (max-width: 768px) {
     .navbar .logo {
         height: 28px;
+    }
+
+    .navbar-collapse {
+        background-color: white !important;
+    }
+
+    .width-100-mobile {
+        width: 100% !important;
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link.show {
+        color: #e62119;
     }
 }
 
@@ -197,6 +215,16 @@ a {
     justify-content: center;
 }
 
+.navbar .container-fluid {
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar .container-fluid {
+        padding: 0 0;
+    }
+}
+
 .navbar .search-input {
     background-color: #f8f8f8;
     border: none;
@@ -207,18 +235,15 @@ a {
     font-family: 'Arial', sans-serif;
     font-weight: 300;
     width: 192px;
-
+    background: transparent;
+    border: 1px solid white;
+    color: white;
 }
+
 
 .navbar .search-input::placeholder {
-    color: #888;
+    color: white;
     font-weight: 300;
-}
-
-.navbar .search-container {
-    position: relative;
-    width: 100%;
-    max-width: 350px;
 }
 
 .navbar .search-icon {
@@ -226,8 +251,37 @@ a {
     top: 50%;
     left: 15px;
     transform: translateY(-50%);
-    color: #666;
+    color: white;
     font-size: 16px;
+}
+
+.navbar .search-input:focus {
+    border: 1px solid white;
+
+}
+
+@media (max-width: 768px) {
+    .navbar .search-icon {
+        color: #e62119;
+    }
+    .navbar .search-input {
+        color: #e62119;
+    }
+    .navbar .search-input:focus {
+        border: 1px solid #e62119 !important;
+    }
+    .navbar .search-input::placeholder {
+        color: #e62119;
+    }
+    .navbar .search-input {
+        border: 1px solid #e62119;
+    }
+}
+
+.navbar .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
 }
 
 
@@ -325,6 +379,7 @@ a {
     border: none;
     border-radius: 100%;
 }
+
 .years {
     position: fixed;
     left: 10px;
