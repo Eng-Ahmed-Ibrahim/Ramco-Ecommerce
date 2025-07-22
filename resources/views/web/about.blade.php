@@ -21,6 +21,7 @@
         .video-content{
             padding: 20px !important;
             background: #00000059;
+            border-radius: 0;
         }
         .video-section .full-image {
             width: 100%;
