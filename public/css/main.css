@@ -154,7 +154,7 @@ span {
 }
 
 .navbar .logo {
-    height: 44px !important;
+    max-height: 44px !important;
 }
 
 @media (max-width: 768px) {
