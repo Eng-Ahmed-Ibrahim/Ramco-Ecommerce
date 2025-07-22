@@ -30,10 +30,14 @@ section {
     --muted-color: rgba(0, 0, 0, 0.40);
     --black-color: #1F1F1F;
     --blue-color:#3D4FA2;
+    --dark-color:#353535 ;
 }
 
 .blue-color {
     color: var(--blue-color) !important;
+}
+.dark-color {
+    color: var(--dark-color) !important;
 }
 a {
     text-decoration: none !important;

@@ -296,7 +296,7 @@
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <div class="section-title text-black ">QUIT</div>
+                        <div class="section-title dark-color ">QUIT</div>
                         <h3>ANTI-VIBRATION</h3>
                         <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
                             Restart – Addwash Feature – Drum Clean Program</p>
