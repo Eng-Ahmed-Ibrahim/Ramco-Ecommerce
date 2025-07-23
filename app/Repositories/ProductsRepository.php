@@ -39,8 +39,10 @@ class ProductsRepository
             ])
             ->firstOrFail();
 
-
-        $relatedProducts = $product->relatedProducts;
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->limit(3)
+            ->get();
 
 
         $originalGallery = collect($product->galleries);
