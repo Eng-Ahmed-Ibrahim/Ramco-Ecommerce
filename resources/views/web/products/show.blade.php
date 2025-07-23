@@ -188,6 +188,7 @@
     /* max-height: 450px;
     min-height: 350px; */
     /* padding: 9px; */
+    aspect-ratio: 3 / 1;
 }
 </style>
 
