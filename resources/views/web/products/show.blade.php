@@ -61,11 +61,11 @@
         }
 
         .swiper-slide.swiper-slide-prev img {
-            height: auto;
+            height: 350px;
 
         }
     .swiper-slide.swiper-slide-next img {
-            height: auto;
+            height: 350px;
         }
 
         .swiper-slide.swiper-slide-next {
