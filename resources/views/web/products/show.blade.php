@@ -185,9 +185,9 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease-in-out;
-    max-height: 450px;
-    min-height: 350px;
-    padding: 9px;
+    /* max-height: 450px;
+    min-height: 350px; */
+    /* padding: 9px; */
 }
 </style>
 
