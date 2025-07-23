@@ -42,7 +42,7 @@
         }
 
         .swiper-slide-active img {
-            max-height: 350px !important;
+            height: 300px;
             opacity: 1;
             max-width: 100%;
         }
@@ -62,6 +62,9 @@
             height: 300px;
 
         }
+    .swiper-slide.swiper-slide-next img {
+            height: 300px;
+        }
 
         .swiper-slide.swiper-slide-next {
             display: flex;
@@ -69,10 +72,7 @@
 
         }
 
-        .swiper-slide.swiper-slide-next img {
-            height: 300px;
-        }
-
+    
         .title {
             color: var(--Colors-Primary-500, #1F1F1F);
             font-size: 30px;
