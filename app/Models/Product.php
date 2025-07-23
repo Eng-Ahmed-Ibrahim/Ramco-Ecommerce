@@ -49,8 +49,8 @@ class Product extends Model
     public function relatedProducts()
     {
         return $this->hasMany(self::class, 'category_id', 'category_id')
-            ->where('id', '!=', $this->id)
-            ->select('id', 'name', 'thumbnail', 'price')
+            ->whereColumn('id', '!=', 'products.id')
+            ->select('id', 'slug','name', 'thumbnail', 'price')
             ->orderBy('position')
             ->limit(3);
     }
