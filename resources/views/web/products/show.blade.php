@@ -27,8 +27,10 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease-in-out;
-            max-height: 450px;
-            min-height: 350px;
+            /* max-height: 450px;
+            min-height: 350px; */
+            height: auto;
+            max-height: 600px
         }
 
         /* .swiper-wrapper .card {
@@ -37,12 +39,12 @@
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
-            height: 300px;
+            height: auto;
             opacity: 0.6;
         }
 
         .swiper-slide-active img {
-            height: 300px;
+            height: auto;
             opacity: 1;
             max-width: 100%;
         }
@@ -59,11 +61,11 @@
         }
 
         .swiper-slide.swiper-slide-prev img {
-            height: 300px;
+            height: auto;
 
         }
     .swiper-slide.swiper-slide-next img {
-            height: 300px;
+            height: auto;
         }
 
         .swiper-slide.swiper-slide-next {

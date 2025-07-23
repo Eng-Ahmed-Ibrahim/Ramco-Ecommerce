@@ -80,8 +80,7 @@
                                             <!-- Edit -->
                                             <button class="btn btn-sm btn-warning editBtn" data-id="{{ $category->id }}"
                                                 data-name="{{ $category->name }}"
-                                                data-category_id="{{ $category->category_id }}"
-                                                data-bs-toggle="modal"
+                                                data-category_id="{{ $category->category_id }}" data-bs-toggle="modal"
                                                 data-bs-target="#editModal">
                                                 Edit
                                             </button>
@@ -104,7 +103,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                                            {{ $sub_categories->links('vendor.pagination.custom') }}
+                        {{ $sub_categories->links('vendor.pagination.custom') }}
 
 
                     </div>
