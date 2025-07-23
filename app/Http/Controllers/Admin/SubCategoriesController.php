@@ -53,6 +53,7 @@ class SubCategoriesController extends Controller
         $sub_category = SubCategory::findOrfail($id);
         $sub_category->update([
             'name' => $request->name,
+            'category_id' => $request->category_id,
             'slug' => Str::slug($request->name),
         ]);
         Helpers::cache_sub_categories();
