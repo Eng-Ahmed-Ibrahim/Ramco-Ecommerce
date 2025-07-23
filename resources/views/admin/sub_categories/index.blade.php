@@ -104,6 +104,8 @@
                                 @endforelse
                             </tbody>
                         </table>
+                                            {{ $sub_categories->links('vendor.pagination.custom') }}
+
 
                     </div>
                 </div>
