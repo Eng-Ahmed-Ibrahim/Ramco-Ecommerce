@@ -174,12 +174,12 @@
     .zoom-container img {
         transition: all 0.3s ease;
         width: 100%;
-    height: auto;
+    max-height:350px ;
     }
 
     .zoom-container:hover img {
         width: 120%; /* يكبر العرض */
-        height: auto;
+    max-height:350px ;
         cursor: zoom-in;
     }
     .swiper-slide {
