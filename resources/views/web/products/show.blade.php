@@ -322,32 +322,9 @@
 
                         @foreach ($relatedProducts as $relatedProduct)
                             <div class="col-md-4 col-sm-6 col-12 mb-3">
-                                <div class="card">
-                                    <div class="card-body ">
-                                        <div class="text-end my-3">
-                                            <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-                                        </div>
-                                        <div class="text-center">
-                                            <a
-                                                href="{{ route('web.products.show', [$product->category->slug, $relatedProduct->slug]) }}">
-                                                <img src="{{ asset('storage/' . $relatedProduct->thumbnail) }}"
-                                                    alt="">
-                                            </a>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <span class="black-color">{{ $relatedProduct->name }}</span>
-                                            <span class="black-color">{{ $relatedProduct->price }} $</span>
-                                        </div>
-                                        <div class="d-flex gap-3 my-3">
-                                            <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
-                                                Now</button>
-                                            <button class="main-btn w-50"
-                                                onclick="addToCart('{{ $product->id }}',null,null,this)"
-                                                style="border-radius: 10.504px;">Add To
-                                                Cart</button>
-                                        </div>
-                                    </div>
-                                </div>
+    
+                                @include('web.partials.product_card', ['product' => $relatedProduct,'category'=>$product->category])
+
                             </div>
                         @endforeach
 
