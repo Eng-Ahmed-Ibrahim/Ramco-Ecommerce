@@ -109,6 +109,8 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                                                    {{ $orders->links('vendor.pagination.custom') }}
+
                         </div>
 
                         <div class="mt-4">
