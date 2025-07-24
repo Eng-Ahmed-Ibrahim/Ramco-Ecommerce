@@ -238,7 +238,8 @@
             @foreach (preg_split("/\r\n|\n|\r/", $product->details) as $line)
                 @if (trim($line) !== '')
                     <div class="main-border-bottom py-2  d-flex align-items-center justify-content-between">
-                        {{ $line }}</div>
+                        {{ $line }}
+                    </div>
                 @endif
             @endforeach
 

@@ -23,6 +23,18 @@ class OrderService
         $this->CartRepository = $CartRepository;
     }
 
+    public function getOrders($filters = [])
+    {
+        return $this->orderRepository->getOrders($filters);
+    }
+    public function OrderDetails($id )
+    {
+        return $this->orderRepository->OrderDetails($id);
+    }
+    public function UpdateStatus($order_id,$status )
+    {
+        return $this->orderRepository->UpdateStatus($order_id,$status);
+    }
     public function createOrder(array $data)
     {
 

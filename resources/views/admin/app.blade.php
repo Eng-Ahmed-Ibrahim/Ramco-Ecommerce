@@ -85,8 +85,9 @@
                 border-color: var(--bs-danger-active);
                 background-color: #f1416c !important;
             }
+
             @media (max-width: 425px) {
-                table{
+                table {
                     width: max-content !important;
                 }
             }
@@ -170,7 +171,29 @@
         @yield('js')
 
 
+        <script>
+            $('#order-status').on('change', function() {
+                let status = $(this).val();
+                let orderId = $(this).data('order-id');
 
+                $.ajax({
+                    url: '{{ route('admin.orders.updateStatus') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: status,
+                        order_id: orderId
+                    },
+                    success: function(response) {
+                        toastr.success('Order status updated successfully.');
+                    },
+                    error: function(xhr) {
+                        let message = xhr.responseJSON?.message ?? 'Something went wrong';
+                        toastr.error(message)
+                    }
+                });
+            });
+        </script>
     </body>
 
     </html>
