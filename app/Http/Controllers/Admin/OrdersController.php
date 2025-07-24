@@ -35,7 +35,6 @@ class OrdersController extends Controller
 
         return response()->json([
             'message' => 'Status updated successfully',
-            'status_color' => $statuses[$order->status] ?? 'light',
         ]);
     }
     public function destroy($id)
