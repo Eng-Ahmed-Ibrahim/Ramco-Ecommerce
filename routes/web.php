@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\PagesController;
+use App\Http\Controllers\Web\RepairController;
 use App\Http\Controllers\Web\ProductsController;
 
 Route::middleware(['guest_id'])->name('web.')->group(function () {
@@ -21,7 +22,6 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
 
     });
 
-    Route::view('/repair', 'web.repair.index')->name('repair');
     Route::view('/news', 'web.news.index')->name('news');
     Route::view('/news/article', 'web.news.show');
     Route::view('/contactus', 'web.contact.index')->name('contact');
@@ -37,4 +37,10 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     Route::post('/creat-order',[OrderController::class, 'create_order'])->name('order.create');
     Route::post('/apply-discount', [CartController::class, 'applyDiscount']);
 
+       Route::controller(RepairController::class)->prefix('repair/')->name('repair.')->group(function () {
+
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+
+    }); 
 });

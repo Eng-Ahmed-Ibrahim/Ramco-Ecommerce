@@ -142,11 +142,21 @@
             height: 40px;
 
         }
-        .hidden-input{
-                width: 0;
-    height: 0;
-    position: absolute;
-    opacity: 0;
+
+        .hidden-input {
+            width: 0;
+            height: 0;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .step-name,
+        .step-number {
+            color: black;
+        }
+
+        .hide-product {
+            display: none !important;
         }
     </style>
 @endsection
@@ -154,7 +164,7 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-2">
-                <span class="muted-color">Home</span> / <span  class="text-black">Repair </span>
+                <span class="muted-color">Home</span> / <span class="text-black">Repair </span>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <div class="section-title black-color my-4">Request a repair </div>
@@ -164,209 +174,17 @@
                 </div>
             </div>
 
-            <form  onsubmit="handleSubmit(event)"> 
-
-                <div class="step-section step-one  " >
-
-                    {{-- process --}}
-                    <div
-                        class=" mb-4 steps d-md-flex flex-column flex-md-row justify-content-center align-items-start text-start gap-md-5">
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number active">1</span>
-                            <span class="mx-2 step-name active">Choose a product</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number ">2</span>
-                            <span class="mx-2 step-name">Identify Problem</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number ">3</span>
-                            <span class="mx-2 step-name">Enter your contact information</span>
-                        </div>
-                    </div>
-                    {{-- search --}}
-                    <div class="container mb-3">
-                        <div class="search-box shadow-sm">
-                            <span class="icon"><i class="fas fa-search"></i></span>
-                            <input type="text" placeholder="Please type model number or keyword" readonly
-                                data-bs-toggle="modal" data-bs-target="#searchModal">
-                            <input type="button" value="Select Model" readonly
-                                style="text-decoration: underline;    text-align: right;" data-bs-toggle="modal"
-                                data-bs-target="#searchModal">
-                        </div>
-                    </div>
-                    {{-- selected product --}}
-                    <div class="text-center" style="display:flex;justify-content:center;">
-
-                        <div class="mb-3 selected-product d-flex align-items-center justify-content-between">
-                            <input type="hidden" value="1"  name="product_id" id="SelectedProductId">
-                            <div class="d-flex  align-items-center gap-2">
-                                <div class="product-img">
-                                    <img src="{{ asset('static/product1.png') }}" alt="">
-                                </div>
-                                <span>Blender RB-660</span>
-                            </div>
-                            <input type="button" value="edit" readonly style="text-decoration: underline;"
-                                data-bs-toggle="modal" data-bs-target="#searchModal">
-                        </div>
-                    </div>
-                    {{-- form --}}
-                    <div class="row">
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="branch" class="mb-2"> Branch</label>
-                                <div class="input-wrapper">
-                                    <i class="fa fa-building icon"></i>
-                                    <input type="text" id="branch" placeholder="branch location" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="serial_number" class="mb-2"> Serial Number</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="serial_number" placeholder="Serial Number" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper" onclick="document.getElementById('date').showPicker()">
-                                <label for="date" class="mb-2">Purchase Date</label>
-                                <div class="input-wrapper">
-                                    <input type="date" id="date" placeholder="Select date" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper" onclick="document.getElementById('guarantee_date').showPicker()">
-                                <label for="guarantee_date" class="mb-2">guarantee Date</label>
-                                <div class="input-wrapper">
-                                    <input type="date" id="guarantee_date" placeholder="guarantee Date" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    {{-- Next Button --}}
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button onclick="nextStep('two')" type="button" style="width: 320px" class="main-btn">Next <i
-                                class="fa-solid fa-chevron-down fa-rotate-270"></i></button>
-                    </div>
+            <form method="POST" action="{{ route('web.repair.store') }}" onsubmit="handleSubmit(event)">
+                @csrf
+                <div class="step-section step-one  ">
+                    @include('web.repair.partials.step1')
                 </div>
                 <div class="step-section step-two d-none">
-                    {{-- process --}}
-                    <div class=" mb-4 steps d-md-flex flex-column flex-md-row justify-content-center align-items-start text-start gap-md-5">
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number ">1</span>
-                            <span class="mx-2 step-name ">Choose a product</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number active ">2</span>
-                            <span class="mx-2 step-name active">Identify Problem</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number ">3</span>
-                            <span class="mx-2 step-name">Enter your contact information</span>
-                        </div>
-                    </div>
-                    {{-- form --}}
-                    <div class="mb-3">
-                        <label for="issue" class="mb-2">Select the Issue</label>
-                        <select id="issue" class="w-100" name="issue" id="">
-                            <option selected disabled>Select</option>
-                            @for ($i = 0; $i < 5; $i++)
-                                <option value="Unusual Noise">Unusual Noise</option>
-                            @endfor
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="mb-2">Description</label>
-                        <textarea name="description" id="description" placeholder="Describe the issue, e.g., noises, error codes"
-                            class="w-100"></textarea>
-                    </div>
-                    {{-- Next Button --}}
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button onclick="nextStep('three')" type="button" style="width: 320px" class="main-btn">Next <i
-                                class="fa-solid fa-chevron-down fa-rotate-270"></i></button>
-                    </div>
+                    @include('web.repair.partials.step2')
                 </div>
                 <div class="step-section step-three d-none">
-
-                    {{-- process --}}
-                    <div class=" mb-4 steps d-md-flex flex-column flex-md-row justify-content-center align-items-start text-start gap-md-5">
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number ">1</span>
-                            <span class="mx-2 step-name ">Choose a product</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number  ">2</span>
-                            <span class="mx-2 step-name ">Identify Problem</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center ">
-                            <span class="step-number  active">3</span>
-                            <span class="mx-2 step-name active">Enter your contact information</span>
-                        </div>
-                    </div>
-                    {{-- form --}}
-                    <div class="row">
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="name" class="mb-2"> Full Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="name" placeholder="Full Name" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="contact_number" class="mb-2"> Contact Number</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="contact_number" placeholder="Contact Number" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper"
-                                onclick="document.getElementById('visit_request_date').showPicker()">
-                                <label for="visit_request_date" class="mb-2">Visit Request Date</label>
-                                <div class="input-wrapper">
-                                    <input type="date" id="visit_request_date" placeholder="Select date" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper" onclick="document.getElementById('time_schedule').showPicker()">
-                                <label for="time_schedule" class="mb-2">Time schedule</label>
-                                <div class="input-wrapper">
-                                    <input type="time" id="time_schedule" placeholder="Select Time" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="email" class="mb-2"> Email Address</label>
-                                <div class="input-wrapper">
-                                    <input type="email" id="email" placeholder="Please enter a valid email" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mb-4">
-                            <div class="input-wrapper">
-                                <label for="address" class="mb-2">  Address</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="address" placeholder="branch location" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Next Button --}}
-
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button   type="submit" style="width: 320px" class="main-btn">Submit Request </button>
-                    </div>
+                    @include('web.repair.partials.step3')
                 </div>
-
-
 
 
             </form>
@@ -382,87 +200,108 @@
                 <!-- Search inside modal -->
                 <div class="input-group mb-3">
                     <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control border-0 shadow-sm" placeholder="Search product..."
-                        style="box-shadow: none !important;">
+                    <input type="text" id="productSearch" class="form-control border-0 shadow-sm"
+                        placeholder="Search product..." style="box-shadow: none !important;">
                 </div>
 
                 <!-- Product List -->
-                <div class="list-group">
-                    <div class="d-flex justify-content-between align-items-center product-item list-group-item">
-                        <span>Blender RB-660</span>
-                        <small class="text-muted">Blenders</small>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center product-item list-group-item">
-                        <span>Washing Machine 10kg - Grey - Model WM-WP0106</span>
-                        <small class="text-muted">Washing Machines</small>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center product-item list-group-item">
-                        <span>Vacuum Cleaner RV-Z070</span>
-                        <small class="text-muted">Vacuum Cleaners</small>
-                    </div>
+                <div class="list-group" style="max-height: 300px; overflow-y: scroll;" id="productList">
+                    @foreach ($products as $product)
+                        <div class="d-flex justify-content-between align-items-center product-item list-group-item"
+                            data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                            data-image="{{ asset('storage/'. $product->thumbnail) }}" {{-- استخدم صورة المنتج الحقيقية لو عندك --}} style="cursor: pointer;">
+                            <span class="product-name">{{ $product->name }}</span>
+                            <small class="text-muted">{{ $product->subCategory->name }}</small>
+                        </div>
+                    @endforeach
+
                 </div>
+
             </div>
         </div>
     </div>
 @endsection
 @section('js')
-<script>
-    function nextStep(step) {
-        let valid = true;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('productSearch');
 
-        if (step === 'two') {
-            // Step one validation
-            const productId = document.getElementById('SelectedProductId').value.trim();
-            const branch = document.getElementById('branch').value.trim();
-            const serial = document.getElementById('serial_number').value.trim();
-            const date = document.getElementById('date').value.trim();
-            const guarantee = document.getElementById('guarantee_date').value.trim();
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function() {
+                    const query = this.value.toLowerCase();
+                    const items = document.querySelectorAll('#productList .product-item');
 
-            if (!productId || !branch || !serial || !date || !guarantee) {
-                alert("Please fill all fields before going to the next step.");
-                valid = false;
+                    items.forEach(function(item) {
+                        const name = item.querySelector('.product-name').textContent.toLowerCase();
+                        const subcategory = item.querySelector('small').textContent.toLowerCase();
+
+                        if (name.includes(query) || subcategory.includes(query)) {
+                            item.classList.remove('hide-product');
+                        } else {
+                            item.classList.add('hide-product');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <script>
+        function nextStep(step) {
+            let valid = true;
+
+            if (step === 'two') {
+                // Step one validation
+                const productId = document.getElementById('SelectedProductId').value.trim();
+                const branch = document.getElementById('branch').value.trim();
+                const serial = document.getElementById('serial_number').value.trim();
+                const date = document.getElementById('date').value.trim();
+                const guarantee = document.getElementById('guarantee_date').value.trim();
+
+                if (!productId || !branch || !serial || !date || !guarantee) {
+                    alert("Please fill all fields before going to the next step.");
+                    valid = false;
+                }
+            }
+
+            if (step === 'three') {
+                // Step two validation
+                const issue = document.getElementById('issue').value;
+                const description = document.getElementById('description').value.trim();
+
+                if (!issue || issue === "Select" || !description) {
+                    alert("Please select an issue and write a description.");
+                    valid = false;
+                }
+            }
+
+            if (valid) {
+                // Hide all steps
+                document.querySelectorAll('.step-section').forEach(section => section.classList.add('d-none'));
+
+                // Show next step
+                document.querySelector('.step-' + step).classList.remove('d-none');
             }
         }
 
-        if (step === 'three') {
-            // Step two validation
-            const issue = document.getElementById('issue').value;
-            const description = document.getElementById('description').value.trim();
-
-            if (!issue || issue === "Select" || !description) {
-                alert("Please select an issue and write a description.");
-                valid = false;
-            }
-        }
-
-        if (valid) {
-            // Hide all steps
-            document.querySelectorAll('.step-section').forEach(section => section.classList.add('d-none'));
-
-            // Show next step
-            document.querySelector('.step-' + step).classList.remove('d-none');
-        }
-    }
-
-    function handleSubmit(event) {
+        function handleSubmit(event) {
             event.preventDefault(); // تمنع الفورم من الـ refresh
 
-        // Final step validation
-        const name = document.getElementById('name').value.trim();
-        const contact = document.getElementById('contact_number').value.trim();
-        const date = document.getElementById('visit_request_date').value.trim();
-        const time = document.getElementById('time_schedule').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const address = document.getElementById('address').value.trim();
+            // Final step validation
+            const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact_number').value.trim();
+            const date = document.getElementById('visit_request_date').value.trim();
+            const time = document.getElementById('time_schedule').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
 
-        if (!name || !contact || !date || !time || !email || !address) {
-            alert("Please fill all fields before submitting.");
-            return;
+            if (!name || !contact || !date || !time || !email || !address) {
+                alert("Please fill all fields before submitting.");
+                return;
+            }
+            event.target.submit();
+
         }
-
-        // Submit the form (you can use form.submit(), AJAX, or anything else)
-        alert("Form is valid and ready to submit!");
-    }
-</script>
+    </script>
 
 @endsection

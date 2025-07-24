@@ -85,20 +85,8 @@
                         </a>
                     </li>
                 @endforeach
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}#"> Kitchen
-                        Appliances </a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}">Home Appliances
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.products') }}">Accessories </a>
-                </li> --}}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.repair') }}">Repair </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.repair.index') }}">Repair </a>
                 </li>
        
                 <li class="nav-item">

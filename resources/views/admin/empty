@@ -1,6 +1,6 @@
 @extends('admin.app')
 @php
-$title="Dashboard";
+$title="Repair";
 $sub_title="Pages";
 @endphp
 @section('title',$title)

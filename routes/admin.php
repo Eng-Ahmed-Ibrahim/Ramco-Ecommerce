@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -34,5 +35,6 @@ Route::prefix('/orders')->controller(OrdersController::class)
         Route::post('/{order}/update-status', 'updateStatus')->name('updateStatus');
         Route::delete('/{order}', 'destroy')->name('destroy');
         Route::post('/update-status', 'updateStatus')->name('updateStatus');
-
     });
+
+Route::resource('repair',RepairController::class);

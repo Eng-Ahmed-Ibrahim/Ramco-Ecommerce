@@ -49,7 +49,7 @@
                                     <span class="path6"></span>
                                 </i>
                             </span>
-                            <span class="menu-title">Dashboaed</span>
+                            <span class="menu-title">Dashboard</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -77,14 +77,6 @@
                             <span class="menu-title">Categories</span>
                         </a>
                         <!--end:Menu link-->
-                    </div>
-
-                    <!-- Sub categories -->
-
-                    <div class="menu-item pt-5">
-                        <div class="menu-content">
-                            <span class="menu-heading fw-bold text-uppercase fs-7">Sub Categories</span>
-                        </div>
                     </div>
                     <div class="menu-item">
                         <!--begin:Menu link-->
@@ -170,6 +162,29 @@
                                 </i>
                             </span>
                             <span class="menu-title">Orders</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+					
+					<!-- Repairs -->
+                    <div class="menu-item pt-5">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Repairs</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.repair.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Repairs</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
