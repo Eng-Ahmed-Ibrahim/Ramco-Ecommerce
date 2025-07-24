@@ -4,9 +4,9 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="/">
-            <img alt="Logo" src="logo.png" class="h-25px app-sidebar-logo-default" />
-            <img alt="Logo" src="logo.png" class="h-20px app-sidebar-logo-minimize" />
+        <a href="{{ route('admin.dashboard') }}">
+            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}" class="h-25px app-sidebar-logo-default" />
+            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}" class="h-20px app-sidebar-logo-minimize" />
         </a>
         <div id="kt_app_sidebar_toggle"
             class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
@@ -32,13 +32,13 @@
 
                     <div class="menu-item pt-5">
                         <div class="menu-content">
-                            <span class="menu-heading fw-bold text-uppercase fs-7">Home</span>
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
                         </div>
                     </div>
                     <!-- Dashboard -->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="/">
+                        <a class="menu-link"  href="{{ route('admin.dashboard') }}">
                             <span class="menu-icon">
                                 <i class="ki-duotone ki-element-11 fs-2">
                                     <span class="path1"></span>
@@ -53,7 +53,40 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-
+                    <!-- Repairs -->
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.repair.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Repairs</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!-- Messages -->
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.messages.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Messages</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
                     <!--  categories -->
 
                     <div class="menu-item pt-5">
@@ -96,7 +129,7 @@
                         <!--end:Menu link-->
                     </div>
 
-					<!-- Coupons -->
+                    <!-- Coupons -->
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Coupons</span>
@@ -119,8 +152,8 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-					
-					<!-- Products -->
+
+                    <!-- Products -->
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Products</span>
@@ -142,8 +175,8 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-					
-					<!-- Orders -->
+
+                    <!-- Orders -->
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Orders</span>
@@ -165,29 +198,8 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-					
-					<!-- Repairs -->
-                    <div class="menu-item pt-5">
-                        <div class="menu-content">
-                            <span class="menu-heading fw-bold text-uppercase fs-7">Repairs</span>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <a class="menu-link" href="{{ route('admin.repair.index') }}">
-                            <span class="menu-icon">
-                                <i class="ki-duotone ki-element-11 fs-2">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                    <span class="path4"></span>
-                                    <span class="path5"></span>
-                                    <span class="path6"></span>
-                                </i>
-                            </span>
-                            <span class="menu-title">Repairs</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
+
+
 
 
                 </div>

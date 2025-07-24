@@ -1,7 +1,7 @@
 @extends('admin.app')
 @php
     $title = 'Details';
-    $sub_title = 'Repair';
+    $sub_title = 'Messages';
 @endphp
 @section('title', $title)
 @section('content')
@@ -33,42 +33,25 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="card">
                     <div class="card-body p-lg-17">
-                        <div class="card mt-3">
+                        <div class=" mt-3">
                             <div class="card-body">
                                 <h4 class="mb-3">Customer Info</h4>
                                 <div class="row">
-                                    <div class="col-md-6"><strong>Name:</strong> {{ $repair->full_name }}</div>
-                                    <div class="col-md-6"><strong>Email:</strong> {{ $repair->email }}</div>
-                                    <div class="col-md-6"><strong>Phone:</strong> {{ $repair->phone }}</div>
-                                    <div class="col-md-6"><strong>Address:</strong> {{ $repair->address }}</div>
+                                    <div class="col-md-6"><strong>Name:</strong> {{ $message->name }}</div>
+                                    <div class="col-md-6"><strong>Email:</strong> {{ $message->email }}</div>
+                                    <div class="col-md-6"><strong>Country:</strong> {{ $message->country }}</div>
                                 </div>
 
                                 <hr>
 
-                                <h4 class="mb-3">Product Info</h4>
+                                <h4 class="mb-3">Message</h4>
                                 <div class="row">
-                                    <div class="col-md-6"><strong>Product:</strong> {{ $repair->product_name }}</div>
-                                    <div class="col-md-6"><strong>Serial Number:</strong> {{ $repair->serial_number }}</div>
-                                    <div class="col-md-6"><strong>Purchase Date:</strong> {{ $repair->purchase_date }}</div>
-                                    <div class="col-md-6"><strong>Guarantee Date:</strong> {{ $repair->guarantee_date }}
-                                    </div>
-                                    <div class="col-md-6"><strong>Branch:</strong> {{ $repair->branch }}</div>
-                                </div>
-
-                                <hr>
-
-                                <h4 class="mb-3">Issue</h4>
-                                <div class="row">
-                                    <div class="col-md-6"><strong>Issue:</strong> {{ $repair->issue }}</div>
-                                    <div class="col-md-6"><strong>Description:</strong> {{ $repair->description }}</div>
-                                    <div class="col-md-6"><strong>Visit Date:</strong> {{ $repair->visit_request_date }}
-                                    </div>
-                                    <div class="col-md-6"><strong>Time:</strong> {{ $repair->time }}</div>
+                                    <div class="col-md-12"> {{ $message->message }}</div>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{ route('admin.repair.index') }}" class="btn btn-secondary mt-3">Back</a>
+                        <a href="{{ route('admin.messages.index') }}" class="btn btn-secondary mt-3">Back</a>
 
                     </div>
                 </div>

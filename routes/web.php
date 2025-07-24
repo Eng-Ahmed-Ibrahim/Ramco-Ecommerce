@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\PagesController;
 use App\Http\Controllers\Web\RepairController;
+use App\Http\Controllers\Web\MessagesController;
 use App\Http\Controllers\Web\ProductsController;
 
 Route::middleware(['guest_id'])->name('web.')->group(function () {
@@ -18,13 +19,11 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     Route::controller(ProductsController::class)->name('products.')->group(function () {
         Route::get('/products/{category_slug}', 'index')->name('index');
         Route::get('/products/{category_slug}/{product_slug}', 'show')->name('show');
-        Route::get('/subcategory-products' ,'fetchBySubcategory')->name('fetch.by.subcategory');
-
+        Route::get('/subcategory-products', 'fetchBySubcategory')->name('fetch.by.subcategory');
     });
 
     Route::view('/news', 'web.news.index')->name('news');
     Route::view('/news/article', 'web.news.show');
-    Route::view('/contactus', 'web.contact.index')->name('contact');
     Route::controller(AuthController::class)->name('auth.')->group(function () {
         Route::get('login', 'login')->name('login');
         Route::get('register', 'register')->name('register');
@@ -34,13 +33,17 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
         Route::post('/add-to-cart', 'add_to_cart')->name('add_to_cart');
         Route::delete('/delete-item', 'delete_item')->name('delete_item');
     });
-    Route::post('/creat-order',[OrderController::class, 'create_order'])->name('order.create');
+    Route::post('/creat-order', [OrderController::class, 'create_order'])->name('order.create');
     Route::post('/apply-discount', [CartController::class, 'applyDiscount']);
 
-       Route::controller(RepairController::class)->prefix('repair/')->name('repair.')->group(function () {
+    Route::controller(RepairController::class)->prefix('repair/')->name('repair.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+    });
 
+    Route::controller(MessagesController::class)->prefix('contact-us/')->name('messages.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/store', 'store')->name('store');
 
-    }); 
+    });
 });

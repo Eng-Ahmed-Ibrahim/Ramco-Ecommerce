@@ -48,34 +48,35 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-12 mb-3">
-                    <form>
+                    <form method="POST" action="{{ route('web.messages.store') }}">
+                        @csrf
                         <div class="mb-4">
                             <label for="name" class="mb-2"> Name</label>
                             <div class="input-wrapper">
                                 <i class="fa fa-user icon"></i>
 
-                                <input type="text" id="name" placeholder="Name" />
+                                <input type="text" id="name" name="name" placeholder="Name" />
                             </div>
                         </div>
                         <div class="mb-4">
                             <label for="email" class="mb-2"> Email</label>
                             <div class="input-wrapper">
                                 <i class="fa fa-envelope icon"></i>
-                                <input type="email" id="email" placeholder="e-mail address" />
+                                <input type="email" id="email" name="email" placeholder="e-mail address" />
                             </div>
                         </div>
                         <div class="mb-4">
                             <label for="country" class="mb-2"> Country</label>
                             <div class="input-wrapper">
                                 <i class="fa fa-map-marker-alt icon"></i>
-                                <input type="text" id="country" placeholder="Country" />
+                                <input type="text" name="country" id="country" placeholder="Country" />
                             </div>
                         </div>
                         <div class="mb-4">
                             <label for="message" class="mb-2">Message</label>
                             <textarea name="message" id="message" placeholder="Write us" class="w-100"></textarea>
                         </div>
-                        <div class="main-btn w-100">Send</div>
+                        <button type="submit" class="main-btn w-100">Send</button>
                     </form>
                 </div>
 

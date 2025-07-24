@@ -90,7 +90,7 @@
                 </li>
        
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('web.contact') }}">Contact Us </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.messages.index') }}">Contact Us </a>
                 </li>
 
             </ul>
