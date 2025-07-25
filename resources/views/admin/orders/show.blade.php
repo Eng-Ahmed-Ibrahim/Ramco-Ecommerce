@@ -39,7 +39,7 @@
                                 <div class="col-md-6 col-12 mb-2"><strong>Email:</strong> {{ $order->email }}</div>
                                 <div class="col-md-6 col-12 mb-2"><strong>Phone:</strong> {{ $order->phone }}</div>
                                 <div class="col-md-6 col-12 mb-2"><strong>Payment Method:</strong> {{ ucfirst($order->payment_method) }}</div>
-                                <div class="col-md-6 col-12 mb-2">
+                                <div class="col-md-6 col-12 mb-2  d-flex gap-2 align-items-center justify-content-start">
                                     <strong>Status:</strong>
                                     @include('admin.orders.partials.dropdown_status', ['order', $order])
                                 </div>
