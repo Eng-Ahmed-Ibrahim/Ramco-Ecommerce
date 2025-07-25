@@ -22,11 +22,7 @@
                             <li class="breadcrumb-item text-muted">{{ $title }}</li>
                         </ul>
                     </div>
-                    <div class="d-flex align-items-center gap-2 gap-lg-3">
-
-                        <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#kt_modal_create_app">Create</a>
-                    </div>
+        
                 </div>
             </div>
             <div id="kt_app_content" class="app-content flex-column-fluid">

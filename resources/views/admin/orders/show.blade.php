@@ -31,7 +31,21 @@
                 <div class="card">
                     <div class="card-body p-lg-10">
 
-                        <h4 class="mb-4">Order #{{ $order->id }}</h4>
+                        <!-- Optional: Customer Info -->
+                        <div class="mt-5">
+                            <h5>Customer Info</h5>
+                            <div class="row">
+                                <div class="col-md-6 col-12 mb-2"><strong>Name:</strong> {{ $order->full_name }}</div>
+                                <div class="col-md-6 col-12 mb-2"><strong>Email:</strong> {{ $order->email }}</div>
+                                <div class="col-md-6 col-12 mb-2"><strong>Phone:</strong> {{ $order->phone }}</div>
+                                <div class="col-md-6 col-12 mb-2"><strong>Address:</strong> {{ $order->address }}, {{ $order->city }}</div>
+                                <div class="col-md-6 col-12 mb-2"><strong>Payment Method:</strong> {{ ucfirst($order->payment_method) }}</div>
+                                <div class="col-md-6 col-12 mb-2"><strong>Status:</strong></div>
+                                @include('admin.orders.partials.dropdown_status', ['order', $order])
+                            </div>
+
+                        </div>
+
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped align-middle">
@@ -111,18 +125,6 @@
                             </table>
                         </div>
 
-                        <!-- Optional: Customer Info -->
-                        <div class="mt-5">
-                            <h5>Customer Info</h5>
-                            <p><strong>Name:</strong> {{ $order->full_name }}</p>
-                            <p><strong>Email:</strong> {{ $order->email }}</p>
-                            <p><strong>Phone:</strong> {{ $order->phone }}</p>
-                            <p><strong>Address:</strong> {{ $order->address }}, {{ $order->city }}</p>
-                            <p><strong>Payment Method:</strong> {{ ucfirst($order->payment_method) }}</p>
-                            <p><strong>Status:</strong></p>
-                            @include('admin.orders.partials.dropdown_status',['order',$order])
-
-                        </div>
 
                     </div>
                 </div>
@@ -131,4 +133,3 @@
     </div>
 
 @endsection
-
