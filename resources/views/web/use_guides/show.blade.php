@@ -1,5 +1,5 @@
 @extends('web.app')
-@section('title', 'Ramco | News ')
+@section('title', 'Ramco | Smart Use Guides  ')
 @section('css')
     <style>
         .article-title {
@@ -63,7 +63,7 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-4">
-                <span class="muted-color">Home / News </span> / <span>Article </span>
+                <span class="muted-color">Home / Smart Use Guides </span> / <span class="text-black">Details </span>
             </div>
             <div class="row mb-3">
                 <div class="col-md-8 col-12 article-title">

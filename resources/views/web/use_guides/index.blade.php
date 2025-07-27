@@ -1,5 +1,5 @@
 @extends('web.app')
-@section('title', 'Ramco | News')
+@section('title', 'Ramco | Smart Use Guides')
 @section('css')
     <style>
         .news-title {
@@ -53,9 +53,8 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-4">
-                <span class="muted-color">Home</span> / <span>News </span>
+                <span class="muted-color">Home</span> / <span class="black-color">Smart Use Guides </span>
             </div>
-            <h2>Latest News</h2>
 
             <div class="news">
 
@@ -72,8 +71,8 @@
                             children
                             with Love Syndrome at its industrial facility in the Adar Industrial Zone
                         </div>
-                        <a href="" class="news-link">
-                            <span class="bold"> Read </span> <i class="mx-2 fa-solid fa-arrow-up fa-rotate-90"></i>
+                        <a href="{{ route("web.use_guides.show",1) }}" class="news-link">
+                            <span class="bold black-color"> Read </span> <i class="mx-2 fa-solid fa-arrow-up fa-rotate-90"></i>
                         </a>
                     </div>
                     <div class="col-md-6 col-12 mb-3">

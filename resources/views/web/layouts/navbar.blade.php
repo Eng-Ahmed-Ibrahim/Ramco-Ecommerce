@@ -88,6 +88,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.repair.index') }}">Repair </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('web.use_guides.index') }}">Smart Use Guides </a>
+                </li>
        
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.messages.index') }}">Contact Us </a>
