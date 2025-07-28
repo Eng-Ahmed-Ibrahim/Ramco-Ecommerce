@@ -68,7 +68,7 @@ class UseGuideController extends Controller
     public function destroy($id)
     {
         $useGuide = UseGuide::findOrFail($id);
-        if (isset($data['thumbnail']) && $data['thumbnail'] != null && Storage::disk('public')->exists($useGuide->thumbnail)) {
+        if ( $useGuide != null && Storage::disk('public')->exists($useGuide->thumbnail)) {
             Storage::disk('public')->delete($useGuide->thumbnail);
         }
         $useGuide->delete();
