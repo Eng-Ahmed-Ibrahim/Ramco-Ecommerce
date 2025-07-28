@@ -56,6 +56,3 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     });
 });
 
-Route::get("/rr",function(){
-    return "asf";
-});
