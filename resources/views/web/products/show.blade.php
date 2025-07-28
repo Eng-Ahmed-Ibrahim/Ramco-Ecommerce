@@ -28,14 +28,14 @@
             align-items: center;
             transition: transform 0.3s ease-in-out;
             /* max-height: 450px;
-            min-height: 350px; */
+                            min-height: 350px; */
             height: auto;
             max-height: 600px
         }
 
         /* .swiper-wrapper .card {
-                height: 450px;
-            } */
+                                height: 450px;
+                            } */
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
@@ -64,7 +64,8 @@
             height: 350px;
 
         }
-    .swiper-slide.swiper-slide-next img {
+
+        .swiper-slide.swiper-slide-next img {
             height: 350px;
         }
 
@@ -74,7 +75,7 @@
 
         }
 
-    
+
         .title {
             color: var(--Colors-Primary-500, #1F1F1F);
             font-size: 30px;
@@ -143,56 +144,83 @@
     </style>
 
     <style>
-.zoom-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-}
-
-.zoom-container img {
-    transition: transform 0.3s ease, transform-origin 0.3s ease;
-    transform: scale(1);
-}
-
-.zoom-container:hover img {
-    transform: scale(2);
-    cursor: zoom-in;
-}
-    .zoom-image {
-        transition: transform 0.3s ease;
-    }
-
-    .zoom-image:hover {
-        transform: scale(1.2);
-        cursor: zoom-in;
-    }
         .zoom-container {
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
 
-    .zoom-container img {
-        transition: all 0.3s ease;
-        width: 100%;
-    height: 350px;
-    }
+        .zoom-container img {
+            transition: transform 0.3s ease, transform-origin 0.3s ease;
+            transform: scale(1);
+        }
 
-    .zoom-container:hover img {
-        width: 120%; /* يكبر العرض */
-    height: 350px;
-        cursor: zoom-in;
-    }
-    .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease-in-out;
-    /* max-height: 450px;
-    min-height: 350px; */
-    /* padding: 9px; */
-    aspect-ratio: 3 / 1;
-}
-</style>
+        .zoom-container:hover img {
+            transform: scale(2);
+            cursor: zoom-in;
+        }
+
+        .zoom-image {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-image:hover {
+            transform: scale(1.2);
+            cursor: zoom-in;
+        }
+
+        .zoom-container {
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-container img {
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 350px;
+        }
+
+        .zoom-container:hover img {
+            width: 120%;
+            /* يكبر العرض */
+            height: 350px;
+            cursor: zoom-in;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+            /* max-height: 450px;
+                    min-height: 350px; */
+            /* padding: 9px; */
+            aspect-ratio: 3 / 1;
+        }
+
+        .zoom-bg {
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .zoom-bg:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .bg-zoom {
+            width: 100%;
+            height: 100%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: background-size 0.5s ease;
+        }
+
+        .bg-zoom:hover {
+            background-size: 120%;
+        }
+    </style>
 
 
 
@@ -202,7 +230,7 @@
         <div class="container ">
             <div class="mb-4 ">
                 <span class="muted-color">Home / </span> <span class="muted-color">{{ $product->category->name }} / </span>
-                <span  class="text-black">{{ $product->name }} </span>
+                <span class="text-black">{{ $product->name }} </span>
             </div>
             <div class="  my-2 d-flex justify-content-between align-items-center">
                 <div class="product-name">{{ $product->name }}</div>
@@ -222,12 +250,13 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
-                        <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }} " style="background-image:url({{ asset('storage/' . $img->image) }});background-size: cover;background-repeat: no-repeat;background-position: center ">
-                            <div class="zoom-container">
-                                <img  class="img-fluid" >
+                        <div class="card swiper-slide zoom-effect">
+                            <div class="bg-zoom" style="background-image: url('{{ asset('storage/' . $img->image) }}');">
+                                <img class="img-fluid" style="opacity: 0;">
                             </div>
                         </div>
                     @endforeach
+
                 </div>
             </div>
 
@@ -323,8 +352,11 @@
 
                         @foreach ($relatedProducts as $relatedProduct)
                             <div class="col-md-4 col-sm-6 col-12 mb-3">
-    
-                                @include('web.partials.product_card', ['product' => $relatedProduct,'category'=>$product->category])
+
+                                @include('web.partials.product_card', [
+                                    'product' => $relatedProduct,
+                                    'category' => $product->category,
+                                ])
 
                             </div>
                         @endforeach
@@ -337,22 +369,22 @@
     </section>
 @endsection
 @section('js')
-<script>
-    document.querySelectorAll('.zoom-container').forEach(container => {
-        const img = container.querySelector('img');
+    <script>
+        document.querySelectorAll('.zoom-container').forEach(container => {
+            const img = container.querySelector('img');
 
-        container.addEventListener('mousemove', function(e) {
-            const rect = container.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            img.style.transformOrigin = `${x}% ${y}%`;
-        });
+            container.addEventListener('mousemove', function(e) {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                img.style.transformOrigin = `${x}% ${y}%`;
+            });
 
-        container.addEventListener('mouseleave', function() {
-            img.style.transformOrigin = 'center center';
+            container.addEventListener('mouseleave', function() {
+                img.style.transformOrigin = 'center center';
+            });
         });
-    });
-</script>
+    </script>
 
 
     <script>
