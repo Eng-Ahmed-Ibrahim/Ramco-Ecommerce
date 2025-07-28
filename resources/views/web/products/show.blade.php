@@ -62,7 +62,6 @@
 
         .swiper-slide.swiper-slide-prev img {
             height: 350px;
-
         }
 
         .swiper-slide.swiper-slide-next img {
@@ -232,9 +231,7 @@
                             background-size: cover; 
                             background-repeat: no-repeat; 
                             background-position: center;">
-                            <div>
-                                <img class="img-fluid" style="opacity: 0;">
-                            </div>
+              
                         </div>
                     @endforeach
 
@@ -350,7 +347,7 @@
     </section>
 @endsection
 @section('js')
-    <script>
+    {{-- <script>
         document.querySelectorAll('.zoom-container').forEach(container => {
             const img = container.querySelector('img');
 
@@ -365,7 +362,7 @@
                 img.style.transformOrigin = 'center center';
             });
         });
-    </script>
+    </script> --}}
 
 
     <script>
