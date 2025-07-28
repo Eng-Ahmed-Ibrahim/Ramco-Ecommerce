@@ -56,7 +56,7 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     });
 });
 
-Route::get('/ss',function(){
+Route::get('/sss',function(){
     return "Test"
     ;
 });
