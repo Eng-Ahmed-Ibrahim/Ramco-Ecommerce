@@ -19,13 +19,13 @@
 
     <style>
         /* .mySwiper {
-                                                                                                    width: 100%;
-                                                                                                    height: 80vh;
-                                                                                                    margin-bottom: 50px;
-                                                                                                    position: relative;
+                                                                                                                width: 100%;
+                                                                                                                height: 80vh;
+                                                                                                                margin-bottom: 50px;
+                                                                                                                position: relative;
 
-                                                                                                    
-                                                                                                } */
+                                                                                                                
+                                                                                                            } */
         .mySwiper {
             width: 100%;
             height: auto;
@@ -311,8 +311,9 @@
             width: auto !important;
             padding: 0 !important;
         }
-        .product-card{
-                        background-size: cover;
+
+        .product-card {
+            background-size: cover;
             background-position: center;
             aspect-ratio: 1/1;
             border-radius: 10px;
@@ -389,10 +390,10 @@
                                             {{ \Illuminate\Support\Str::limit($product->description, 45) }}
                                         </div>
                                     </div>
-                                    <a  href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}" class="product-image-wrapper product-card d-flex align-items-center justify-content-center"
+                                    <a href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}"
+                                        class="product-image-wrapper product-card d-flex align-items-center justify-content-center"
                                         style="background-image:url('{{ asset('storage/' . $product->thumbnail) }}') ;">
-                                        <a 
-                                            class="mx-auto">
+                                        <a class="mx-auto">
                                             {{-- <img src="{{ asset('storage/' . $product->thumbnail) }}" class="max-width"
                                                 loading="lazy" alt="Product {{ $product->name }}"> --}}
                                         </a>
@@ -527,6 +528,51 @@
                 </div>
             </div>
         </section>
+
+        @if (count($best_sellers) > 0)
+            <section class="mb-5 best_seller ">
+                <div class="container">
+                    <div class="section-title  blue-color mb-2">Smart Use Guides</div>
+
+                    <div class="row">
+
+                        <!-- Slider 1 (best_sellers) -->
+                        <div class="swiper best-sellers-slider">
+                            <div class="swiper-button-prev custom-swiper-button"></div>
+                            <div class="swiper-button-next custom-swiper-button"></div>
+
+                            <div class="swiper-wrapper">
+                                @php
+                                    $cards = [
+                                        (object) [
+                                            'id' => 1,
+                                            'name' => 'How To Use Air Conditioner',
+                                            'thumbnail' => "static/news.webp",
+                                        ],
+                                         (object) [
+                                            'id' => 1,
+                                            'name' => 'How To Use Air Conditioner',
+                                            'thumbnail' => "static/news.webp",
+                                        ],
+                                    ];
+                                @endphp
+                                @foreach ($cards as $card)
+                                    <div class="swiper-slide">
+
+                                    @include('web.partials.card', ['card' => $card])
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </section>
+        @endif
+
 
         <section class="help ">
             <div class="container">
@@ -715,7 +761,7 @@
                 }
             }
         });
-       let swiperProducts =  new Swiper('.best-sellers-slider', {
+        let swiperProducts = new Swiper('.best-sellers-slider', {
             slidesPerView: 3,
             spaceBetween: 20,
             navigation: {
@@ -727,7 +773,7 @@
                 delay: 3000,
                 disableOnInteraction: false,
             },
-            
+
             breakpoints: {
                 0: { // موبايل
                     slidesPerView: 1

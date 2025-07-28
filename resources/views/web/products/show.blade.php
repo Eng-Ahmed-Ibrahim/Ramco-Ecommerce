@@ -222,10 +222,10 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
-                        <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }}">
-                            <div class="zoom-container">
+                        <div class="card swiper-slide {{ $index === 0 ? 'align-top' : '' }} " style="background-image:url({{ asset('storage/' . $img->image) }});background-size: cover;background-repeat: no-repeat;background-position: center ">
+                            {{-- <div class="zoom-container">
                                 <img src="{{ asset('storage/' . $img->image) }}" class="img-fluid" alt="Product">
-                            </div>
+                            </div> --}}
                         </div>
                     @endforeach
                 </div>
