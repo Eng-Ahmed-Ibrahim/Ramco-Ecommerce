@@ -17,7 +17,7 @@ class Helpers
     {
         return Cache::rememberForever('home_banner', function () {
             return Product::where("home_banner", true)
-                ->select('id', 'name', 'slug', 'price', 'thumbnail', 'category_id', 'details')
+                ->select('id', 'name', 'slug', 'price', 'colors','thumbnail', 'category_id', 'details')
                 ->with(['category:id,name,slug', 'subCategory'])
                 ->first();
         });
@@ -33,7 +33,7 @@ class Helpers
     {
         return Cache::rememberForever('best_sellers', function () {
             return Product::where("is_best_seller", true)
-                ->select('id', 'name', 'slug', 'price', 'thumbnail', 'category_id')
+                ->select('id', 'name', 'slug', 'colors' , 'price', 'thumbnail', 'category_id')
                 ->with(['category:id,name,slug', 'subCategory'])
                 ->get();
         });
@@ -49,7 +49,7 @@ class Helpers
     {
         return Cache::rememberForever('best_products', function () {
             return Product::where("is_best_product", true)
-                ->select('id', 'name', 'slug', 'price','description', 'thumbnail', 'category_id')
+                ->select('id', 'name', 'slug', 'colors','price','description', 'thumbnail', 'category_id')
                 ->with(['category:id,name,slug', 'subCategory'])
                 ->get();
         });

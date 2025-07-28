@@ -61,7 +61,9 @@
         <a  href="{{ route('web.products.show',[$category->slug, $product->slug]) }}" class="product-overlay">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="d-flex gap-2">
-                    <span class="color-dot" style="background-color: black;"></span>
+                    @foreach($product->colors as $color)
+                    <span class="color-dot" style="background-color: {{ $color }};"></span>
+                    @endforeach
                 </div>
                 <i class="fa-regular fa-heart"></i>
             </div>
