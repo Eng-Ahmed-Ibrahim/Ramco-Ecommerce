@@ -28,14 +28,14 @@
             align-items: center;
             transition: transform 0.3s ease-in-out;
             /* max-height: 450px;
-                            min-height: 350px; */
+                min-height: 350px; */
             height: auto;
             max-height: 600px
         }
 
         /* .swiper-wrapper .card {
-                                height: 450px;
-                            } */
+                    height: 450px;
+                } */
 
         .swiper-slide img {
             transition: all 0.3s ease-in-out;
@@ -193,32 +193,9 @@
             align-items: center;
             transition: transform 0.3s ease-in-out;
             /* max-height: 450px;
-                    min-height: 350px; */
+        min-height: 350px; */
             /* padding: 9px; */
             aspect-ratio: 3 / 1;
-        }
-
-        .zoom-bg {
-            transition: transform 0.4s ease;
-            will-change: transform;
-        }
-
-        .zoom-bg:hover {
-            transform: scale(1.1);
-            z-index: 10;
-        }
-
-        .bg-zoom {
-            width: 100%;
-            height: 100%;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            transition: background-size 0.5s ease;
-        }
-
-        .bg-zoom:hover {
-            background-size: 120%;
         }
     </style>
 
@@ -250,8 +227,12 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @foreach ($product->galleries as $index => $img)
-                        <div class="card swiper-slide zoom-effect">
-                            <div class="bg-zoom" style="background-image: url('{{ asset('storage/' . $img->image) }}');">
+                        <div class="card swiper-slide zoom-bg {{ $index === 0 ? 'align-top' : '' }}"
+                            style="background-image:url('{{ asset('storage/' . $img->image) }}'); 
+                            background-size: cover; 
+                            background-repeat: no-repeat; 
+                            background-position: center;">
+                            <div>
                                 <img class="img-fluid" style="opacity: 0;">
                             </div>
                         </div>
