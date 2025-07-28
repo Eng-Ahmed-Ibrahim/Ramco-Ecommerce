@@ -62,7 +62,7 @@
     </div>
     <div class="product-info">
         <div class="d-flex align-items-center justify-content-between">
-            <span class="black-color"> {{ $card->name }}</span>
+            <span class="black-color"> {{ $card->title }}</span>
         </div>
         <div class="d-flex gap-3 my-3">
             <a  href="{{ route('web.use_guides.show',$card->id) }}" class="main-btn w-50"
