@@ -6,7 +6,7 @@
 </style>
 
 <label for="title">Title</label>
-<input type="text" name="title" class="form-control"  value="{{ $useGuide ? $useGuide->title : "" }}" required>
+<input type="text" name="title" class="form-control"  value="{{ isset($useGuide) ? $useGuide->title : "" }}" required>
 <div class="mb-4">
     <label>Thumbnail</label>
     <input type="file" name="thumbnail" class="form-control" id="thumbnailInput" accept="image/*">
@@ -14,7 +14,7 @@
         width="80" class="mt-2" style="{{ empty($useGuide->thumbnail) ? 'display: none;' : '' }}">
 </div>
 <label for="content">Content</label>
-<textarea name="content" id="editor" rows="20">{{ $useGuide ? $useGuide->content : "" }}</textarea>
+<textarea name="content" id="editor" rows="20">{{  isset($useGuide)? $useGuide->content : "" }}</textarea>
 
 
 
