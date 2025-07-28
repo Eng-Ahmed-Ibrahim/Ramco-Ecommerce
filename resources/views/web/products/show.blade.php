@@ -27,27 +27,15 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.3s ease-in-out;
-            /* max-height: 450px;
-                min-height: 350px; */
-            height: auto;
-            max-height: 600px
+            aspect-ratio: 3 / 1;
+            height: 400px;
+        }
+        @media (max-width: 768px) {
+        .swiper-slide{
+            height: 350px;
+        }
         }
 
-        /* .swiper-wrapper .card {
-                    height: 450px;
-                } */
-
-        .swiper-slide img {
-            transition: all 0.3s ease-in-out;
-            height: auto;
-            opacity: 0.6;
-        }
-
-        .swiper-slide-active img {
-            height: auto;
-            opacity: 1;
-            max-width: 100%;
-        }
 
         .product-details {
             padding-left: 0;
@@ -59,22 +47,11 @@
             align-items: flex-start;
 
         }
-
-        .swiper-slide.swiper-slide-prev img {
-            height: 350px;
-        }
-
-        .swiper-slide.swiper-slide-next img {
-            height: 350px;
-        }
-
         .swiper-slide.swiper-slide-next {
             display: flex;
             align-items: flex-end;
 
         }
-
-
         .title {
             color: var(--Colors-Primary-500, #1F1F1F);
             font-size: 30px;
@@ -90,7 +67,6 @@
             font-style: normal;
             font-weight: 400;
             line-height: 33px;
-            /* 150% */
         }
 
         .number {
@@ -99,7 +75,6 @@
             font-style: normal;
             font-weight: 400;
             line-height: 33px;
-            /* 150% */
             margin-right: 5px;
         }
 
@@ -109,7 +84,6 @@
             font-style: normal;
             font-weight: 400;
             line-height: 33px;
-            /* 150% */
         }
 
         .sub-title {
@@ -118,7 +92,6 @@
             font-style: normal;
             font-weight: 400;
             line-height: 33px;
-            /* 150% */
         }
 
         .card .card-body .text-muted {
@@ -127,7 +100,6 @@
             font-style: normal;
             font-weight: 600;
             line-height: 18px;
-            /* 150% */
         }
 
         input {
@@ -186,16 +158,7 @@
             cursor: zoom-in;
         }
 
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease-in-out;
-            /* max-height: 450px;
-        min-height: 350px; */
-            /* padding: 9px; */
-            aspect-ratio: 3 / 1;
-        }
+
     </style>
 
 
