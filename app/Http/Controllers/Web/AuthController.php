@@ -12,14 +12,14 @@ class AuthController extends Controller
 {
     public function login_form()
     {
-        if (Auth::guard('customer')) {
+        if (Auth::guard('customer')->check()) {
             return "Profile";
         }
         return view('web.auth.login');
     }
     public function register_form()
     {
-        if (Auth::guard('customer')) {
+        if (Auth::guard('customer')->check()) {
             return "Profile";
         }
         return view('web.auth.register');
