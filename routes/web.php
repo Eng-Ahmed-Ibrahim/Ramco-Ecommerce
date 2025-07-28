@@ -60,3 +60,9 @@ Route::get('/sss',function(){
     return "Test"
     ;
 });
+Route::get('/sss-sss',function(){
+    return "Testss"
+    ;
+});
+
+
