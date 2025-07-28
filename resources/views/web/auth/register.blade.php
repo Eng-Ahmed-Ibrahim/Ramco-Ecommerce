@@ -125,39 +125,40 @@
 
                     <div class="mt-2 mx-md-5 mx-2">
 
-                        <form action="" method="post">
+                        <form   action="{{ route('web.auth.register.submit') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <label for="first_name" class="mb-2"> First Name</label>
                                 <div class="input-wrapper">
                                     {{-- <i class="fa fa-envelope icon"></i> --}}
-                                    <input type="text" name="first_name" id="first_name" placeholder="First Name " />
+                                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" placeholder="First Name " />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="last_name" class="mb-2"> Last Name</label>
                                 <div class="input-wrapper">
                                     {{-- <i class="fa fa-envelope icon"></i> --}}
-                                    <input type="text" name="last_name" id="last_name" placeholder="Last Name " />
+                                    <input type="text" name="last_name" id="last_name"  value="{{ old('last_name') }}" placeholder="Last Name " />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="mb-2"> Email</label>
                                 <div class="input-wrapper">
                                     {{-- <i class="fa fa-envelope icon"></i> --}}
-                                    <input type="email" name="email" id="email" placeholder="email address" />
+                                    <input type="email" name="email" id="email"  value="{{ old('email') }}" placeholder="email address" />
                                 </div>
                             </div>
                
                             <div class="mb-3">
                                 <label for="password" class="mb-2"> Password</label>
                                 <div class="input-wrapper">
-                                    <input type="password" id="password" placeholder="Password" />
+                                    <input type="password" name="password" id="password" placeholder="Password" />
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="confirm_password" class="mb-2">Confirm Password</label>
+                                <label for="password_confirmation" class="mb-2">Confirm Password</label>
                                 <div class="input-wrapper">
-                                    <input type="password" id="confirm_password" placeholder="Confirm Password" />
+                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" />
                                 </div>
                             </div>
                             <button class="main-btn login-btn w-100">Create Account</button>

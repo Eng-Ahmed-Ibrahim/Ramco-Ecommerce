@@ -25,8 +25,10 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
 
 
     Route::controller(AuthController::class)->name('auth.')->group(function () {
-        Route::get('login', 'login')->name('login');
-        Route::get('register', 'register')->name('register');
+        Route::get('login', 'login_form')->name('login');
+        Route::get('register', 'register_form')->name('register');
+        Route::post("login",'login')->name("login.submit");
+        Route::post("register",'register')->name("register.submit");
     });
     Route::controller(CartController::class)->name('cart.')->group(function () {
         Route::get('/cart', 'index')->name('index');
@@ -51,3 +53,6 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
 
     });
 });
+// Route::get("/user",function(){
+//     return getUser();
+// });

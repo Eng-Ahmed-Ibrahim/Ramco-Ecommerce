@@ -126,18 +126,19 @@
 
                     <div class="mt-5 mx-md-5 mx-2">
 
-                        <form action="" method="post">
+                        <form action="{{ route('web.auth.login.submit') }}"  method="post">
+                            @csrf 
                             <div class="mb-3">
                                 <label for="email" class="mb-2"> Email</label>
                                 <div class="input-wrapper">
                                     {{-- <i class="fa fa-envelope icon"></i> --}}
-                                    <input type="email" id="email" placeholder="email address" />
+                                    <input type="email" name="email" id="email"  value="{{ old('email') }}" placeholder="email address" />
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="mb-2"> Password</label>
                                 <div class="input-wrapper">
-                                    <input type="password" id="password" placeholder="Password" />
+                                    <input type="password" name="password" id="password" placeholder="Password" />
                                 </div>
                             </div>
                             <button class="main-btn login-btn w-100">Login</button>
