@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
@@ -53,6 +55,4 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
 
     });
 });
-// Route::get("/user",function(){
-//     return getUser();
-// });
+

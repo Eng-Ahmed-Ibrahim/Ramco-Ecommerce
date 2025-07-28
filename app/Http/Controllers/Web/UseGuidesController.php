@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\UseGuide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,6 +12,7 @@ class UseGuidesController extends Controller
         return view('web.use_guides.index');
     }
     public function show($id){
-        return view('web.use_guides.show');
+        $useGuide=UseGuide::findOrFail($id);
+        return view('web.use_guides.show',compact('useGuide'));
     }
 }

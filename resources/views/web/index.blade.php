@@ -529,7 +529,7 @@
             </div>
         </section>
 
-        @if (count($best_sellers) > 0)
+        @if (count($use_guides) > 0)
             <section class="mb-5 best_seller ">
                 <div class="container">
                     <div class="section-title  blue-color mb-2">Smart Use Guides</div>
@@ -542,24 +542,11 @@
                             <div class="swiper-button-next custom-swiper-button"></div>
 
                             <div class="swiper-wrapper">
-                                @php
-                                    $cards = [
-                                        (object) [
-                                            'id' => 1,
-                                            'name' => 'How To Use Air Conditioner',
-                                            'thumbnail' => "static/news.webp",
-                                        ],
-                                         (object) [
-                                            'id' => 1,
-                                            'name' => 'How To Use Air Conditioner',
-                                            'thumbnail' => "static/news.webp",
-                                        ],
-                                    ];
-                                @endphp
-                                @foreach ($cards as $card)
+                     
+                                @foreach ($use_guides as $use_guide)
                                     <div class="swiper-slide">
 
-                                    @include('web.partials.card', ['card' => $card])
+                                    @include('web.partials.card', ['card' => $use_guide])
                                     </div>
                                 @endforeach
                             </div>

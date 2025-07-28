@@ -1,5 +1,5 @@
 @extends('web.app')
-@section('title', 'Ramco | Smart Use Guides  ')
+@section('title', 'Ramco | Smart Use Guides ')
 @section('css')
     <style>
         .article-title {
@@ -57,6 +57,25 @@
                 /* 150% */
             }
         }
+
+        .content img,
+        video,iframe {
+            max-width: 100%;
+        }
+
+        .background {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .background {
+                height: 350px;
+
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -67,13 +86,15 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-8 col-12 article-title">
-                    Al-Kassem Engineering Industries Group Hosts Juthoor Association and Children with Love Syndrome
+                    {{ $useGuide->title }}
                 </div>
             </div>
-            <div class="mb-3">
-                <img class="w-100 article-img" src="{{ asset('static/news.webp') }}" alt="">
+            <div class="mb-3 background" style="background-image:url({{ asset('storage/' . $useGuide->thumbnail) }})">
             </div>
-            <div class="mb-5 article-description">
+            <div class="my-3 content">
+                {!! $useGuide->content !!}
+            </div>
+            {{-- <div class="mb-5 article-description">
                 As part of its commitment to social responsibility and the integration of people with special needs into
                 society, Al-Kassem Engineering Industries Group hosted the Juthoor Association and its children with Love
                 Syndrome at its industrial facility in the Adar Industrial Zone. The event was filled with activities and
@@ -100,7 +121,7 @@
                         Zone. The event was filled with activities and experiences that brought joy and love to all
                         participants.</div>
                     </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

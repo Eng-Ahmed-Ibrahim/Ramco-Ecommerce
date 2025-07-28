@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\UseGuideController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\SubCategoriesController;
@@ -39,3 +40,5 @@ Route::prefix('/orders')->controller(OrdersController::class)
 
 Route::resource('repair',RepairController::class);
 Route::resource('messages',MessagesController::class);
+Route::resource('UseGuide',UseGuideController::class);
+Route::post('/upload-file', [UseGuideController::class, 'uploadImage'])->name('UseGuide.uploadImage');
