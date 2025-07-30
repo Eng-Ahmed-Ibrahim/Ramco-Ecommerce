@@ -1,4 +1,7 @@
 @extends('web.app')
+@php
+    $user = Auth::guard('customer')->check() ? Auth::guard('customer')->user() : null;
+@endphp
 @section('title', 'Ramco | Cart')
 @section('css')
     <style>
@@ -57,6 +60,7 @@
             border-bottom: 1px solid var(--Colors-Primary-300, #6A6A6A) !important;
             border-radius: 0 !important;
         }
+
         html body .is-valid {
             border-color: #28a745 !important;
         }
@@ -72,7 +76,7 @@
     <section class="products my-5">
         <div class="container">
             <div class="mb-4">
-                <span class="muted-color">Home</span> / <span  class="text-black">Cart </span>
+                <span class="muted-color">Home</span> / <span class="text-black">Cart </span>
             </div>
 
             <div class="row mb-3 ">
@@ -88,14 +92,14 @@
                         <label for="email" class="mb-2"> Email</label>
                         <div class="input-wrapper">
                             <i class="fa fa-envelope icon"></i>
-                            <input type="email" id="email" name="email" value="{{ old('email') }}"
+                            <input type="email" id="email" name="email" value="{{ $user ? $user->email :   old('email') }}"
                                 placeholder="e-mail address" required />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="mb-2"> Full Name</label>
                         <div class="input-wrapper">
-                            <input type="text" id="name" name="full_name" value="{{ old('full_name') }}"
+                            <input type="text" id="name" name="full_name" value="{{ $user ? $user->name  : old('full_name') }}"
                                 placeholder="Name" required />
                         </div>
                     </div>
@@ -104,7 +108,7 @@
                         <div class="input-wrapper">
                             <i class="fa fa-phone icon"></i>
 
-                            <input type="text" name="phone" value="{{ old('phone') }}" pattern="^\+?\d{7,15}$"
+                            <input type="text" name="phone" value="{{ $user ? $user->phone :  old('phone') }}" pattern="^\+?\d{7,15}$"
                                 title="Enter a valid phone number (e.g. +123456789)" id="phone-number" placeholder="Number"
                                 required />
 
@@ -120,13 +124,12 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="mb-2"> Address</label>
+                        <label for="address" class="mb-2">Address</label>
                         <div class="input-wrapper">
-                            <i class="fa fa-map-marker-alt icon"></i>
-                            <input type="text" id="address" name="address" value="{{ old('address') }}"
-                                placeholder="Address" required />
+                            <textarea id="address" name="address" class="w-100" placeholder="Address" rows="3">{{ $user ? $user->address :  old('address') }}</textarea>
                         </div>
                     </div>
+
                     <div class="muted-color mb-2">3 of 3</div>
 
                     <div class="mb-3">
@@ -172,7 +175,8 @@
                                 @empty
                                     <div class="text-center py-3">
                                         <h5>Your cart is currently empty.</h5>
-                                        <a href="{{ route('web.pages.home') }}" class="main-btn mt-3">Continue Shopping</a>
+                                        <a href="{{ route('web.pages.home') }}" class="main-btn mt-3">Continue
+                                            Shopping</a>
                                     </div>
                                 @endforelse
                                 <div class="row main-border-bottom mb-3 mt-5">
@@ -181,7 +185,8 @@
                                         <div class="mb-3">
                                             <div class="input-wrapper">
                                                 <i class="fa fa-ticket icon"></i>
-                                                <input type="text" class="discount" id="discount" placeholder="Discount Code" />
+                                                <input type="text" class="discount" id="discount"
+                                                    placeholder="Discount Code" />
                                             </div>
                                         </div>
                                     </div>

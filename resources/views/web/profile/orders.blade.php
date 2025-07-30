@@ -46,6 +46,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
+                    @if( count($orders) > 0)
                     <div class="orders">
                         @foreach($orders as $order)
                         <div class="order mb-4 ">
@@ -89,6 +90,9 @@
                         </div>
                         @endforeach
                     </div>
+                    @else 
+                    <div class="text-center">No Orders</div>
+                    @endif
                 </div>
             </div>
         </div>
