@@ -86,7 +86,9 @@
                     <div class="muted-color mb-2">1 of 3</div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div> Personal data</div>
+                        @if(! $user)
                         <div>Have account? <a href="" class="muted-color">Sign In</a></div>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="email" class="mb-2"> Email</label>
