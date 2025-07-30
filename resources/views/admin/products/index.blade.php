@@ -104,6 +104,10 @@
                                      <label for="sub_category_id" class="form-label">Sub Category</label>
                                      <select id="subcategory-select" name="sub_category_id" class="form-control">
                                          <option value="all">All Subcategories</option>
+                                         @foreach ($sub_categories as $sub_category)
+                                             <option {{ request('sub_category_id') == $sub_category->id ? 'selected' : '' }}
+                                                 value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
+                                         @endforeach
                                      </select>
                                  </div>
 
@@ -115,7 +119,8 @@
 
                                  <div class="col-md-3 d-flex gap-2">
                                      <button type="submit" class="btn btn-primary w-100">Filter</button>
-                                     <a href="{{ route('admin.products.index') }}" class="btn btn-secondary w-100">Reset</a>
+                                     <a href="{{ route('admin.products.index') }}"
+                                         class="btn btn-secondary w-100">Reset</a>
                                  </div>
                              </div>
                          </form>
