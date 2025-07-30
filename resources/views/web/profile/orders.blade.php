@@ -87,9 +87,10 @@
                                                 <div>
 
                                                     @php
+                                                    // 'pending','processing','shipped','delivered','cancelled'
                                                         $statuses = [
                                                             'pending' => 'warning',
-                                                            'confirmed' => 'primary',
+                                                            'shipped' => 'primary',
                                                             'processing' => 'info',
                                                             'delivered' => 'success',
                                                             'returned' => 'secondary',

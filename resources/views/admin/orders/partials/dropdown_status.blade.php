@@ -2,7 +2,7 @@
 @php
     $statuses = [
         'pending' => 'warning',
-        'confirmed' => 'primary',
+        'shipped' => 'primary',
         'processing' => 'info',
         'delivered' => 'success',
         'returned' => 'secondary',
