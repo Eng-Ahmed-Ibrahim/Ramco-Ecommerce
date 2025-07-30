@@ -21,17 +21,17 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $filters = [
-            "category_id"=>$request->category_id && $request->category_id != 'all'  ? $request->category_id: null,
-            "sub_category_id"=>$request->sub_category_id && $request->sub_category_id != 'all'  ? $request->sub_category_id: null,
-            "search"=>$request->search ?? null,
-            "pagination"=>$request->pagination ?? 15,
+            "category_id" => $request->category_id && $request->category_id != 'all'  ? $request->category_id : null,
+            "sub_category_id" => $request->sub_category_id && $request->sub_category_id != 'all'  ? $request->sub_category_id : null,
+            "search" => $request->search ?? null,
+            "pagination" => $request->pagination ?? 15,
         ];
-        
+
         $products = $this->ProductService->getProducts($filters);
         $categories = Helpers::get_categories();
         $sub_categories = Helpers::get_sub_categories();
-        
-        return view('admin.products.index', compact('products','categories','sub_categories'));
+
+        return view('admin.products.index', compact('products', 'categories', 'sub_categories'));
     }
 
     public function create()
@@ -120,14 +120,24 @@ class ProductsController extends Controller
 
     public function sort(Request $request)
     {
-        $startPosition = ($request->page - 1) * $request->perPage + 1;
+        $page = $request->input('page', 1);
+        $perPage = $request->input('perPage', 25);
+
+        if ($perPage === 'all' || $perPage == 0) {
+            $perPage = 0;
+        }
+
+        $startPosition = $perPage > 0 ? ($page - 1) * $perPage + 1 : 1;
 
         foreach ($request->order as $index => $item) {
-            Product::where('id', $item['id'])->update(['position' => $startPosition + $index]);
+            $position = $perPage > 0 ? $startPosition + $index : $index + 1;
+
+            Product::where('id', $item['id'])->update(['position' => $position]);
         }
 
         return response()->json(['status' => 'success']);
     }
+
 
     public function toggleFlag(Request $request)
     {
