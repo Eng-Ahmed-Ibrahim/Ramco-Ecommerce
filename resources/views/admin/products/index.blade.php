@@ -87,6 +87,40 @@
                      <div class="card-body p-lg-17">
 
 
+                         <form action="{{ route('admin.products.index') }}" method="GET" class="mb-4">
+                             <div class="row g-3 align-items-end">
+                                 <div class="col-md-3">
+                                     <label for="category_id" class="form-label">Category</label>
+                                     <select id="category-select" name="category_id" class="form-control">
+                                         <option value="all">All Categories</option>
+                                         @foreach ($categories as $category)
+                                             <option {{ request('category_id') == $category->id ? 'selected' : '' }}
+                                                 value="{{ $category->id }}">{{ $category->name }}</option>
+                                         @endforeach
+                                     </select>
+                                 </div>
+
+                                 <div class="col-md-3">
+                                     <label for="sub_category_id" class="form-label">Sub Category</label>
+                                     <select id="subcategory-select" name="sub_category_id" class="form-control">
+                                         <option value="all">All Subcategories</option>
+                                     </select>
+                                 </div>
+
+                                 <div class="col-md-3">
+                                     <label for="search" class="form-label">Search</label>
+                                     <input type="text" name="search" id="search" class="form-control"
+                                         placeholder="Search by product name" value="{{ request('search') }}">
+                                 </div>
+
+                                 <div class="col-md-3 d-flex gap-2">
+                                     <button type="submit" class="btn btn-primary w-100">Filter</button>
+                                     <a href="{{ route('admin.products.index') }}" class="btn btn-secondary w-100">Reset</a>
+                                 </div>
+                             </div>
+                         </form>
+
+
                          <table class="table mt-3" id="sortable-products">
                              <thead>
                                  <tr>
@@ -175,7 +209,7 @@
                                  @endforelse
                              </tbody>
                          </table>
-                        {{ $products->links('vendor.pagination.custom') }}
+                         {{ $products->links('vendor.pagination.custom') }}
 
 
                      </div>
@@ -272,5 +306,25 @@
              });
          });
      </script>
+     <script>
+         const subCategories = @json($sub_categories);
 
+         document.getElementById('category-select').addEventListener('change', function() {
+             const categoryId = this.value;
+             const subcategorySelect = document.getElementById('subcategory-select');
+
+             // Clear previous options
+             subcategorySelect.innerHTML = '<option value="all">All Subcategories</option>';
+
+             // Filter and append subcategories
+             subCategories.forEach(sub => {
+                 if (categoryId === 'all' || sub.category_id == categoryId) {
+                     const option = document.createElement('option');
+                     option.value = sub.id;
+                     option.textContent = sub.name;
+                     subcategorySelect.appendChild(option);
+                 }
+             });
+         });
+     </script>
  @endsection

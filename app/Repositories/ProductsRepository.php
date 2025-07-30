@@ -17,6 +17,7 @@ class ProductsRepository
             ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product')
             ->with([
                 'category:id,name,slug',
+                "subCategory:id,name,slug",
             ]);
 
         if (!empty($filters['no_paginate'])) {

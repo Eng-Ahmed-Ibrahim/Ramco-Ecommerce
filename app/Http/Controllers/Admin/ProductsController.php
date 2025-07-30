@@ -20,10 +20,17 @@ class ProductsController extends Controller
     }
     public function index(Request $request)
     {
-        $filters = [];
+        $filters = [
+            "category_id"=>$request->category_id && $request->category_id != 'all'  ? $request->category_id: null,
+            "sub_category_id"=>$request->sub_category_id && $request->sub_category_id != 'all'  ? $request->sub_category_id: null,
+            "search"=>$request->search ?? null,
+        ];
+        
         $products = $this->ProductService->getProducts($filters);
-
-        return view('admin.products.index', compact('products'));
+        $categories = Helpers::get_categories();
+        $sub_categories = Helpers::get_sub_categories();
+        
+        return view('admin.products.index', compact('products','categories','sub_categories'));
     }
 
     public function create()
