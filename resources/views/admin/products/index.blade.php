@@ -88,8 +88,25 @@
 
 
                          <form action="{{ route('admin.products.index') }}" method="GET" class="mb-4">
-                             <div class="row g-3 align-items-end">
-                                 <div class="col-md-3">
+
+                             <div class="d-flex gap-2 align-items-end" style="flex-wrap: wrap;">
+                                 <div >
+                                     <label for="category_id" class="form-label">Pagniation</label>
+
+                                     <select id="pagination-select" name="pagination" class="form-select">
+                                         <option
+                                             {{ request('pagination') == '15' || request('pagination') === null ? 'selected' : ' ' }}
+                                             value="15">15</option>
+                                         <option {{ request('pagination') == '50' ? 'selected' : ' ' }} value="50">50
+                                         </option>
+                                         <option {{ request('pagination') == '100' ? 'selected' : ' ' }} value="100">100
+                                         </option>
+                                         <option {{ request('pagination') == 'all' ? 'selected' : ' ' }} value="all">all
+                                         </option>
+                                     </select>
+                                 </div>
+
+                                 <div >
                                      <label for="category_id" class="form-label">Category</label>
                                      <select id="category-select" name="category_id" class="form-control">
                                          <option value="all">All Categories</option>
@@ -100,27 +117,28 @@
                                      </select>
                                  </div>
 
-                                 <div class="col-md-3">
+                                 <div >
                                      <label for="sub_category_id" class="form-label">Sub Category</label>
                                      <select id="subcategory-select" name="sub_category_id" class="form-control">
                                          <option value="all">All Subcategories</option>
                                          @foreach ($sub_categories as $sub_category)
-                                             <option {{ request('sub_category_id') == $sub_category->id ? 'selected' : '' }}
+                                             <option
+                                                 {{ request('sub_category_id') == $sub_category->id ? 'selected' : '' }}
                                                  value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
                                          @endforeach
                                      </select>
                                  </div>
 
-                                 <div class="col-md-3">
+                                 <div >
                                      <label for="search" class="form-label">Search</label>
                                      <input type="text" name="search" id="search" class="form-control"
                                          placeholder="Search by product name" value="{{ request('search') }}">
                                  </div>
 
-                                 <div class="col-md-3 d-flex gap-2">
-                                     <button type="submit" class="btn btn-primary w-100">Filter</button>
+                                 <div class=" d-flex gap-2">
+                                     <button type="submit" class="btn btn-sm btn-primary">Filter</button>
                                      <a href="{{ route('admin.products.index') }}"
-                                         class="btn btn-secondary w-100">Reset</a>
+                                         class="btn btn-secondary btn-sm">Reset</a>
                                  </div>
                              </div>
                          </form>
@@ -146,7 +164,11 @@
                                  @forelse ($products as $product)
                                      <tr data-id="{{ $product->id }}">
                                          <td class="handle">
-                                             <div class="d-flex align-items-center justify-content-center">↕️</div>
+                                             <svg style="cursor: pointer;height: 20px;" xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                 <path
+                                                     d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+                                             </svg>
                                          </td>
                                          <td>
                                              {{ $product->name }}
@@ -239,8 +261,7 @@
                              id: $(this).data('id'),
                              position: index + 1
                          });
-                     });
-
+                     });                     
                      $.ajax({
                          url: '{{ route('admin.products.sort') }}',
                          method: 'POST',

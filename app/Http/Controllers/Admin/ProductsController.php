@@ -24,6 +24,7 @@ class ProductsController extends Controller
             "category_id"=>$request->category_id && $request->category_id != 'all'  ? $request->category_id: null,
             "sub_category_id"=>$request->sub_category_id && $request->sub_category_id != 'all'  ? $request->sub_category_id: null,
             "search"=>$request->search ?? null,
+            "pagination"=>$request->pagination ?? 15,
         ];
         
         $products = $this->ProductService->getProducts($filters);

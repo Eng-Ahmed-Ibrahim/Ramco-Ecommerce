@@ -23,8 +23,17 @@ class ProductsRepository
         if (!empty($filters['no_paginate'])) {
             return $query->get();
         }
-
-        return $query->paginate(15);
+        
+        if($filters['pagination']){
+            if($filters['pagination'] == 'all'){
+                $count = $query->count();
+                return $query->paginate($count); 
+            }
+            else
+                return $query->paginate( (int) $filters['pagination']);
+        }else{   
+            return $query->paginate(15);
+        }
     }
 
 
