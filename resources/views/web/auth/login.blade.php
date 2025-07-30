@@ -141,7 +141,7 @@
                                     <input type="password" name="password" id="password" placeholder="Password" />
                                 </div>
                             </div>
-                            <button class="main-btn login-btn w-100">Login</button>
+                            <button class="main-btn login-btn w-100 black-color">Login</button>
                         </form>
                         <div class="divider">
                             <span>OR</span>

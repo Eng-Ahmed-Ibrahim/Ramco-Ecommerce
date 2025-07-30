@@ -161,7 +161,7 @@
                                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" />
                                 </div>
                             </div>
-                            <button class="main-btn login-btn w-100">Create Account</button>
+                            <button class="main-btn login-btn w-100 black-color">Create Account</button>
                         </form>
                         <div class="text-center mt-3">
                             Already have an account? <a class="login-link" href="/login">Login</a>
