@@ -96,41 +96,7 @@
             <div class="mb-3 products">
                 <div class="row">
                     @forelse ($products as $product)
-                        {{-- <div class="col-md-6  col-12 mb-3 product">
-                            <div class="card">
-                                <div class="card-body ">
-                                    <div class="d-flex justify-content-between align-items-center my-3">
 
-                                        <div class="d-flex gap-2" id="color-options">
-                                            @foreach ($product->colors as $color)
-                                                <span class="color"
-                                                    style="background: {{ $color }}; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"
-                                                    data-color="{{ $color }}"></span>
-                                            @endforeach
-                                        </div>
-                                        <input type="hidden" id="selected-color" value="">
-                                        <i style="font-size: 20px" class="fa-regular fa-heart"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <a
-                                            href="{{ route('web.products.show', [$product->category->slug, $product->slug]) }}">
-                                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="black-color"> {{ $product->name }}</span>
-                                        <span class="black-color">{{ $product->price }} $</span>
-                                    </div>
-                                    <div class="d-flex gap-3 my-3">
-                                        <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
-                                            Now</button>
-                                        <button onclick="addToCart('{{ $product->id }}',null , 'selected-color', this )"
-                                            class="main-btn w-50" style="border-radius: 10.504px;">Add To
-                                            Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
 
                         <div class="col-md-4 col-sm-6 col-12 mb-4">
                             @include('web.partials.product_card', ['product' => $product,'category'=>$category])

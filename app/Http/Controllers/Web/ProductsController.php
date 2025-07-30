@@ -24,6 +24,7 @@ class ProductsController extends Controller
         $category_id = $category->id;
         $filters = [
             "category_id" => $category->id,
+            'no_category_and_subcategory_relationship'=>true,
         ];
         if($request->has('sub_category_id')) {
             $filters['sub_category_id'] = $request->sub_category_id;

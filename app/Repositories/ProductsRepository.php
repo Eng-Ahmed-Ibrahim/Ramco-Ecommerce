@@ -14,17 +14,19 @@ class ProductsRepository
     public function getProducts($filters)
     {
         $query = Product::filter($filters)
-            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product')
-            ->with([
-                'category:id,name,slug',
-                "subCategory:id,name,slug",
-            ]);
+            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product');
 
         if (!empty($filters['no_paginate'])) {
             return $query->get();
         }
+        if( ! isset($filters['no_category_and_subcategory_relationship']) ){
+            $query->with([
+                'category:id,name,slug',
+                "subCategory:id,name,slug",
+            ]);
+        }
         
-        if($filters['pagination']){
+        if (isset($filters['pagination']) && $filters['pagination']) {
             if($filters['pagination'] == 'all'){
                 $count = $query->count();
                 return $query->paginate($count); 
