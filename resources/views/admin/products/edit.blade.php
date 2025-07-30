@@ -29,7 +29,7 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="card">
                     <div class="card-body p-lg-17">
-                        <form method="POST" action="{{ route('admin.products.update', $product) }}"
+                <form method="POST" action="{{ route('admin.products.update',  $product->id) }}"
                             enctype="multipart/form-data">
                             @csrf @method('PUT')
                             @include('admin.products.layouts.form')

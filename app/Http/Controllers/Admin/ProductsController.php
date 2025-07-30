@@ -69,9 +69,9 @@ class ProductsController extends Controller
     }
 
 
-    public function edit(Product $product)
+    public function edit( $id)
     {
-
+        $product=Product::findOrFail($id);
         $categories = Cache::get('categories');
         $subCategories = Cache::get('sub_categories_model');
         return view('admin.products.edit', compact('product', 'categories', 'subCategories'));

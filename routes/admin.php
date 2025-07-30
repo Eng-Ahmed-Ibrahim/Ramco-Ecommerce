@@ -23,7 +23,7 @@ Route::post('/profile', [ProfileController::class, 'update'])->name('profile.upd
 Route::resource('categories', CategoriesController::class)->except(['create', 'edit', 'show']);
 Route::resource('sub_category', SubCategoriesController::class)->except(['create', 'edit', 'show']);
 
-Route::resource('products', ProductsController::class)->names('products');
+Route::resource('products', ProductsController::class);
 Route::post('/products/sort', [ProductsController::class, 'sort'])->name('products.sort');
 Route::post('/products/toggle-flag', [ProductsController::class, 'toggleFlag'])->name('products.toggleFlag');
 Route::post('/products/set-home-banner', [ProductsController::class, 'setHomeBanner'])->name('products.setHomeBanner');
