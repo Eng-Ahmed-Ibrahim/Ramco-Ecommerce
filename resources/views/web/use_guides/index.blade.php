@@ -58,7 +58,25 @@
 
             <div class="news">
 
-                @for($i= 0 ;$i<3 ; $i++)
+                @foreach($useGuides as $useGuide)
+                <div class="my-4 row new main-border-bottom">
+                    <div class="col-md-6 col-12 mb-3" style="justify-content: space-between;display: flex;flex-direction: column;">
+                        <div>
+
+                            <div class="news-title">{{ $useGuide->title }}</div>
+                            <div class="news-date my-3">Posted on {{ $useGuide->created_at->format('F d, Y') }} by beshir</div>
+                        </div>
+                        <div class="news-text mb-3"></div>
+                        <a href="{{ route("web.use_guides.show",$useGuide->id ) }}" class="news-link">
+                            <span class="bold black-color"> Read </span> <i class="mx-2 fa-solid fa-arrow-up fa-rotate-90"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-12 mb-3">
+                        <img src="{{ asset('storage/'. $useGuide->thumbnail) }}" style="height: 250px" class="max-width" loading="lazy" alt="">
+                    </div>
+                </div>
+                @endforeach
+                {{-- @for($i= 0 ;$i<3 ; $i++)
                 <div class="my-4 row new main-border-bottom">
                     <div class="col-md-6 col-12 mb-3">
                         <div class="news-title">Al-Kassem Engineering Industries Group Hosts Juthoor Association and Children
@@ -79,7 +97,7 @@
                         <img src="{{ asset('static/news.webp') }}" class="max-width" loading="lazy" alt="">
                     </div>
                 </div>
-                @endfor
+                @endfor --}}
 
             </div>
         </div>

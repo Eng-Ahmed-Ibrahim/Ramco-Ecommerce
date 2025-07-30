@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 class UseGuidesController extends Controller
 {
     public function index(){
-        return view('web.use_guides.index');
+        $useGuides=UseGuide::orderBy("id","DESC")->paginate(20);
+        return view('web.use_guides.index',compact('useGuides'));
     }
     public function show($id){
         $useGuide=UseGuide::findOrFail($id);
