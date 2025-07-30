@@ -19,12 +19,14 @@
         .color-danger {
             color: red;
         }
-        .order{
+
+        .order {
             border: 1px solid gray;
             border-radius: 15px;
             padding: 20px;
         }
-        .main-border-bottom{
+
+        .main-border-bottom {
             border-bottom: 1px solid gray;
         }
     </style>
@@ -46,52 +48,71 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    @if( count($orders) > 0)
-                    <div class="orders">
-                        @foreach($orders as $order)
-                        <div class="order mb-4 ">
-                            {{-- order Details --}}
-                            <div class="row mb-4 main-border-bottom">
-                                
-                                <div class="col-md-3 col-sm-6 col-12 mb-3">
-                                    <div class="bold">Order Date:</div>
-                                    <div class="color-muted">{{ $order->created_at->format('F j, Y') }}</div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-12 mb-3">
-                                    <div class="bold">Total Amount:</div>
-                                    <div class="color-muted">{{ $order->total }} $</div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-12 mb-3">
-                                    <div class="bold">Shipped to:</div>
-                                    <div class="color-muted" style="white-space: pre-line;">{{ $order->address }}</div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-12 mb-3">
-                                    <div class="bold">Order Number:</div>
-                                    <div class="color-muted">#{{ $order->id }}</div>
-                                </div>
+                    @if (count($orders) > 0)
+                        <div class="orders">
+                            @foreach ($orders as $order)
+                                <div class="order mb-4 ">
+                                    {{-- order Details --}}
+                                    <div class="row mb-4 main-border-bottom">
 
-                            </div>
-                            {{-- order items --}}
-                            @foreach ($order->items as $item)
-                            <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                            <div class="bold">Order Date:</div>
+                                            <div class="color-muted">{{ $order->created_at->format('F j, Y') }}</div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                            <div class="bold">Total Amount:</div>
+                                            <div class="color-muted">{{ $order->total }} $</div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                            <div class="bold">Shipped to:</div>
+                                            <div class="color-muted" style="white-space: pre-line;">{{ $order->address }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                            <div class="bold">Order Number:</div>
+                                            <div class="color-muted">#{{ $order->id }}</div>
+                                        </div>
 
-                                <div class="col-md-2 col-sm-4 col-12 mb-3">
-                                    <img class="max-width" src="{{ asset('storage/' . $item->product['thumbnail']) }}" >
-                                </div>
-                                <div class="col-md-10 col-sm-8 col-12 mb-3" style="display: flex;flex-direction: column;justify-content: space-between;">
-                                    <div>
-                                        <div class="product-name mb-2">{{ $item->product['name'] }}</div>
-                                        <div class="muted-color mb-2">{{ $item->product['description'] }}</div>
                                     </div>
-                                    <a class="black-color" href="{{ route('web.products.show',[$item->product['category']['slug'] , $item->product['slug'] ]) }}"> <i class="fa-regular fa-eye"></i> View Product</a>
-                                </div>
+                                    {{-- order items --}}
+                                    @foreach ($order->items as $item)
+                                        <div class="row">
+
+                                            <div class="col-md-2 col-sm-4 col-12 mb-3">
+                                                <img class="max-width"
+                                                    src="{{ asset('storage/' . $item->product['thumbnail']) }}">
+                                            </div>
+                                            <div class="col-md-10 col-sm-8 col-12 mb-3"
+                                                style="display: flex;flex-direction: column;justify-content: space-between;">
+                                                <div>
+
+                                                    @php
+                                                        $statuses = [
+                                                            'pending' => 'warning',
+                                                            'confirmed' => 'primary',
+                                                            'processing' => 'info',
+                                                            'delivered' => 'success',
+                                                            'returned' => 'secondary',
+                                                            // 'failed_to_delivery' => 'danger',
+                                                            'cancelled' => 'dark',
+                                                        ];
+                                                    @endphp
+                                                    <span class="mb-3 badge rounded-pill text-bg-{{ $statuses[$order->status] }}">{{ $order->status }}</span>
+
+                                                    <div class="product-name mb-2">{{ $item->product['name'] }}</div>
+                                                    <div class="muted-color mb-2">{{ $item->product['description'] }}</div>
+                                                </div>
+                                                <a class="black-color"
+                                                    href="{{ route('web.products.show', [$item->product['category']['slug'], $item->product['slug']]) }}">
+                                                    <i class="fa-regular fa-eye"></i> View Product</a>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                    @else 
-                    <div class="text-center">No Orders</div>
+                    @else
+                        <div class="text-center">No Orders</div>
                     @endif
                 </div>
             </div>
