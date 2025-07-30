@@ -4,23 +4,29 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\OrderService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    private $OrderService;
+    function __construct(OrderService $OrderService)
+    {
+     $this->OrderService = $OrderService;   
+    }
     public function login_form()
     {
         if (Auth::guard('customer')->check()) {
-            return "Profile";
+            return redirect()->route('web.profile.index');
         }
         return view('web.auth.login');
     }
     public function register_form()
     {
         if (Auth::guard('customer')->check()) {
-            return "Profile";
+            return redirect()->route('web.profile.index');
         }
         return view('web.auth.register');
     }
@@ -50,9 +56,11 @@ class AuthController extends Controller
 
         if (Auth::guard('customer')->attempt($credentials, true)) {
             $request->session()->regenerate();
+            $this->OrderService->add_user_to_carts_or_orders_after_login();
             return redirect()->intended(route('web.pages.home'))->with("success", 'Login Successfully');
         }
 
+        
 
         session()->flash("error", "Invalid email or password.");
         return back()->withInput();
@@ -62,6 +70,6 @@ class AuthController extends Controller
         Auth::guard('customer')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login');
+        return redirect()->route('web.auth.login');
     }
 }

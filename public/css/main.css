@@ -72,9 +72,7 @@ a {
 }
 
 .main-btn {
-
     display: flex;
-    min-height: 56px;
     padding: 12px 24px;
     justify-content: center;
     align-items: center;
@@ -84,10 +82,11 @@ a {
     border: none;
     color: #fff;
 }
-
+.main-btn-sm{
+        padding: 6px 12px !important;
+}
 .main-btn-no-bg {
     display: flex;
-    min-height: 56px;
     padding: 12px 24px;
     justify-content: center;
     align-items: center;

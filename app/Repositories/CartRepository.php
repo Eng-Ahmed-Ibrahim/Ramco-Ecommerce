@@ -7,10 +7,9 @@ use App\Models\CartItems;
 
 class CartRepository
 {
-    public function get_cart($item_id = null)
+    public function get_cart($item_id = null ,$guestId=null)
     {
-        $user = getUser();
-
+        $user = $guestId == null ?  getUser() : getUser($guestId);
         // @phpstan-ignore-next-line
         $cart = Cart::with('items', 'items.product:id,thumbnail,name,model')
             ->when($user->type == 'user', function ($query) use ($user) {

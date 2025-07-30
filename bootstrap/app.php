@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -12,10 +14,23 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::namespace('App\Http\Controllers\Admin')->prefix("admin")->name('admin.')->middleware('web')->group(base_path('/routes/admin.php'));
+            Route::namespace('App\Http\Controllers\Admin')
+                ->prefix("admin")->name('admin.')->middleware(['web', 'auth:admin'])->group(base_path('/routes/admin.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectGuestsTo(function ($request) {
+            if ($request->is('admin/*')) {
+                return '/admin/login';
+            }else{
+                return '/login';
+            }
+
+            return '/login';
+        });
+
+
+
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
@@ -24,6 +39,4 @@ return Application::configure(basePath: dirname(__DIR__))
 
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
-    })->create();
+    ->withExceptions(function (Exceptions $exceptions): void {})->create();

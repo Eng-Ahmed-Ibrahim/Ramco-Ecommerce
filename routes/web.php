@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\PagesController;
 use App\Http\Controllers\Web\RepairController;
+use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\MessagesController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\UseGuidesController;
@@ -29,8 +30,8 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     Route::controller(AuthController::class)->name('auth.')->group(function () {
         Route::get('login', 'login_form')->name('login');
         Route::get('register', 'register_form')->name('register');
-        Route::post("login",'login')->name("login.submit");
-        Route::post("register",'register')->name("register.submit");
+        Route::post("login", 'login')->name("login.submit");
+        Route::post("register", 'register')->name("register.submit");
     });
     Route::controller(CartController::class)->name('cart.')->group(function () {
         Route::get('/cart', 'index')->name('index');
@@ -52,10 +53,20 @@ Route::middleware(['guest_id'])->name('web.')->group(function () {
     Route::controller(MessagesController::class)->prefix('contact-us/')->name('messages.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/store', 'store')->name('store');
-
     });
 });
 
 
-
-
+Route::middleware('auth:customer')->name('web.')->group(function () {
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::controller(ProfileController::class)->prefix('profile/')->name('profile.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::get('/orders', 'orders')->name('orders');
+        Route::put('/update-profile', 'update')->name('update');
+        Route::post('/store', 'store')->name('store');
+    });
+});
+Route::get('/user',function(){
+    return getUser();
+});

@@ -119,7 +119,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <a href="/" class="btn"><i class="fa-solid fa-xmark"></i> </a>
-                    <span>Login</span>
+                    <span class="black-color"> Login</span>
 
                 </div>
                 <div class="card-body">

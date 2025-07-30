@@ -532,8 +532,7 @@
         @if (count($use_guides) > 0)
             <section class="mb-5 best_seller ">
                 <div class="container">
-                    <div class="section-title  blue-color mb-2">Smart Use Guides</div>
-
+                    <div class="section-title  blue-color mb-2">Smart Use Guides </div>
                     <div class="row">
 
                         <!-- Slider 1 (best_sellers) -->

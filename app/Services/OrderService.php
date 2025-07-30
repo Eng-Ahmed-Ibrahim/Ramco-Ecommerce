@@ -67,4 +67,33 @@ class OrderService
             throw $e;
         }
     }
+
+    public function get_user_orders($guestId = null){
+        return $this->orderRepository->getUserOrders($guestId);
+    }
+
+    public function add_user_to_carts_or_orders_after_login(){
+        $guestId = request()->cookie('guest_id');
+        $cart = $this->CartRepository->get_cart(null,$guestId);
+        $orders = $this->get_user_orders($guestId);
+        $user=getUser();
+        if(count($orders) > 0){
+            foreach($orders as $order ){
+                if($order->user_id == null){
+                    $order->update([
+                        "user_id"=>$user->user_id,
+                    ]);
+                }
+            }
+        }
+        if($cart && $cart->user_id ==null){
+            $user=getUser();
+            $cart->update([
+                "user_id"=>$user->user_id,
+            ]);
+        }
+        return true;
+        
+        
+    }
 }

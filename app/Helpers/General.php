@@ -3,9 +3,10 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('getUser')) {
-    function getUser()
+    function getUser($guestId=null)
     {
-        if (Auth::guard('customer')->check()) {
+        
+        if ($guestId == null && Auth::guard('customer')->check()) {
             $user = Auth::guard('customer')->user();
 
             return (object)[

@@ -16,11 +16,27 @@ class OrderRepository
             ->select('full_name', 'phone', 'status', 'id', 'total', 'payment_method', 'created_at')
             ->paginate(15);
     }
+    public function getUserOrders($guestId = null)
+    {
+        $user = getUser($guestId);
+        return Order::when($user->type == 'user', function ($query) use ($user) {
+                $query->where('user_id', $user->user_id);
+            }, function ($query) use ($user) {
+                $query->where('guest_id', $user->guest_id);
+            })
+            ->with(['items:id,product_id,order_id',
+             'items.product:id,category_id,slug,name,thumbnail,description',
+             'items.product.category:id,slug',
+            'coupon'])
+            ->select('id','total','status','address','created_at')
+            ->orderBy("id", "DESC")
+            ->get();
+    }
     public function OrderDetails($id)
     {
         return  Order::with(['items', 'items.product', 'coupon'])->findOrFail($id);
     }
-    public function UpdateStatus($order_id,$status)
+    public function UpdateStatus($order_id, $status)
     {
         $order = Order::findOrFail($order_id);
         $order->status = $status;

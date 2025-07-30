@@ -118,7 +118,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <a href="/" class="btn"><i class="fa-solid fa-xmark"></i> </a>
-                    <span>Create an account</span>
+                    <span  class="black-color">Create an account</span>
 
                 </div>
                 <div class="card-body">
