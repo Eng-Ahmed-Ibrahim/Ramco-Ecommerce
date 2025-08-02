@@ -43,7 +43,8 @@
             line-height: 33px;
             /* 150% */
         }
-        .new img{
+
+        .new img {
             border-radius: var(--Radius-8, 20px);
 
         }
@@ -58,46 +59,21 @@
 
             <div class="news">
 
-                @foreach($useGuides as $useGuide)
-                <div class="my-4 row new main-border-bottom">
-                    <div class="col-md-6 col-12 mb-3" style="justify-content: space-between;display: flex;flex-direction: column;">
-                        <div>
+                <div class="my-4 row">
+                    @foreach ($useGuides as $useGuide)
+                        <a href="{{ route('web.use_guides.show', $useGuide->id) }}"
+                             class="col-md-3 col-sm-6 col-12 mb-3">
 
+
+                            <img src="{{ asset('storage/' . $useGuide->thumbnail) }}"  class="max-width"
+                                loading="lazy" alt="">
                             <div class="news-title">{{ $useGuide->title }}</div>
-                            <div class="news-date my-3">Posted on {{ $useGuide->created_at->format('F d, Y') }} by beshir</div>
-                        </div>
-                        <div class="news-text mb-3"></div>
-                        <a href="{{ route("web.use_guides.show",$useGuide->id ) }}" class="news-link">
-                            <span class="bold black-color"> Read </span> <i class="mx-2 fa-solid fa-arrow-up fa-rotate-90"></i>
+
+
                         </a>
-                    </div>
-                    <div class="col-md-6 col-12 mb-3">
-                        <img src="{{ asset('storage/'. $useGuide->thumbnail) }}" style="height: 250px" class="max-width" loading="lazy" alt="">
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-                {{-- @for($i= 0 ;$i<3 ; $i++)
-                <div class="my-4 row new main-border-bottom">
-                    <div class="col-md-6 col-12 mb-3">
-                        <div class="news-title">Al-Kassem Engineering Industries Group Hosts Juthoor Association and Children
-                            with Love Syndrome</div>
-                        <div class="news-date my-3">Posted on May 26, 2024 by beshir</div>
-                        <div class="news-text mb-3">
-                            As part of its commitment to social responsibility and the integration of people with special
-                            needs
-                            into society, Al-Kassem Engineering Industries Group hosted the Juthoor Association and its
-                            children
-                            with Love Syndrome at its industrial facility in the Adar Industrial Zone
-                        </div>
-                        <a href="{{ route("web.use_guides.show",1) }}" class="news-link">
-                            <span class="bold black-color"> Read </span> <i class="mx-2 fa-solid fa-arrow-up fa-rotate-90"></i>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-12 mb-3">
-                        <img src="{{ asset('static/news.webp') }}" class="max-width" loading="lazy" alt="">
-                    </div>
-                </div>
-                @endfor --}}
+
 
             </div>
         </div>
