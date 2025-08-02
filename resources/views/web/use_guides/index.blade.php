@@ -74,7 +74,7 @@
 
                             <img src="{{ asset('storage/' . $useGuide->thumbnail) }}"
                                 style="height: 250px;border-radius: 40px;" class="max-width" loading="lazy" alt="">
-                            <div class="news-title"> {{ \Illuminate\Support\Str::limit($useGuide->title, 50) }}</div>
+                            <div class="news-title text-center"> {{ \Illuminate\Support\Str::limit($useGuide->title, 50) }}</div>
 
 
                         </a>
