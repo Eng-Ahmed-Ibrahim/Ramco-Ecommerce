@@ -4,7 +4,7 @@
     <style>
         .news-title {
             color: var(--Colors-Primary-500, #1F1F1F);
-            font-size: 23px;
+            font-size: 19px;
             font-style: normal;
             font-weight: 700;
             line-height: 39px;
