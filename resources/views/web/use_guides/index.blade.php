@@ -48,6 +48,14 @@
             border-radius: var(--Radius-8, 20px);
 
         }
+
+        @media (max-width: 425px) {
+
+            .news img {
+                max-height: 350px;
+                width: 100% !important;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -61,12 +69,11 @@
 
                 <div class="my-4 row">
                     @foreach ($useGuides as $useGuide)
-                        <a href="{{ route('web.use_guides.show', $useGuide->id) }}"
-                             class="col-md-3 col-sm-6 col-12 mb-3">
+                        <a href="{{ route('web.use_guides.show', $useGuide->id) }}" class="col-md-3 col-sm-6 col-12 mb-3">
 
 
-                            <img src="{{ asset('storage/' . $useGuide->thumbnail) }}" style="height: 250px;border-radius: 40px;"  class="max-width"
-                                loading="lazy" alt="">
+                            <img src="{{ asset('storage/' . $useGuide->thumbnail) }}"
+                                style="height: 250px;border-radius: 40px;" class="max-width" loading="lazy" alt="">
                             <div class="news-title"> {{ \Illuminate\Support\Str::limit($useGuide->title, 50) }}</div>
 
 
