@@ -65,7 +65,7 @@
                              class="col-md-3 col-sm-6 col-12 mb-3">
 
 
-                            <img src="{{ asset('storage/' . $useGuide->thumbnail) }}"  class="max-width"
+                            <img src="{{ asset('storage/' . $useGuide->thumbnail) }}" style="height: 250px"  class="max-width"
                                 loading="lazy" alt="">
                             <div class="news-title">{{ $useGuide->title }}</div>
 
