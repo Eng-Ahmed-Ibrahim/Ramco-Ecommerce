@@ -310,24 +310,6 @@
     </section>
 @endsection
 @section('js')
-    {{-- <script>
-        document.querySelectorAll('.zoom-container').forEach(container => {
-            const img = container.querySelector('img');
-
-            container.addEventListener('mousemove', function(e) {
-                const rect = container.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                img.style.transformOrigin = `${x}% ${y}%`;
-            });
-
-            container.addEventListener('mouseleave', function() {
-                img.style.transformOrigin = 'center center';
-            });
-        });
-    </script> --}}
-
-
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
