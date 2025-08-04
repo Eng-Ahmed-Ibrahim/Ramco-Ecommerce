@@ -163,7 +163,7 @@
 
         .add-to-cart-fixed {
             position: fixed;
-            bottom: 0;
+            bottom: 1px;
             left: 0;
             width: 100% !important;
             border-radius: 0 !important;
