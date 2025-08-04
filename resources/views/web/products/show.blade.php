@@ -30,10 +30,11 @@
             aspect-ratio: 3 / 1;
             height: 400px;
         }
+
         @media (max-width: 768px) {
-        .swiper-slide{
-            height: 350px;
-        }
+            .swiper-slide {
+                height: 350px;
+            }
         }
 
 
@@ -47,11 +48,13 @@
             align-items: flex-start;
 
         }
+
         .swiper-slide.swiper-slide-next {
             display: flex;
             align-items: flex-end;
 
         }
+
         .title {
             color: var(--Colors-Primary-500, #1F1F1F);
             font-size: 30px;
@@ -158,7 +161,20 @@
             cursor: zoom-in;
         }
 
+        .add-to-cart-fixed {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100% !important;
+            border-radius: 0 !important;
+            z-index: 2;
+        }
 
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+
+            font-size: 25px;
+        }
     </style>
 
 
@@ -194,16 +210,68 @@
                             background-size: cover; 
                             background-repeat: no-repeat; 
                             background-position: center;">
-              
+
                         </div>
                     @endforeach
 
                 </div>
+                <!-- Navigation Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
 
         </div>
 
         <div class="container my-5">
+
+            <div class="card mb-5" style="border-radius: 20px">
+                <div class="card-body p-md-5 p-3">
+                    <div class="title my-3">Choose Options</div>
+                    <div class="row">
+                        <div class="col-md-4 col-12 mb-4 d-flex align-items-center justify-content-between">
+
+                            <div>
+                                <div class="sub-title mb-2"> Color:</div>
+                                <div class="d-flex gap-2" id="color-options">
+                                    @foreach ($product->colors as $color)
+                                        <span class="color"
+                                            style="background: {{ $color }}; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"
+                                            data-color="{{ $color }}"></span>
+                                    @endforeach
+                                </div>
+                                <input type="hidden" id="selected-color" value="">
+                            </div>
+                            <div>
+                                <div class="sub-title mb-2"> Price: {{ $product->price }} $</div>
+                                <div class="text-muted"> Include Taxes*</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-8 col-12 mb-3 d-flex  gap-2   align-items-center justify-content-md-around justify-content-between"
+                            id="add-to-cart-wrapper">
+                            <div class="d-flex gap-3 align-items-center">
+                                <button type="button" class="main-btn-no-bg" id="plusBtn">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                                <input type="text" name="quantity" id="product-show-quantity" value="1"
+                                    min="1" readonly style="width: 60px; text-align: center;">
+
+                                <button type="button" class="main-btn-no-bg" id="minusBtn">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                            </div>
+                            <button
+                                onclick="addToCart('{{ $product->id }}' , 'product-show-quantity' , 'selected-color' ,this )"
+                                class="main-btn w-50" id="add-to-cart-button">Add To Cart</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
             <div class="title mb-3">Details</div>
             @foreach (preg_split("/\r\n|\n|\r/", $product->details) as $line)
                 @if (trim($line) !== '')
@@ -241,50 +309,6 @@
 
             </div>
 
-            <div class="card mb-5" style="border-radius: 20px">
-                <div class="card-body p-md-5 p-3">
-                    <div class="title my-3">Choose Options</div>
-                    <div class="row">
-                        <div class="col-md-4 col-12 mb-4 d-flex align-items-center justify-content-between">
-
-                            <div>
-                                <div class="sub-title mb-2"> Color:</div>
-                                <div class="d-flex gap-2" id="color-options">
-                                    @foreach ($product->colors as $color)
-                                        <span class="color"
-                                            style="background: {{ $color }}; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #ccc;"
-                                            data-color="{{ $color }}"></span>
-                                    @endforeach
-                                </div>
-                                <input type="hidden" id="selected-color" value="">
-                            </div>
-                            <div>
-                                <div class="sub-title mb-2"> Price: {{ $product->price }} $</div>
-                                <div class="text-muted"> Include Taxes*</div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="col-md-8 col-12 mb-3 d-flex  gap-2   align-items-center justify-content-md-around justify-content-between">
-                            <div class="d-flex gap-3 align-items-center">
-                                <button type="button" class="main-btn-no-bg" id="plusBtn">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-
-                                <input type="text" name="quantity" id="product-show-quantity" value="1"
-                                    min="1" readonly style="width: 60px; text-align: center;">
-
-                                <button type="button" class="main-btn-no-bg" id="minusBtn">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                            </div>
-                            <button
-                                onclick="addToCart('{{ $product->id }}' , 'product-show-quantity' , 'selected-color' ,this )"
-                                class="main-btn w-50">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @if (count($relatedProducts) > 0)
                 <div class="mb-4">
                     <div class="title my-4">You Might Also Be Interested </div>
@@ -311,11 +335,31 @@
 @endsection
 @section('js')
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addToCart = document.getElementById("add-to-cart-button");
+            const observerTarget = document.getElementById("color-options");
+
+            window.addEventListener("scroll", function() {
+                const triggerBottom = observerTarget.getBoundingClientRect().bottom;
+
+                if (triggerBottom < 0) {
+                    addToCart.classList.add("add-to-cart-fixed");
+                } else {
+                    addToCart.classList.remove("add-to-cart-fixed");
+                }
+            });
+        });
+    </script>
+    <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
             spaceBetween: 10,
             centeredSlides: true,
             loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
             breakpoints: {
                 0: {
                     slidesPerView: 1,
