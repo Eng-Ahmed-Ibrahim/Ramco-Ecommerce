@@ -5,7 +5,7 @@
         .video-section {
             overflow-x: hidden;
             background: #f5f5f5;
-            background-image: url('{{ asset('storage.' . $background_about->background_desktop) }}');
+            background-image: url('{{ asset('storage/' . $background_about->background_desktop) }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -14,7 +14,7 @@
 
         @media (max-width: 768px) {
             .video-section {
-                background-image: url('{{ asset('storage.' . $background_about->background_mobile) }}');
+                background-image: url('{{ asset('storage/' . $background_about->background_mobile) }}');
                 background-position: center;
 
             }
