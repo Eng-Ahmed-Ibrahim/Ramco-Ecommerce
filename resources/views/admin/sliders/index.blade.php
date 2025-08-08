@@ -1,6 +1,6 @@
 @extends('admin.app')
 @php
-    $title = 'Repair';
+    $title = str_replace('_',' ',request('section'));
     $sub_title = 'Pages';
 @endphp
 @section('title', $title)

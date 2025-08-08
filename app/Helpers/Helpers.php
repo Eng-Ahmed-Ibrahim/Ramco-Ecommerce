@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\About;
 use App\Models\Branch;
 use App\Models\Product;
 use App\Models\Sliders;
@@ -15,6 +16,20 @@ class Helpers
 {
 
 
+
+    // branches
+    public static function get_background_about()
+    {
+
+        return Cache::rememberForever('background_about', function () {
+            return About::first();
+        });
+    }
+    public static function cache_background_about()
+    {
+        Cache::forget('background_about');
+        return self::get_background_about();
+    }
 
     // branches
     public static function get_branches()

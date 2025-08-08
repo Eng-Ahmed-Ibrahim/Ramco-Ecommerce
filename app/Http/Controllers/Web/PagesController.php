@@ -22,6 +22,8 @@ class PagesController extends Controller
         return view('web.index',compact('home_banner','sections','home_sliders','best_products','best_sellers','subcategories','need_help','use_guides'));
     }
     public function about(){
-        return view('web.about');
+        $background_about=Helpers::get_background_about();
+        $about_page=Helpers::get_sliders('about_page');
+        return view('web.about',compact('background_about','about_page'));
     }
 }

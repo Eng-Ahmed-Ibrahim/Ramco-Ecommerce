@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
@@ -50,3 +51,6 @@ Route::resource('home-banners', HomeBannerController::class);
 Route::resource('sliders', SlidersController::class);
 
 Route::resource('branches', BranchController::class);
+
+Route::get('/about', [AboutController::class, 'edit'])->name('about.edit');
+Route::post('/about', [AboutController::class, 'update'])->name('about.update');

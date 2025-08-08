@@ -22,12 +22,13 @@ class SlidersController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'icon' => 'required',
+            'icon' => 'nullable',
             'section' => 'required|string',
         ]);
         $section = $request->section;
 
-        $data['icon'] = $request->file('icon')->store('sliders', 'public');
+        if($request->hasFile('icon'))
+            $data['icon'] = $request->file('icon')->store('sliders', 'public');
 
         Sliders::create($data);
         Helpers::cache_sliders($section);
