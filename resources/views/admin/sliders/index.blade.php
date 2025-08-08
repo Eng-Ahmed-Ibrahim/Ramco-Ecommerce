@@ -24,7 +24,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
 
-                    @if (request('limit') < count($sliders))
+                    @if (request('limit') < count($sliders) || request('limit') == null)
                         <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                             data-bs-target="#addModal">Create</a>
                     @endif
