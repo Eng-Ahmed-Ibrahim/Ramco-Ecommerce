@@ -25,26 +25,52 @@
     <section class="about my-5">
         <div class="container">
             <div class="mb-3">
-                <span class="muted-color">Home</span> / <span  class="text-black">Contact Us </span>
+                <span class="muted-color">Home</span> / <span class="text-black">Contact Us </span>
             </div>
             <h3 class="mb-5">Contact Us</h3>
             <div class="row mb-3">
                 <div class="col-md-6 col-12 mb-3">
                     <div class="branches">
-                        @for ($i = 0; $i < 2; $i++)
+                        @foreach ($branches as $branch)
                             <div class="branch mb-5">
-                                <div class="branch-name mb-1">Syria Branch</div>
-                                <div class="mb-1 branch-info">Hear Office: Adnan Al-Malki St., Jasmin Bld., Damascus</div>
-                                <div class="mb-1 branch-info">Tel: +963 11 3740 200/1</div>
-                                <div class="mb-1 branch-info">Fax: +963 11 3719860</div>
-                                <div class="mb-1 branch-info">Mobile/WhatsApp: +963 987 298 951</div>
-                                <div class="mb-3 branch-info">Email: info@kasemgroup-sy.com</div>
+                                @if ($branch->name)
+                                    <div class="branch-name mb-1">{{ $branch->name }}</div>
+                                @endif
 
-                                <div class="mb-1 branch-info">Factory: Adra Industrial City, Damascus Suburb.</div>
-                                <div class="mb-1 branch-info">Tel: +963 11 585 0622</div>
-                                <div class="mb-1 branch-info">Email: r.barmo@kasemgroup-sy.com</div>
+                                @if ($branch->office_address)
+                                    <div class="mb-1 branch-info">Head Office: {{ $branch->office_address }}</div>
+                                @endif
+
+                                @if ($branch->office_tel)
+                                    <div class="mb-1 branch-info">Tel: {{ $branch->office_tel }}</div>
+                                @endif
+
+                                @if ($branch->office_fax)
+                                    <div class="mb-1 branch-info">Fax: {{ $branch->office_fax }}</div>
+                                @endif
+
+                                @if ($branch->mobile_whatsapp)
+                                    <div class="mb-1 branch-info">Mobile/WhatsApp: {{ $branch->mobile_whatsapp }}</div>
+                                @endif
+
+                                @if ($branch->office_email)
+                                    <div class="mb-3 branch-info">Email: {{ $branch->office_email }}</div>
+                                @endif
+
+                                @if ($branch->factory_address)
+                                    <div class="mb-1 branch-info">Factory: {{ $branch->factory_address }}</div>
+                                @endif
+
+                                @if ($branch->factory_tel)
+                                    <div class="mb-1 branch-info">Tel: {{ $branch->factory_tel }}</div>
+                                @endif
+
+                                @if ($branch->factory_email)
+                                    <div class="mb-1 branch-info">Email: {{ $branch->factory_email }}</div>
+                                @endif
                             </div>
-                        @endfor
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-md-6 col-12 mb-3">

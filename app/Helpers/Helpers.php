@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Branch;
 use App\Models\Product;
 use App\Models\Sliders;
 use App\Models\Category;
@@ -15,6 +16,19 @@ class Helpers
 
 
 
+    // branches
+    public static function get_branches()
+    {
+
+        return Cache::rememberForever('branches', function () {
+            return Branch::all();
+        });
+    }
+    public static function cache_branches()
+    {
+        Cache::forget('branches');
+        return self::get_branches();
+    }
     // Sliders
     public static function get_sliders($section)
     {

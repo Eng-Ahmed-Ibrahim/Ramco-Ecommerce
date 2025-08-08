@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\RepairController;
@@ -47,3 +48,5 @@ Route::post('/upload-file', [UseGuideController::class, 'uploadImage'])->name('U
 
 Route::resource('home-banners', HomeBannerController::class);
 Route::resource('sliders', SlidersController::class);
+
+Route::resource('branches', BranchController::class);
