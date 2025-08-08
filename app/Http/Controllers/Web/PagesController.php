@@ -11,12 +11,15 @@ class PagesController extends Controller
 {
 
     public function home(){
+        $home_sliders = Helpers::get_home_sliders();
         $home_banner = Helpers::get_home_banner();
         $best_products = Helpers::get_best_products();
         $best_sellers = Helpers::get_best_sellers();
         $subcategories = Helpers::get_sub_categories();
         $use_guides= Helpers::get_use_guides();
-        return view('web.index',compact('home_banner','best_products','best_sellers','subcategories','use_guides'));
+        $need_help=Helpers::get_sliders('need_help');
+        $sections=Helpers::get_sliders('home_sections');
+        return view('web.index',compact('home_banner','sections','home_sliders','best_products','best_sellers','subcategories','need_help','use_guides'));
     }
     public function about(){
         return view('web.about');

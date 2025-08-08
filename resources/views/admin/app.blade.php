@@ -35,6 +35,12 @@
                 background: white !important;
             }
 
+            [data-kt-app-layout=dark-sidebar] .app-sidebar .menu>.menu-item.hover:not(.here)>.menu-link:not(.disabled):not(.active):not(.here),
+            [data-kt-app-layout=dark-sidebar] .app-sidebar .menu>.menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) {
+                transition: color 0.2s ease;
+                color: white;
+            }
+
             tr,
             th,
             td {

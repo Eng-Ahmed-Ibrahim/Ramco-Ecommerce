@@ -3,8 +3,10 @@
 namespace App\Helpers;
 
 use App\Models\Product;
+use App\Models\Sliders;
 use App\Models\Category;
 use App\Models\UseGuide;
+use App\Models\HomeBanner;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Cache;
 
@@ -12,6 +14,34 @@ class Helpers
 {
 
 
+
+    // Sliders
+    public static function get_sliders($section)
+    {
+
+        $cache_name = 'sliders_' . $section;
+        return Cache::rememberForever($cache_name, function () use ($section) {
+            return Sliders::where('section', $section)->latest()->get();
+        });
+    }
+    public static function cache_sliders($section)
+    {
+        $cache_name = 'sliders_' . $section;
+        Cache::forget($cache_name);
+        return self::get_sliders($section);
+    }
+    // Sliders of home page
+    public static function get_home_sliders()
+    {
+        return Cache::rememberForever('home_sliders', function () {
+            return HomeBanner::latest()->get();
+        });
+    }
+    public static function cache_home_sliders()
+    {
+        Cache::forget('home_sliders');
+        return self::get_home_sliders();
+    }
 
     // Home Banner
     public static function get_home_banner()

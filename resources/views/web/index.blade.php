@@ -76,6 +76,7 @@
 
         }
 
+
         .mySwiper .swiper-slide.left {
             justify-content: flex-start;
         }
@@ -328,40 +329,19 @@
 
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide left" style="background-image: url('{{ asset('static/111.jpg') }}');">
+                @foreach($home_sliders as $slider)
+                <div class="swiper-slide {{ $slider->align }}" style="background-image: url('{{ asset('storage/'. $slider->background) }}');">
                     <div class="overlay"></div>
 
                     <div class="slide-content">
-                        <div class="section-title dark-color ">QUIT</div>
-                        <h3>ANTI-VIBRATION</h3>
-                        <p>Inverter Motor by Whirlpool – Stainexpert Feature – Super Silent – Touch Control Panel – Auto
-                            Restart – Addwash Feature – Drum Clean Program</p>
-                        <a href="#">Check the product</a>
+                        <div class="section-title dark-color ">{{ $slider->name }}</div>
+                        <h3>{{ $slider->sub_title }}</h3>
+                        <p>{{ $slider->description }}</p>
+                        <a href="{{ $slider->link }}" target="_blank">Check the product</a>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="swiper-slide right" style="background-image: url('{{ asset('static/222.jpg') }}');">
-                    <div class="overlay"></div>
-
-                    <div class="slide-content">
-                        <div class="section-title text-black">UNLEASH THE POWER</div>
-                        <h3>With Blender RB-663</h3>
-                        <p>⚙️ 5-Speeds Control | ❄️ Ice-Crushing Magic | 🥄 1.5 Liters Jar Capacity | ☕ Coffee & Spices
-                            Grinder | ⚡ Powerful 17,000 RPM</p>
-                        <a href="#">Check the product</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide right" style="background-image: url('{{ asset('static/000.jpg') }}');">
-                    <div class="overlay"></div>
-                    <div class="slide-content">
-                        <div class="section-title text-black">COOL PERFORMANCE</div>
-                        <h3>Energy-Efficient Air Cooler</h3>
-                        <p>🌬️ Turbo Cooling | 🌡️ Adjustable Thermostat | 🧊 Large Water Tank | 🔇 Quiet Operation | 🔋
-                            Energy Saving</p>
-                        <a href="#">Check the product</a>
-                    </div>
-                </div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -425,7 +405,7 @@
 
         <section class="video-section mb-5 row justify-content-around align-items-center">
             <video class="lazy-video bg-video" muted autoplay loop playsinline>
-                <source data-src="{{ asset('static/video.mp4') }}" type="video/mp4">
+                <source data-src="{{ asset('storage/' . $sections[1]->icon) }}" type="video/mp4">
             </video>
 
 
@@ -434,23 +414,8 @@
             <div class="video-content col-md-4 col-sm-6 col-12">
                 <div class="container mx-4 mx-md-auto">
 
-                    <div class="video-title">KASEM GROUP</div>
-                    <p class="video-content">Renowned engineering company,
-                        established in 1993, specializing in
-                        electric household appliances.
-
-                        With a wide range of over fifty products,
-                        we focus on maintaining high quality, satisfying
-                        individual customer needs, and
-                        providing exceptional after-sales service.
-
-                        Our vision revolves around building strong
-                        relationships with customers through
-                        trust and partnership. Operating in
-                        Damascus, Syria, and beyond, Kasem
-                        Group strives to empower homes with
-                        innovative solutions and reliable
-                        appliances.</p>
+                    <div class="video-title">{{ $sections[1]->name }}</div>
+                    <p class="video-content">{{$sections[1]->description}}</p>
                 </div>
             </div>
             <div class="col-4"></div>
@@ -505,22 +470,24 @@
         <section class="best-deal mb-5">
             <div class="container">
                 <div class="row">
+                    
                     <div class="col-md-6 col-12 mb-3">
-                        <img data-src="{{ asset('static/best_deal.webp') }}" loading="lazy" class="max-width lazy-img"
+                        <img data-src="{{ asset('storage/' . $sections[0]->icon) }}" loading="lazy" class="max-width lazy-img"
                             alt="Best Deal">
                     </div>
                     <div class="col-md-1 col-12"></div>
                     <div class="col-md-5 col-12 d-flex flex-column justify-content-between mb-3">
                         <div class="best-deal-title">
-                            <span class="main-color">Ramco</span> Water Cooler Overwhelm by freshness
+                        @php
+                            $safeName = $sections[0]->name;
+                            $safeHighlight = e("Ramco");
+                            $highlighted = str_replace($safeHighlight, "<span class='main-color'>{$safeHighlight}</span>", $safeName);
+                        @endphp
+
+                        {!! $highlighted !!}
                         </div>
 
-                        <p class="best-deal-content my-4">
-                            Introducing the latest water cooler that blends modern technology with classic design,
-                            offering refreshing hydration at the touch of a button. This appliance provides chilled or
-                            hot water options while incorporating energy-saving features to reduce your carbon
-                            footprint.
-                        </p>
+                        <p class="best-deal-content my-4">{{ $sections[0]->description }}</p>
                         <div>
                             <a href="">Discover More <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
@@ -573,18 +540,17 @@
                     <div class="swiper repair-request-slider">
 
                         <div class="swiper-wrapper">
-                            @for ($i = 0; $i < 3; $i++)
+                            @foreach($need_help as $slide)
                                 <div class="swiper-slide">
                                     <div class="card pt-5 pb-3 px-2 " style="border-radius:24px;">
                                         <div class="card-body">
                                             <div class="row align-items-center mb-5">
                                                 <div class="col-8">
-                                                    <div class="title mb-3">Repair request</div>
-                                                    <div class="description">Request repair service Conveniently online
-                                                    </div>
+                                                    <div class="title mb-3">{{ $slide->name }}</div>
+                                                    <div class="description">{{$slide->description}} </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="{{ asset('static/icon21.svg') }}" loading="lazy"
+                                                    <img src="{{ asset('storage/' . $slide->icon) }}" loading="lazy"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -600,7 +566,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 </div>

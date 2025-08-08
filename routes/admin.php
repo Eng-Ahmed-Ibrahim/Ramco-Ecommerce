@@ -6,11 +6,13 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\RepairController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\UseGuideController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\HomeBannerController;
 use App\Http\Controllers\Admin\SubCategoriesController;
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -42,3 +44,6 @@ Route::resource('repair',RepairController::class);
 Route::resource('messages',MessagesController::class);
 Route::resource('UseGuide',UseGuideController::class);
 Route::post('/upload-file', [UseGuideController::class, 'uploadImage'])->name('UseGuide.uploadImage');
+
+Route::resource('home-banners', HomeBannerController::class);
+Route::resource('sliders', SlidersController::class);

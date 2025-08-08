@@ -5,8 +5,10 @@
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="{{ route('admin.dashboard') }}">
-            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}" class="h-25px app-sidebar-logo-default" />
-            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}" class="h-20px app-sidebar-logo-minimize" />
+            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}"
+                class="h-25px app-sidebar-logo-default" />
+            <img alt="Logo" src="{{ asset('static/header_logo_ff.png') }}"
+                class="h-20px app-sidebar-logo-minimize" />
         </a>
         <div id="kt_app_sidebar_toggle"
             class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
@@ -38,7 +40,7 @@
                     <!-- Dashboard -->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link"  href="{{ route('admin.dashboard') }}">
+                        <a class="menu-link" href="{{ route('admin.dashboard') }}">
                             <span class="menu-icon">
                                 <i class="ki-duotone ki-element-11 fs-2">
                                     <span class="path1"></span>
@@ -53,6 +55,48 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
+                    {{-- Home page --}}
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-address-book fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Home Page</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item">
+                                <a href=" {{  route('admin.home-banners.index') }}" class="menu-link">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Home Banners</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href=" {{  route('admin.sliders.index',['section'=>"home_sections",'limit'=>2]) }}" class="menu-link">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Sections</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href=" {{  route('admin.sliders.index',['section'=>"need_help"]) }}" class="menu-link">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Need Helpe</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {{-- End of Home page --}}
                     <!-- Repairs -->
                     <div class="menu-item">
                         <a class="menu-link" href="{{ route('admin.repair.index') }}">
@@ -87,7 +131,7 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-                
+
                     <!-- UseGuide -->
                     <div class="menu-item">
                         <a class="menu-link" href="{{ route('admin.UseGuide.index') }}">
