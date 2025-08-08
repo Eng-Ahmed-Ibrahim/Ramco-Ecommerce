@@ -63,12 +63,13 @@
                                                         'png',
                                                         'gif',
                                                         'webp',
+                                                        'svg'
                                                     ]);
                                                     $isVideo = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']);
                                                 @endphp
 
                                                 @if ($isImage)
-                                                    <img src="{{ asset('storage/' . $slider->icon) }}" height="150" />
+                                                    <img src="{{ asset('storage/' . $slider->icon) }}"  height="80" />
                                                 @elseif ($isVideo)
                                                     <video width="200" height="150" controls>
                                                         <source src="{{ asset('storage/' . $slider->icon) }}"
