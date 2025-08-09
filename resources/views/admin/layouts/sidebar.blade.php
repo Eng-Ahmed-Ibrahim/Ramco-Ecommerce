@@ -70,7 +70,7 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
-                                <a href=" {{  route('admin.home-banners.index') }}" class="menu-link">
+                                <a href=" {{ route('admin.home-banners.index') }}" class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -78,7 +78,8 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a href=" {{  route('admin.sliders.index',['section'=>"home_sections",'limit'=>2]) }}" class="menu-link">
+                                <a href=" {{ route('admin.sliders.index', ['section' => 'home_sections', 'limit' => 2]) }}"
+                                    class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -86,7 +87,8 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a href=" {{  route('admin.sliders.index',['section'=>"need_help"]) }}" class="menu-link">
+                                <a href=" {{ route('admin.sliders.index', ['section' => 'need_help']) }}"
+                                    class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -110,9 +112,9 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
-                    
+
                             <div class="menu-item">
-                                <a href=" {{  route('admin.about.edit') }}" class="menu-link">
+                                <a href=" {{ route('admin.about.edit') }}" class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -120,19 +122,20 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a href=" {{  route('admin.sliders.index',['section'=>"about_page",'limit'=>3]) }}" class="menu-link">
+                                <a href=" {{ route('admin.sliders.index', ['section' => 'about_page', 'limit' => 3]) }}"
+                                    class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Sections</span>
                                 </a>
                             </div>
-                     
-                     
+
+
 
                         </div>
                     </div>
-                    {{-- Settings--}}
+                    {{-- Settings --}}
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -147,21 +150,21 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
-                                <a href=" {{  route('admin.branches.index') }}" class="menu-link">
+                                <a href=" {{ route('admin.branches.index') }}" class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Branches</span>
                                 </a>
-                            </div>                      
+                            </div>
                             <div class="menu-item">
-                                <a href=" {{  route('admin.social.index') }}" class="menu-link">
+                                <a href=" {{ route('admin.social.index') }}" class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Social Media</span>
                                 </a>
-                            </div>                      
+                            </div>
 
                         </div>
                     </div>
@@ -218,8 +221,34 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
-                    <!--  categories -->
 
+                    <!-- Orders -->
+                    <div class="menu-item pt-5">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Orders</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.orders.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Orders</span>
+                            <span class="badge bg-primary">{{ $totalOrders }}</span>
+
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+
+
+                    <!--  categories -->
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Categories</span>
@@ -307,28 +336,6 @@
                         <!--end:Menu link-->
                     </div>
 
-                    <!-- Orders -->
-                    <div class="menu-item pt-5">
-                        <div class="menu-content">
-                            <span class="menu-heading fw-bold text-uppercase fs-7">Orders</span>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <a class="menu-link" href="{{ route('admin.orders.index') }}">
-                            <span class="menu-icon">
-                                <i class="ki-duotone ki-element-11 fs-2">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                    <span class="path4"></span>
-                                    <span class="path5"></span>
-                                    <span class="path6"></span>
-                                </i>
-                            </span>
-                            <span class="menu-title">Orders</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
 
 
 

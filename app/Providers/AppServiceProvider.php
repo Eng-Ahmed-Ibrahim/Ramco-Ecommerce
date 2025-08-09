@@ -32,5 +32,12 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('siteSettings', $siteSettings);
         });
+            // Composer للـ admin.* فقط
+    View::composer('admin.*', function ($view) {
+        // اجلب عدد الطلبات مثلا
+        $totalOrders = \App\Models\Order::count();
+
+        $view->with('totalOrders', $totalOrders);
+    });
     }
 }
