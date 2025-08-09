@@ -5,7 +5,7 @@
                 <img src="{{ asset('static/footer_logo_f45.png') }}" style="max-width: 340px" loading="lazy" alt="">
                 <div class=" d-md-flex d-none gap-2 ">
 
-                    <button>
+                    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"
                             fill="none">
                             <path d="M13 2L13 34M13 2L1 14M13 2L25 14" stroke="#6F6D66" stroke-width="2" />
@@ -82,7 +82,7 @@
             </div>
             <div class=" d-md-none d-flex gap-2 ">
 
-                <button class="desktop">
+                <button class="desktop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="34" viewBox="0 0 26 34"
                         fill="none">
                         <path d="M13 2L13 34M13 2L1 14M13 2L25 14" stroke="#6F6D66" stroke-width="2" />
