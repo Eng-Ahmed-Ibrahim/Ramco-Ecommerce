@@ -247,6 +247,7 @@
 
         .swiper-button-next.custom-swiper-button {
             right: 0;
+            top: 40%;
             border-radius: 100%;
             padding: 20px;
             border: 1px solid #B1B3B6;
