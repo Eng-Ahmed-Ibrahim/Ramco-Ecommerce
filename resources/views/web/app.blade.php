@@ -12,10 +12,10 @@
 
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}?v={{ filemtime(public_path('css/main.css')) }}">
-    
+
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> --}}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
 
 
     <link rel="icon" href="{{ asset('static/logo.webp') }}">
@@ -75,9 +75,8 @@
 
         @if (isset($errors) && $errors->any())
             @foreach ($errors->all() as $error)
-                toastr.error("{{ $error }}");
-            @endforeach
-        @endif
+                toastr.error("{{ $error }}"); @endforeach
+         @endif
     </script>
 
 
@@ -87,7 +86,7 @@
 
     <script>
         // add. to cart function
-        function addToCart(productId, quantityId = null, selectedColorId = null, button = null) {
+        function addToCart(productId, quantityId = null, selectedColorId = null, button = null, buy_now = false) {
             let quantityInput = document.getElementById(quantityId);
             let quantity = quantityInput ? parseInt(quantityInput.value) : 1;
             let selectedColorInput = document.getElementById(selectedColorId);
@@ -118,6 +117,9 @@
                             cartNumber.textContent = currentCount + 1;
                         });
                         toastr.success(response.message || 'Product added to cart successfully!');
+                        if (buy_now) {
+                            window.location.href = '/cart';
+                        }
 
                     }
 
@@ -133,6 +135,7 @@
                 }
             });
         }
+
 
         // active color of selected product
         document.querySelectorAll('.color').forEach(function(el) {
@@ -187,6 +190,6 @@
 
 
 
-</body>
+    </body>
 
 </html>

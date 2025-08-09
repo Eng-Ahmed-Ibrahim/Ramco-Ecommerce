@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
 
             $siteSettings = [
                 'categories' => Helpers::get_categories(),
-                'cart_count' => CartNumber(),
-
+                'cart_count' => CartNumber() ,
+                'social_media'=>Helpers::get_social_media(),
             ];
 
             $view->with('siteSettings', $siteSettings);

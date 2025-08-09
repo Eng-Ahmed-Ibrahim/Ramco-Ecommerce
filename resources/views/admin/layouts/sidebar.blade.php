@@ -154,6 +154,14 @@
                                     <span class="menu-title">Branches</span>
                                 </a>
                             </div>                      
+                            <div class="menu-item">
+                                <a href=" {{  route('admin.social.index') }}" class="menu-link">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Social Media</span>
+                                </a>
+                            </div>                      
 
                         </div>
                     </div>

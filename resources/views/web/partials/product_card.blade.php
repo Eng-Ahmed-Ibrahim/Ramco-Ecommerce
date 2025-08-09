@@ -75,7 +75,7 @@
             <span class="black-color">{{ $product->price }} $</span>
         </div>
         <div class="d-flex gap-3 my-3">
-            <button class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
+            <button  onclick="addToCart('{{ $product->id }}',null , 'selected-color', this ,true)" class="main-btn-no-bg w-50" style="border-radius: 10.504px;">Buy
                 Now</button>
             <button onclick="addToCart('{{ $product->id }}',null , 'selected-color', this )" class="main-btn w-50"
                 style="border-radius: 10.504px;">Add To

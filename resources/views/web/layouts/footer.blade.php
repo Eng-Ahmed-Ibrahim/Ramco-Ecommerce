@@ -12,8 +12,10 @@
                         </svg>
                     </button>
                     <div>
-                        <a class="social-link mb-2"> <i class="fa-brands fa-square-facebook"></i></a>
-                        <a class="social-link"> <i class="fab fa-instagram"></i></a>
+                        @foreach ($siteSettings['social_media'] as $social)
+                            <a href="{{ $social->link }}" target="_blanl" class="social-link md-2 md-sm-none"> <i
+                                    class="{{ $social->icon }}"></i></a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -87,12 +89,14 @@
                     </svg>
                 </button>
                 <div class="d-flex d-sm-none w-100 w-sm-auto align-items-center justify-content-center gap-2">
-                    <a class="social-link md-2 md-sm-none"> <i class="fa-brands fa-square-facebook"></i></a>
-                    <a class="social-link"> <i class="fab fa-instagram"></i></a>
+                    @foreach ($siteSettings['social_media'] as $social)
+                        <a href="{{ $social->link }}" target="_blanl" class="social-link md-2 md-sm-none"> <i
+                                class="{{ $social->icon }}"></i></a>
+                    @endforeach
                 </div>
             </div>
             <div class="mobile my-4">
-                        <div class="sub-title text-center">Copyright 2025 © RAMCO</div>
+                <div class="sub-title text-center">Copyright 2025 © RAMCO</div>
 
             </div>
         </div>

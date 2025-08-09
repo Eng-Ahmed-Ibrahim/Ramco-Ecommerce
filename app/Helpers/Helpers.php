@@ -10,12 +10,27 @@ use App\Models\Category;
 use App\Models\UseGuide;
 use App\Models\HomeBanner;
 use App\Models\SubCategory;
+use App\Models\SocialMediaLink;
 use Illuminate\Support\Facades\Cache;
 
 class Helpers
 {
 
 
+
+    // SocialMediaLink
+    public static function get_social_media()
+    {
+
+        return Cache::rememberForever('social_media', function () {
+            return SocialMediaLink::latest()->get();
+        });
+    }
+    public static function cache_social_media()
+    {
+        Cache::forget('social_media');
+        return self::get_social_media();
+    }
 
     // branches
     public static function get_background_about()

@@ -41,10 +41,10 @@
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        <div class="mobile">
+        {{-- <div class="mobile">
             <span>En</span>
             <i class="fas fa-globe"></i>
-        </div>
+        </div> --}}
         <a class="navbar-brand" href="{{ route('web.pages.home') }}">
             <img class="logo" src="{{ asset('static/header_logo_ff.png') }}" >
             </a>
@@ -103,13 +103,13 @@
                     </div>
                 </form>
 
-                <span>English</span>
-                <i class="fas fa-globe"></i>
+                {{-- <span>English</span>
+                <i class="fas fa-globe"></i>--}}
                 <a href="{{ route('web.cart.index') }}" style="position: relative">
                     <span class="cart-count">{{ $siteSettings['cart_count'] }}</span>
 
                     <i class="fa fa-shopping-cart icon"></i>
-                </a>
+                </a> 
 
                 <a href="{{ route('web.auth.login') }}">
                     <i class="fas fa-user"></i>

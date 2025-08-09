@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\RepairController;
+use App\Http\Controllers\Admin\SocialController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -54,3 +56,8 @@ Route::resource('branches', BranchController::class);
 
 Route::get('/about', [AboutController::class, 'edit'])->name('about.edit');
 Route::post('/about', [AboutController::class, 'update'])->name('about.update');
+
+Route::get('/social-media', [SocialController::class, 'index'])->name('social.index');
+Route::post('/social-media', [SocialController::class, 'store'])->name('social.store');
+Route::put('/social-media/{socialMediaLink}', [SocialController::class, 'update'])->name('social.update');
+Route::delete('/social-media/{socialMediaLink}', [SocialController::class, 'destroy'])->name('social.destroy');
