@@ -40,10 +40,12 @@
                                     <option value="">All Statuses</option>
                                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending
                                     </option>
-                                    <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>
-                                        Completed</option>
-                                    <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>
+                                    <option value="delivered" {{ request('status') == 'delivered' ? 'selected' : '' }}>
+                                        Delivered</option>
+                                    <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>
                                         Canceled</option>
+                                    <option value="returned" {{ request('status') == 'returned' ? 'selected' : '' }}>
+                                        Returned</option>
                                 </select>
                             </div>
                             <div class="col-md-2">

@@ -43,34 +43,34 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="card text-center bg-warning text-white">
-                                        <div class="card-body">
+                                        <a href="{{ route('admin.orders.index',['status'=>"pending"]) }}" class="card-body">
                                             <h5>Pending Orders</h5>
                                             <h2>{{ $pendingCount }}</h2>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card text-center bg-success text-white">
-                                        <div class="card-body">
+                                        <a href="{{ route('admin.orders.index',['status'=>"delivered"]) }}" class="card-body">
                                             <h5>Delivered Orders</h5>
                                             <h2>{{ $deliveredCount }}</h2>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card text-center bg-danger text-white">
-                                        <div class="card-body">
+                                        <a href="{{ route('admin.orders.index',['status'=>"returned"]) }}" class="card-body">
                                             <h5>Returned Orders</h5>
                                             <h2>{{ $returnedCount }}</h2>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card text-center bg-dark text-white">
-                                        <div class="card-body white-color">
+                                        <a href="{{ route('admin.orders.index',['status'=>"cancelled"]) }}" class="card-body white-color">
                                             <h5 class="white-color">Cancelled Orders</h5>
                                             <h2  class="white-color">{{ $cancelledCount }}</h2>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

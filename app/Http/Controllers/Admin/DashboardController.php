@@ -17,7 +17,7 @@ class DashboardController extends Controller
             ->whereIn('status', ['pending', 'delivered', 'returned', 'cancelled'])
             ->groupBy('status')
             ->pluck('count', 'status');
-        // نضمن وجود القيم حتى لو الحالة مش موجودة في النتائج
+        // نضمن وجود القيم حتى لو الحالة مش موجودة في النتائج 
         $pendingCount   = $statusCounts['pending']   ?? 0;
         $deliveredCount = $statusCounts['delivered'] ?? 0;
         $returnedCount  = $statusCounts['returned']  ?? 0;
