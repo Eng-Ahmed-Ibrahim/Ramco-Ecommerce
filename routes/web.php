@@ -13,6 +13,8 @@ use App\Http\Controllers\Web\MessagesController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\UseGuidesController;
 
+
+
 Route::middleware(['guest_id'])->name('web.')->group(function () {
 
     Route::controller(PagesController::class)->name('pages.')->group(function () {

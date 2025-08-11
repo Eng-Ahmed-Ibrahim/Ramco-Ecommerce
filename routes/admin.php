@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
@@ -19,49 +20,66 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\HomeBannerController;
 use App\Http\Controllers\Admin\SubCategoriesController;
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change_password');
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::resource('categories', CategoriesController::class)->except(['create', 'edit', 'show']);
-Route::resource('sub_category', SubCategoriesController::class)->except(['create', 'edit', 'show']);
 
-Route::resource('products', ProductsController::class);
-Route::post('/products/sort', [ProductsController::class, 'sort'])->name('products.sort');
-Route::post('/products/toggle-flag', [ProductsController::class, 'toggleFlag'])->name('products.toggleFlag');
-Route::post('/products/set-home-banner', [ProductsController::class, 'setHomeBanner'])->name('products.setHomeBanner');
-Route::resource('coupons', CouponController::class);
+Route::middleware([ 'guest:admin'])->group(function () {
+    Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
+    Route::post('/login/submit',[AuthController::class,'login'])->name('login.submit');
+});
 
-Route::prefix('/orders')->controller(OrdersController::class)
-    ->name('orders.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/{order}', 'show')->name('show');
-        Route::post('/{order}/update-status', 'updateStatus')->name('updateStatus');
-        Route::delete('/{order}', 'destroy')->name('destroy');
-        Route::post('/update-status', 'updateStatus')->name('updateStatus');
+Route::middleware([ 'auth:admin'])->group(function () {
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change_password');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('categories', CategoriesController::class)->except(['create', 'edit', 'show']);
+    Route::resource('sub_category', SubCategoriesController::class)->except(['create', 'edit', 'show']);
+
+    Route::resource('products', ProductsController::class);
+    Route::post('/products/sort', [ProductsController::class, 'sort'])->name('products.sort');
+    Route::post('/products/toggle-flag', [ProductsController::class, 'toggleFlag'])->name('products.toggleFlag');
+    Route::post('/products/set-home-banner', [ProductsController::class, 'setHomeBanner'])->name('products.setHomeBanner');
+    Route::resource('coupons', CouponController::class);
+
+    Route::prefix('/orders')->controller(OrdersController::class)
+        ->name('orders.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{order}', 'show')->name('show');
+            Route::post('/{order}/update-status', 'updateStatus')->name('updateStatus');
+            Route::delete('/{order}', 'destroy')->name('destroy');
+            Route::post('/update-status', 'updateStatus')->name('updateStatus');
+        });
+
+    Route::resource('repair', RepairController::class);
+    Route::resource('messages', MessagesController::class);
+    Route::resource('UseGuide', UseGuideController::class);
+    Route::post('/upload-file', [UseGuideController::class, 'uploadImage'])->name('UseGuide.uploadImage');
+
+    Route::resource('home-banners', HomeBannerController::class);
+    Route::resource('sliders', SlidersController::class);
+
+    Route::resource('branches', BranchController::class);
+
+    Route::get('/about', [AboutController::class, 'edit'])->name('about.edit');
+    Route::post('/about', [AboutController::class, 'update'])->name('about.update');
+
+    Route::get('/social-media', [SocialController::class, 'index'])->name('social.index');
+    Route::post('/social-media', [SocialController::class, 'store'])->name('social.store');
+    Route::put('/social-media/{socialMediaLink}', [SocialController::class, 'update'])->name('social.update');
+    Route::delete('/social-media/{socialMediaLink}', [SocialController::class, 'destroy'])->name('social.destroy');
+
+
+    Route::get('/currency', [SettingController::class, 'exchange_rate'])->name('currency.index');
+    Route::post('/currency', [SettingController::class, 'update_exchange_rate'])->name('currency.update');
+
+    Route::prefix('admins')->name('admins.')->controller(AdminController::class)->group(function () {
+        Route::get('/',  'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/update', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
     });
-
-Route::resource('repair',RepairController::class);
-Route::resource('messages',MessagesController::class);
-Route::resource('UseGuide',UseGuideController::class);
-Route::post('/upload-file', [UseGuideController::class, 'uploadImage'])->name('UseGuide.uploadImage');
-
-Route::resource('home-banners', HomeBannerController::class);
-Route::resource('sliders', SlidersController::class);
-
-Route::resource('branches', BranchController::class);
-
-Route::get('/about', [AboutController::class, 'edit'])->name('about.edit');
-Route::post('/about', [AboutController::class, 'update'])->name('about.update');
-
-Route::get('/social-media', [SocialController::class, 'index'])->name('social.index');
-Route::post('/social-media', [SocialController::class, 'store'])->name('social.store');
-Route::put('/social-media/{socialMediaLink}', [SocialController::class, 'update'])->name('social.update');
-Route::delete('/social-media/{socialMediaLink}', [SocialController::class, 'destroy'])->name('social.destroy');
-
-
-Route::get('/currency', [SettingController::class, 'exchange_rate'])->name('currency.index');
-Route::post('/currency', [SettingController::class, 'update_exchange_rate'])->name('currency.update');
+});

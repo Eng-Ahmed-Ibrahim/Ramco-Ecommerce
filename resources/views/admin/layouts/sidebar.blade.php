@@ -254,6 +254,50 @@
                         </a>
                         <!--end:Menu link-->
                     </div>
+                   <!-- Products -->
+                    <div class="menu-item pt-5">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Products</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.products.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Products</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                   <!-- Admins -->
+                    <div class="menu-item pt-5">
+                        <div class="menu-content">
+                            <span class="menu-heading fw-bold text-uppercase fs-7">Admins</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('admin.admins.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                    <span class="path5"></span>
+                                    <span class="path6"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Admins</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
 
 
                     <!--  categories -->
@@ -321,29 +365,7 @@
                         <!--end:Menu link-->
                     </div>
 
-                    <!-- Products -->
-                    <div class="menu-item pt-5">
-                        <div class="menu-content">
-                            <span class="menu-heading fw-bold text-uppercase fs-7">Products</span>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <a class="menu-link" href="{{ route('admin.products.index') }}">
-                            <span class="menu-icon">
-                                <i class="ki-duotone ki-element-11 fs-2">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                    <span class="path4"></span>
-                                    <span class="path5"></span>
-                                    <span class="path6"></span>
-                                </i>
-                            </span>
-                            <span class="menu-title">Products</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-
+ 
 
 
 

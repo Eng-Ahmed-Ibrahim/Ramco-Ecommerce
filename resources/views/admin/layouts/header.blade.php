@@ -1,3 +1,4 @@
+@php $user=Auth::guard('admin')->user(); @endphp
 <div id="kt_app_header" class="app-header bg-light" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}"
     data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}"
     data-kt-sticky-animation="false">
@@ -17,7 +18,7 @@
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a class="d-lg-none">
-                <img alt="Logo" src="{{ asset('images/logo.png') }}" class="h-30px" />
+                <img alt="Logo" src="{{ asset('storage/' . $user->avatar ) }}" class="h-30px" />
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -58,7 +59,7 @@
                     <div class="cursor-pointer symbol symbol-35px"
                         data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                         data-kt-menu-placement="bottom-end">
-                        <img  class="rounded-3" alt="user" />
+                        <img src="{{  asset('storage/' . $user->avatar ) }}"  class="rounded-3" alt="user" />
                     </div>
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded bg-light menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -68,17 +69,17 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo"  />
+                                    <img  src="{{  asset('storage/' . $user->avatar ) }}" alt="Logo"  />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
                                     <div class="fw-bold d-flex align-items-center fs-5">
-                                        Name
+                                        {{ $user->name }}
                                         <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
                                     </div>
                                     <a
-                                        class="fw-semibold text-muted text-hover-primary fs-7">Email</a>
+                                        class="fw-semibold text-muted text-hover-primary fs-7">{{ $user->email }}</a>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -91,15 +92,7 @@
                         <div class="menu-item px-5">
                             <a href="{{ route('admin.profile.edit') }}" class="menu-link px-5">My Profile</a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="#" class="menu-link px-5" data-bs-toggle="modal"
-                                data-bs-target="#changePasswordModal">
-                                Change Password
-                            </a>
-                        </div>
-                        <!--end::Menu item-->
+
 
                         <!--begin::Menu separator-->
                         <div class="separator my-2"></div>

@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function () {
             Route::namespace('App\Http\Controllers\Admin')
                 ->prefix("admin")->name('admin.')
-                // ->middleware(['web', 'auth:admin'])
+                ->middleware(['web'])
                 ->group(base_path('/routes/admin.php'));
         }
     )
