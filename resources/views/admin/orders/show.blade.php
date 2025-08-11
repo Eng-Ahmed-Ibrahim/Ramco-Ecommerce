@@ -80,9 +80,9 @@
                                                 @endif
                                             </td>
                                             <td>{{ $item->color }}</td>
-                                            <td>${{ number_format($item->price, 2) }}</td>
+                                            <td>{{ GetCurrencyExchange($order->currency,$item->price) }}</td>
                                             <td>{{ $item->quantity }}</td>
-                                            <td>${{ number_format($item->total, 2) }}</td>
+                                            <td>{{ GetCurrencyExchange($order->currency,$item->total) }}</td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -93,7 +93,7 @@
                                     <!-- Summary Rows -->
                                     <tr>
                                         <td colspan="6" class="text-end fw-bold">Subtotal</td>
-                                        <td class="fw-bold">${{ number_format($order->subtotal, 2) }}</td>
+                                        <td class="fw-bold">{{ GetCurrencyExchange($order->currency,$order->subtotal) }}</td>
                                     </tr>
 
                                     @if ($order->coupon)
@@ -122,7 +122,7 @@
 
                                     <tr>
                                         <td colspan="6" class="text-end fw-bold">Total</td>
-                                        <td class="fw-bold text-success">${{ number_format($order->total, 2) }}</td>
+                                        <td class="fw-bold text-success">{{ GetCurrencyExchange($order->currency,$order->total) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\Setting;
+use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Controllers\Controller;
@@ -18,12 +20,16 @@ class OrdersController extends Controller
     {
         $filters = $request->only(['search', 'status']);
         $orders = $this->OrderService->getOrders($filters);
-        return view('admin.orders.index', compact('orders'));
+        $exchangeRate = Helpers::get_exchange_rate();
+
+        return view('admin.orders.index', compact('orders','exchangeRate'));
     }
     public function show($id)
     {
         $order = $this->OrderService->OrderDetails($id);
-        return view('admin.orders.show', compact('order'));
+        $exchangeRate = Helpers::get_exchange_rate();
+
+        return view('admin.orders.show', compact('order','exchangeRate'));
     }
     public function updateStatus(Request $request)
     {

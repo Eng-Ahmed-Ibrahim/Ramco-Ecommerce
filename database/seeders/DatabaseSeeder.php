@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
                 // CategoriesSeeder::class,
                 // SubCategoriesSeeder::class,
-                CurrencySeeder::class
+                // CurrencySeeder::class
         ]);
     }
 }

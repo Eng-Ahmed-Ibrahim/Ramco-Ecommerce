@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\About;
 use App\Models\Branch;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Sliders;
 use App\Models\Category;
 use App\Models\UseGuide;
@@ -17,6 +18,17 @@ class Helpers
 {
 
 
+    // Exchange Rate
+    public static function get_exchange_rate(){
+        return Cache::rememberForever('exchange_rate',function(){
+            return Setting::where('key','SYP')->first()->value;
+        });
+    }
+       public static function cache_exchange_rate()
+    {
+        Cache::forget('exchange_rate');
+        return self::get_exchange_rate();
+    }
 
     // SocialMediaLink
     public static function get_social_media()

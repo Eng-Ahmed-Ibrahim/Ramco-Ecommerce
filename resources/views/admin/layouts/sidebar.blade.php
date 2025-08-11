@@ -150,6 +150,14 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
+                                <a href=" {{ route('admin.currency.index') }}" class="menu-link">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Exchange Rate</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
                                 <a href=" {{ route('admin.branches.index') }}" class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>

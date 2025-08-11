@@ -20,10 +20,11 @@ class OrderController extends Controller
             "phone" => "required|string|max:20",
             "city" => "required|string|max:100",
             "address" => "required|string|max:255",
+            "currency" => "required|string|max:3",
             "payment_method" => "required|in:cash,credit_card",
             "coupon_code"=> "nullable|string|max:50", 
         ]);
-        $data = $request->only(['coupon_code','full_name', 'email', 'phone', 'city', 'address', 'payment_method']);
+        $data = $request->only(['coupon_code','full_name', 'currency','email', 'phone', 'city', 'address', 'payment_method']);
         $order = $this->OrderService->createOrder($data);
         return back()->with('success', 'Order created successfully. Your order ID is: ' . $order->id);
     }

@@ -1,5 +1,7 @@
 <?php
+
 use App\Models\Cart;
+use App\Helpers\Helpers;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('getUser')) {
@@ -23,6 +25,17 @@ if (!function_exists('getUser')) {
             'name'     => 'Guest',
             'type'     => 'guest',
         ];
+    }
+}
+if(! function_exists('GetCurrencyExchange')){
+
+    function GetCurrencyExchange($currency , $price){
+        $exchangeRate = Helpers::get_exchange_rate();
+        if($currency == "USD")
+            return "$ $price";
+        else 
+            return "SYP ". $price * $exchangeRate;
+            
     }
 }
 

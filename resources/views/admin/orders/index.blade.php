@@ -62,6 +62,7 @@
                                         <th>Full Name</th>
                                         <th>Phone</th>
                                         <th>Status</th>
+                                        <th>Currency</th>
                                         <th>Total</th>
                                         <th>Payment</th>
                                         <th>Created</th>
@@ -72,13 +73,19 @@
                                 <tbody>
                                     @forelse ($orders as $order)
                                         <tr>
-                                            <td>#{{ $order->id }}</td>
+                                            <td>
+
+                                                <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                    >#{{ $order->id }}</a>
+                                            </td>
                                             <td>{{ $order->full_name }}</td>
                                             <td>{{ $order->phone }}</td>
                                             <td><span
                                                     class="badge bg-light-{{ $order->status == 'pending' ? 'warning' : 'success' }}">{{ ucfirst($order->status) }}</span>
                                             </td>
-                                            <td>${{ $order->total }}</td>
+                                            <td>{{ $order->currency }}</td>
+                                            <td>{{  GetCurrencyExchange($order->currency, $order->total)  }}
+                                            </td>
                                             <td>{{ ucfirst($order->payment_method) }}</td>
                                             <td>{{ $order->created_at->format('Y-m-d') }}</td>
                                             <td>
@@ -111,7 +118,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                                                    {{ $orders->links('vendor.pagination.custom') }}
+                            {{ $orders->links('vendor.pagination.custom') }}
 
                         </div>
 

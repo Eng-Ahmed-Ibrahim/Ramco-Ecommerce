@@ -13,7 +13,7 @@ class OrderRepository
     {
         return Order::filter($filters)
             ->orderBy('created_at', 'desc')
-            ->select('full_name', 'phone', 'status', 'id', 'total', 'payment_method', 'created_at')
+            ->select('full_name', 'phone', 'status', 'currency','id', 'total', 'payment_method', 'created_at')
             ->paginate(15);
     }
     public function getUserOrders($guestId = null)
@@ -59,6 +59,7 @@ class OrderRepository
             'discount' => $data['discount'],
             'total' => $data['total'],
             'notes' => $data['notes'] ?? null,
+            "currency"=>$data['currency'] ?? "USD",
         ]);
         return $order;
     }

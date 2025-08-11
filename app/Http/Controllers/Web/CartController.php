@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Exception;
 use App\Models\Coupon;
+use App\Models\Setting;
+use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Services\CartService;
 use App\Services\CouponService;
@@ -22,7 +24,8 @@ class CartController extends Controller
     {
         $items = $this->CartService->get_items();
         $order_summary = $this->CartService->order_summary($items);
-        return view('web.cart.index', compact('items', 'order_summary'));
+        $exchangeRate = Helpers::get_exchange_rate();
+        return view('web.cart.index', compact('items', 'exchangeRate','order_summary'));
     }
     public function add_to_cart(Request $request)
     {

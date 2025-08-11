@@ -61,3 +61,7 @@ Route::get('/social-media', [SocialController::class, 'index'])->name('social.in
 Route::post('/social-media', [SocialController::class, 'store'])->name('social.store');
 Route::put('/social-media/{socialMediaLink}', [SocialController::class, 'update'])->name('social.update');
 Route::delete('/social-media/{socialMediaLink}', [SocialController::class, 'destroy'])->name('social.destroy');
+
+
+Route::get('/currency', [SettingController::class, 'exchange_rate'])->name('currency.index');
+Route::post('/currency', [SettingController::class, 'update_exchange_rate'])->name('currency.update');

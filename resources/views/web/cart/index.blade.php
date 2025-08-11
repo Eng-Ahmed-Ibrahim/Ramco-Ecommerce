@@ -167,7 +167,7 @@
                             <div class="main-border-bottom p-2 mb-3">Shopping List</div>
                             <div class="cart-products mb-3 ">
                                 @forelse ($items as $item)
-                                    <div class="product main-border-bottom d-flex align-items-center gap-2 mb-3">
+                                    <div class="product main-border-bottom d-flex align-items-center gap-2 mb-3" data-price-usd="{{ $item->price }}">
                                         <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                             style="height: 150px;" alt="">
 
@@ -180,7 +180,7 @@
                                                     </div>
                                                     <span class="color" style="background: {{ $item->color }};"></span>
                                                 </div>
-                                                <div>{{ $item->price }} $</div>
+                                                <div class="price">{{ $item->price }} $</div>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="text-muted">count: {{ $item->quantity }}</div>
@@ -210,7 +210,7 @@
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Subtotal</div>
-                                            <div class="muted-color">{{ $order_summary['subtotal'] }} $ </div>
+                                            <div class="muted-color subtotal" >{{ $order_summary['subtotal'] }} $ </div>
                                         </div>
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Discount</div>
@@ -296,4 +296,42 @@
             });
         });
     </script>
+    <script>
+$(document).ready(function() {
+    function updatePrices() {
+        let currency = $('input[name="currency"]:checked').val();
+        let exchangeRate = {{ $exchangeRate ?? 1 }};
+
+        $('.product').each(function() {
+            let priceUSD = parseFloat($(this).data('price-usd'));
+            let newPrice = currency === 'SYP' ? priceUSD * exchangeRate : priceUSD;
+            let currencySymbol = currency === 'SYP' ? 'SYP' : '$';
+
+            $(this).find('.price').text(newPrice.toFixed(2) + ' ' + currencySymbol);
+        });
+
+        // تحديث ملخص الطلب (إذا ممكن تحسبه في JS أو تجعله ثابت)
+        let subtotalUSD = {{ $order_summary['subtotal'] }};
+        let discountUSD = {{ $order_summary['discount'] }};
+        let totalUSD = {{ $order_summary['total'] }};
+
+        let subtotal = currency === 'SYP' ? subtotalUSD * exchangeRate : subtotalUSD;
+        let discount = currency === 'SYP' ? discountUSD * exchangeRate : discountUSD;
+        let total = currency === 'SYP' ? totalUSD * exchangeRate : totalUSD;
+
+        $('.subtotal').text(subtotal.toFixed(2) + ' ' + (currency === 'SYP' ? 'SYP' : '$'));
+        $('#cart-discount').text(discount.toFixed(2) + ' ' + (currency === 'SYP' ? 'SYP' : '$'));
+        $('#cart-total').text(total.toFixed(2) + ' ' + (currency === 'SYP' ? 'SYP' : '$'));
+    }
+
+    // تحديث الأسعار عند تغيير العملة
+    $('input[name="currency"]').change(function() {
+        updatePrices();
+    });
+
+    // تحديث الأسعار عند تحميل الصفحة لأول مرة
+    updatePrices();
+});
+</script>
+
 @endsection
