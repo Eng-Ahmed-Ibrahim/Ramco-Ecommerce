@@ -86,23 +86,23 @@
                     <div class="muted-color mb-2">1 of 3</div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div> Personal data</div>
-                        @if(! $user)
-                        <div>Have account? <a href="" class="muted-color">Sign In</a></div>
+                        @if (!$user)
+                            <div>Have account? <a href="" class="muted-color">Sign In</a></div>
                         @endif
                     </div>
                     <div class="mb-3">
                         <label for="email" class="mb-2"> Email</label>
                         <div class="input-wrapper">
                             <i class="fa fa-envelope icon"></i>
-                            <input type="email" id="email" name="email" value="{{ $user ? $user->email :   old('email') }}"
-                                placeholder="e-mail address" required />
+                            <input type="email" id="email" name="email"
+                                value="{{ $user ? $user->email : old('email') }}" placeholder="e-mail address" required />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="mb-2"> Full Name</label>
                         <div class="input-wrapper">
-                            <input type="text" id="name" name="full_name" value="{{ $user ? $user->name  : old('full_name') }}"
-                                placeholder="Name" required />
+                            <input type="text" id="name" name="full_name"
+                                value="{{ $user ? $user->name : old('full_name') }}" placeholder="Name" required />
                         </div>
                     </div>
                     <div class="mb-3">
@@ -110,9 +110,9 @@
                         <div class="input-wrapper">
                             <i class="fa fa-phone icon"></i>
 
-                            <input type="text" name="phone" value="{{ $user ? $user->phone :  old('phone') }}" pattern="^\+?\d{7,15}$"
-                                title="Enter a valid phone number (e.g. +123456789)" id="phone-number" placeholder="Number"
-                                required />
+                            <input type="text" name="phone" value="{{ $user ? $user->phone : old('phone') }}"
+                                pattern="^\+?\d{7,15}$" title="Enter a valid phone number (e.g. +123456789)"
+                                id="phone-number" placeholder="Number" required />
 
                         </div>
                     </div>
@@ -128,11 +128,26 @@
                     <div class="mb-3">
                         <label for="address" class="mb-2">Address</label>
                         <div class="input-wrapper">
-                            <textarea id="address" name="address" class="w-100" placeholder="Address" rows="3">{{ $user ? $user->address :  old('address') }}</textarea>
+                            <textarea id="address" name="address" class="w-100" placeholder="Address" rows="3">{{ $user ? $user->address : old('address') }}</textarea>
                         </div>
                     </div>
 
                     <div class="muted-color mb-2">3 of 3</div>
+
+                    <!-- اختيار العملة -->
+                    <div class="mb-3">
+                        <label class="d-block mb-1">Choose Currency:</label>
+
+                        <div class="input-radio">
+                            <input type="radio" name="currency" value="USD" id="currency_usd" checked />
+                            <label for="currency_usd" class="mx-1">USD</label>
+                        </div>
+
+                        <div class="input-radio">
+                            <input type="radio" name="currency" value="SYP" id="currency_syp" />
+                            <label for="currency_syp" class="mx-1">SYP</label>
+                        </div>
+                    </div>
 
                     <div class="mb-3">
                         <div class="input-radio ">
