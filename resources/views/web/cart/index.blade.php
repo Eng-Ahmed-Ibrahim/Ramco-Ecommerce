@@ -135,7 +135,7 @@
                     <div class="muted-color mb-2">3 of 3</div>
 
                     <!-- اختيار العملة -->
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label class="d-block mb-1">Choose Currency:</label>
 
                         <div class="input-radio">
@@ -147,7 +147,9 @@
                             <input type="radio" name="currency" value="SYP" id="currency_syp" />
                             <label for="currency_syp" class="mx-1">SYP</label>
                         </div>
-                    </div>
+                    </div> --}}
+                    @php $currency=count($items) >0 ? ($items[0]->product->is_usd ? 'USD' : "SYP") : null;@endphp
+                    <input type="hidden" name="currency" value="{{ $currency }}">
 
                     <div class="mb-3">
                         <div class="input-radio ">
@@ -180,7 +182,7 @@
                                                     </div>
                                                     <span class="color" style="background: {{ $item->color }};"></span>
                                                 </div>
-                                                <div class="price">{{ $item->price }} $</div>
+                                                <div class="price">{{ GetCurrencyExchange($item->product->is_usd,$item->price) }} </div>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="text-muted">count: {{ $item->quantity }}</div>
@@ -207,15 +209,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Subtotal</div>
-                                            <div class="muted-color subtotal" >{{ $order_summary['subtotal'] }} $ </div>
+                                            <div class="muted-color subtotal" >{{ count($items) > 0 ?   GetCurrencyExchange($items[0]->product->is_usd,$order_summary['subtotal']) : 0.00 }}  </div>
                                         </div>
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Discount</div>
                                             <div class="muted-color" id="cart-discount">{{ $order_summary['discount'] }}
-                                                $ </div>
+                                                 </div>
                                         </div>
 
                                     </div>
@@ -226,7 +229,7 @@
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div>Total</div>
-                                            <div id="cart-total">{{ $order_summary['total'] }} $ </div>
+                                            <div id="cart-total">{{ count($items) > 0 ?  GetCurrencyExchange($items[0]->product->is_usd,$order_summary['total']) :0.00 }} </div>
                                         </div>
                                     </div>
 
@@ -296,7 +299,7 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
 $(document).ready(function() {
     function updatePrices() {
         let currency = $('input[name="currency"]:checked').val();
@@ -332,6 +335,6 @@ $(document).ready(function() {
     // تحديث الأسعار عند تحميل الصفحة لأول مرة
     updatePrices();
 });
-</script>
+</script> --}}
 
 @endsection

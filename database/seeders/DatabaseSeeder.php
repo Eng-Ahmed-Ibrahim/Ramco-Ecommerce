@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
                 // CategoriesSeeder::class,
                 // SubCategoriesSeeder::class,
                 // CurrencySeeder::class,
-                AdminSeeder::class,
+                // AdminSeeder::class,
         ]);
     }
 }

@@ -14,7 +14,7 @@ class ProductsRepository
     public function getProducts($filters)
     {
         $query = Product::filter($filters)
-            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product');
+            ->select('id', 'name', 'slug', 'price', 'colors', 'thumbnail', 'category_id', 'sub_category_id', 'is_best_seller', 'home_banner', 'is_best_product','is_usd');
 
         if (!empty($filters['no_paginate'])) {
             return $query->get();

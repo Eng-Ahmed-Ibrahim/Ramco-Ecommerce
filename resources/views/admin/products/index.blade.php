@@ -156,6 +156,7 @@
                                      <th>Home Banner</th>
                                      <th>Best Seller</th>
                                      <th>Best Product</th>
+                                     <th>USD</th>
 
                                      <th>Actions</th>
                                  </tr>
@@ -209,6 +210,14 @@
                                                  <input type="checkbox" class="toggle-switch" data-type="is_best_product"
                                                      data-id="{{ $product->id }}"
                                                      {{ $product->is_best_product == 1 ? 'checked' : '' }}>
+                                                 <span class="slider round"></span>
+                                             </label>
+                                         </td>
+                                         <td>
+                                             <label class="switch">
+                                                 <input type="checkbox" class="toggle-switch" data-type="is_usd"
+                                                     data-id="{{ $product->id }}"
+                                                     {{ $product->is_usd == 1 ? 'checked' : '' }}>
                                                  <span class="slider round"></span>
                                              </label>
                                          </td>

@@ -143,7 +143,7 @@ class ProductsController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:products,id',
-            'type' => 'required|in:is_best_seller,is_best_product',
+            'type' => 'required|in:is_best_seller,is_best_product,is_usd',
             'value' => 'required|boolean',
         ]);
 

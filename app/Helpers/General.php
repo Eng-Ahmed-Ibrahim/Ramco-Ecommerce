@@ -31,10 +31,10 @@ if(! function_exists('GetCurrencyExchange')){
 
     function GetCurrencyExchange($currency , $price){
         $exchangeRate = Helpers::get_exchange_rate();
-        if($currency == "USD")
-            return "$ $price";
+        if($currency == "USD" || $currency==1)
+            return "$price $";
         else 
-            return "SYP ". $price * $exchangeRate;
+            return $price * $exchangeRate ." SYP";
             
     }
 }

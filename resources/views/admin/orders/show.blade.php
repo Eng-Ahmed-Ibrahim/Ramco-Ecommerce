@@ -115,7 +115,7 @@
                                                 Discount
                                             </td>
                                             <td class="fw-bold text-danger">
-                                                ${{ number_format(0, 2) }}
+                                                {{ number_format(0, 2) }}
                                             </td>
                                         </tr>
                                     @endif

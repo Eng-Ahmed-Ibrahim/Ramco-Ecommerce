@@ -11,7 +11,7 @@ class CartRepository
     {
         $user = $guestId == null ?  getUser() : getUser($guestId);
         // @phpstan-ignore-next-line
-        $cart = Cart::with('items', 'items.product:id,thumbnail,name,model')
+        $cart = Cart::with('items', 'items.product:id,thumbnail,name,model,is_usd')
             ->when($user->type == 'user', function ($query) use ($user) {
                 $query->where('user_id', $user->user_id);
             }, function ($query) use ($user) {
