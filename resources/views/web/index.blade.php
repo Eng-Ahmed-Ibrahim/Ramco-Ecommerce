@@ -333,7 +333,7 @@
 @section('content')
     <section class="home mb-5">
 
-        
+
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach($home_sliders as $slider)
@@ -406,6 +406,7 @@
     height: 30px;"></div>
                                 <div class="swiper-button-next" style="position: relative;top:10px;    color: black;
     height: 30px;"></div>
+    
                             </div>
 
                         </div>
