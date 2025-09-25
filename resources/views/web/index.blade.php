@@ -64,6 +64,9 @@
             justify-content: flex-end;
             transition: transform 0.6s ease-in-out;
             border-radius: 0% !important;
+                background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
         }
 
         .mySwiper .swiper-slide.right {
@@ -249,15 +252,17 @@
             right: 0;
             top: 40%;
             border-radius: 100%;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #B1B3B6;
             margin: 0 17px;
         }
 
         .swiper-button-prev.custom-swiper-button {
             left: 0;
+                        top: 40%;
+
             border-radius: 100%;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #B1B3B6;
             margin: 0 17px;
         }
@@ -338,14 +343,16 @@
                         <div class="section-title dark-color ">{{ $slider->name }}</div>
                         <h3>{{ $slider->sub_title }}</h3>
                         <p>{{ $slider->description }}</p>
+                        @if( $slider->link )
                         <a href="{{ $slider->link }}" target="_blank">Check the product</a>
+                        @endif
                     </div>
                 </div>
                 @endforeach
 
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next custom-swiper-button" style="color: white"></div>
+            <div class="swiper-button-prev custom-swiper-button" style="color: white"></div>
             <div class="swiper-pagination"></div>
         </div>
 
@@ -394,8 +401,10 @@
                             <div class="swiper-scrollbar" style="height: 6px;"></div>
                             <div class="d-flex align-items-center ">
 
-                                <div class="swiper-button-prev mx-3" style="position: relative;top:10px;"></div>
-                                <div class="swiper-button-next" style="position: relative;top:10px;"></div>
+                                <div class="swiper-button-prev mx-3" style="position: relative;top:10px;    color: black;
+    height: 30px;"></div>
+                                <div class="swiper-button-next" style="position: relative;top:10px;    color: black;
+    height: 30px;"></div>
                             </div>
 
                         </div>
@@ -403,24 +412,40 @@
 
             </section>
         @endif
+@php
+    $file = $sections[1]->icon;
+    $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    $isVideo = in_array($extension, ['mp4', 'mov', 'webm']);
+@endphp
 
-        <section class="video-section mb-5 row justify-content-around align-items-center">
-            <video class="lazy-video bg-video" muted autoplay loop playsinline>
-                <source data-src="{{ asset('storage/' . $sections[1]->icon) }}" type="video/mp4">
-            </video>
+<section 
+    class="video-section mb-5 row justify-content-around align-items-center" 
+    @unless($isVideo)
+        style="background-image: url('{{ asset('storage/' . $file) }}'); 
+               background-size: cover; 
+               background-position: center; 
+               background-repeat: no-repeat;
+                   background-blend-mode: hue;
 
+               "
+               
+    @endunless
+>
+    @if($isVideo)
+        <video class="lazy-video bg-video" muted autoplay loop playsinline>
+            <source src="{{ asset('storage/' . $file) }}" type="video/{{ $extension }}">
+        </video>
+    @endif
 
+    <div class="video-content col-md-4 col-sm-6 col-12">
+        <div class="container mx-4 mx-md-auto">
+            <div class="video-title">{{ $sections[1]->name }}</div>
+            <p class="video-content">{{ $sections[1]->description }}</p>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</section>
 
-
-            <div class="video-content col-md-4 col-sm-6 col-12">
-                <div class="container mx-4 mx-md-auto">
-
-                    <div class="video-title">{{ $sections[1]->name }}</div>
-                    <p class="video-content">{{$sections[1]->description}}</p>
-                </div>
-            </div>
-            <div class="col-4"></div>
-        </section>
 
         @if (count($best_sellers) > 0)
             <section class="mb-5 best_seller ">
@@ -584,11 +609,11 @@
     <script>
         // home banner
         const swiper = new Swiper(".mySwiper", {
-            loop: true,
-            autoplay: {
-                delay: 10000,
-                disableOnInteraction: false,
-            },
+            loop: false,
+            // autoplay: {
+            //     delay: 10000,
+            //     disableOnInteraction: false,
+            // },
             pagination: {
                 el: ".mySwiper .swiper-pagination",
                 clickable: true,

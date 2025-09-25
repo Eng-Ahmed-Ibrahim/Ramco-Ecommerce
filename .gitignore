@@ -19,7 +19,7 @@
 /storage/*.key
 /storage/pail
 /vendor
-
+/.ssh
 Homestead.json
 Homestead.yaml
 Thumbs.db

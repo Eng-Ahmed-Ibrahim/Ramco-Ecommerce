@@ -1,21 +1,21 @@
 <div class="mb-3">
     <label>Name</label>
-    <input type="text" name="name" class="form-control" required>
+    <input type="text" name="name" class="form-control" >
 </div>
 
 <div class="mb-3">
     <label>Sub Title</label>
-    <input type="text" name="sub_title" class="form-control" required>
+    <input type="text" name="sub_title" class="form-control" >
 </div>
 
 <div class="mb-3">
     <label>Description</label>
-    <textarea name="description" class="form-control" rows="3" required></textarea>
+    <textarea name="description" class="form-control" rows="3" ></textarea>
 </div>
 
 <div class="mb-3">
     <label>Link</label>
-    <input type="text" name="link" class="form-control" required>
+    <input type="text" name="link" class="form-control" >
 </div>
 
 <div class="mb-3">

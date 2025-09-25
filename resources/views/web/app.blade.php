@@ -25,7 +25,22 @@
         .color.active {
             border: 3px solid #E2211C !important;
         }
+
     </style>
+    <style>
+  /* نخلي النصوص الافتراضية تختفي */
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none;
+  }
+
+  /* ستايل الأزرار */
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    font-size: 24px;
+    color: #000;
+  }
+</style>
 </head>
 
 <body>

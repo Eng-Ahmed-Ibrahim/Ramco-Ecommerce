@@ -19,10 +19,10 @@ class HomeBannerController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'sub_title' => 'required',
-            'description' => 'required',
-            'link' => 'required',
+            'name' => 'nullable',
+            'sub_title' => 'nullable',
+            'description' => 'nullable',
+            'link' => 'nullable',
             'background' => 'required|image',
             'align' => 'required|in:left,right,center',
         ]);
@@ -38,10 +38,10 @@ class HomeBannerController extends Controller
     public function update(Request $request,  $id)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'sub_title' => 'required',
-            'description' => 'required',
-            'link' => 'required',
+            'name' => 'nullable',
+            'sub_title' => 'nullable',
+            'description' => 'nullable',
+            'link' => 'nullable',
             'background' => 'nullable|image',
             'align' => 'required|in:left,right,center',
         ]);
