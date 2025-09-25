@@ -406,7 +406,7 @@
     height: 30px;"></div>
                                 <div class="swiper-button-next" style="position: relative;top:10px;    color: black;
     height: 30px;"></div>
-    
+
                             </div>
 
                         </div>
@@ -611,11 +611,11 @@
     <script>
         // home banner
         const swiper = new Swiper(".mySwiper", {
-            loop: false,
-            // autoplay: {
-            //     delay: 10000,
-            //     disableOnInteraction: false,
-            // },
+            loop: true,
+            autoplay: {
+                delay: 10000,
+                disableOnInteraction: false,
+            },
             pagination: {
                 el: ".mySwiper .swiper-pagination",
                 clickable: true,
