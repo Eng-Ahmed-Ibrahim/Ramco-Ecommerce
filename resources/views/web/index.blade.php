@@ -333,6 +333,7 @@
 @section('content')
     <section class="home mb-5">
 
+        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach($home_sliders as $slider)
