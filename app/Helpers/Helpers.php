@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Cache;
 
 class Helpers
 {
-
-
     // Exchange Rate
     public static function get_exchange_rate(){
         return Cache::rememberForever('exchange_rate',function(){
