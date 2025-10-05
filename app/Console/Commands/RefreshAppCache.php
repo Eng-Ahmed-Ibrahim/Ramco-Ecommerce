@@ -17,6 +17,7 @@ class RefreshAppCache extends Command
     {
         $this->info('🔁 Refreshing custom cache...');
 
+        
         Helpers::cache_categories();
         Helpers::cache_sub_categories();
         Helpers::cache_home_banner();
