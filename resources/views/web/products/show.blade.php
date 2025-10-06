@@ -242,7 +242,7 @@
                                 <input type="hidden" id="selected-color" value="">
                             </div>
                             <div>
-                                <div class="sub-title mb-2"> Price: {{ $product->price }} $</div>
+                                <div class="sub-title mb-2"> Price: {{ GetCurrencyExchange($product->is_usd,$product->price) }}</div>
                                 <div class="text-muted"> Include Taxes*</div>
                             </div>
                         </div>
