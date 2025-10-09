@@ -111,18 +111,18 @@ class PermissionSeeder extends Seeder
                 ]);
             }
         }
-        $superAdmin = Role::firstOrCreate([
-            'name' => 'super admin',
-            'guard_name' => 'admin'
-        ]);
+        // $superAdmin = Role::firstOrCreate([
+        //     'name' => 'super admin',
+        //     'guard_name' => 'admin'
+        // ]);
 
-        $allPermissions = Permission::where('guard_name', 'admin')->get();
-        $superAdmin->syncPermissions($allPermissions);
+        // $allPermissions = Permission::where('guard_name', 'admin')->get();
+        // $superAdmin->syncPermissions($allPermissions);
 
-        $admin = Admin::find(1);
-        $admin->update([
-            "role" => "super admin",
-        ]);
-        $admin->assignRole('super admin');
+        // $admin = Admin::find(1);
+        // $admin->update([
+        //     "role" => "super admin",
+        // ]);
+        // $admin->assignRole('super admin');
     }
 }

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                 // SubCategoriesSeeder::class,
                 // CurrencySeeder::class,
                 // AdminSeeder::class,
-                PermissionSeeder::class,
+                // PermissionSeeder::class,
                 SettingsSeeder::class,
         ]);
     }
