@@ -80,7 +80,7 @@
             </div>
 
             <div class="row mb-3 ">
-                <form action="{{ route('web.order.create') }}" method="POST" class="col-md-6 col-12 mb-3">
+                <form action="{{ route('web.order.create') }}" id="place-order" method="POST" class="col-md-6 col-12 mb-3">
                     @csrf
                     <input type="text" name="coupon_code" id="coupon_code" value="{{ old('coupon_code') }}" hidden>
                     <div class="muted-color mb-2">1 of 3</div>
@@ -234,7 +234,7 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <button class="w-100 main-btn mobile">Place Order</button>
+                                        <button class="w-100 main-btn mobile mobile-place-order">Place Order</button>
 
                                     </div>
                                 </div>
@@ -298,6 +298,9 @@
                 });
             });
         });
+        document.querySelector('.mobile-place-order').onclick=()=>{
+            document.getElementById('place-order').submit();
+        }
     </script>
     {{-- <script>
 $(document).ready(function() {
