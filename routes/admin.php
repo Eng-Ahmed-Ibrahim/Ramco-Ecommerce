@@ -23,10 +23,10 @@ use App\Http\Controllers\Admin\SubCategoriesController;
 
 
 
-Route::middleware(['guest:admin'])->group(function () {
+// Route::middleware(['guest:admin'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login/submit', [AuthController::class, 'login'])->name('login.submit');
-});
+// });
 
 Route::middleware(['auth:admin'])->group(function () {
 
