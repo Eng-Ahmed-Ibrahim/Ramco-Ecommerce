@@ -24,7 +24,9 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $admins = Admin::orderBy("id", "DESC")->where('id',Auth::guard('admin')->user()->id)->paginate(15);
+        $admins = Admin::orderBy("id", "DESC")
+        ->where('id',"!=",Auth::guard('admin')->user()->id)
+        ->paginate(15);
         $roles=Role::get();
         return view($this->model_view_folder . "index")
             ->with("admins", $admins)
