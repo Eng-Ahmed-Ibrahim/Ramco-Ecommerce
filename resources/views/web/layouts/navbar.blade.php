@@ -46,7 +46,7 @@
             <i class="fas fa-globe"></i>
         </div> --}}
         <a class="navbar-brand" href="{{ route('web.pages.home') }}">
-            <img class="logo" src="{{ asset('static/header_logo_ff.png') }}" >
+            <img class="logo" src="{{ asset('storage/'.$siteSettings['logos']['site_header_logo']) }}" >
             </a>
 
         {{-- Cart & User  --}}

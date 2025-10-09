@@ -22,10 +22,12 @@
                             <li class="breadcrumb-item text-muted">{{ $title }}</li>
                         </ul>
                     </div>
+                    @can('coupins-create')
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCouponModal"
                             onclick="resetCreateForm()">Create</button>
                     </div>
+                    @endcan
                 </div>
             </div>
 
@@ -41,7 +43,9 @@
                                         <th>Value</th>
                                         <th>Start At</th>
                                         <th>End At</th>
+                                        @canany(['coupins-edit', 'coupins-delete'])
                                         <th>Action</th>
+                                        @endcanany
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,7 +57,9 @@
                                             <td>{{ \Carbon\Carbon::parse($coupon->start_at)->format('d M Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($coupon->end_at)->format('d M Y') }}</td>
 
+                                            @canany(['coupins-edit', 'coupins-delete'])
                                             <td>
+                                                @can('coupins-edit')
                                                 <button class="btn btn-sm btn-warning edit-btn mx-2"
                                                     data-id="{{ $coupon->id }}" data-code="{{ $coupon->code }}"
                                                     data-type="{{ $coupon->type }}" data-value="{{ $coupon->value }}"
@@ -62,6 +68,8 @@
                                                     data-bs-target="#editCouponModal">
                                                     Edit
                                                 </button>
+                                                @endcan 
+                                                @can('coupins-delete')
                                                 <form action="{{ route('admin.coupons.destroy',$coupon->id) }}" style="display: inline-block" method="post">
                                                     @csrf 
                                                     @method('DELETE')
@@ -70,8 +78,10 @@
                                                         Delete
                                                     </button>
                                                 </form>
+                                                @endcan
 
                                             </td>
+                                            @endcanany
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -22,7 +22,7 @@
                             <li class="breadcrumb-item text-muted">{{ $title }}</li>
                         </ul>
                     </div>
-        
+
                 </div>
             </div>
             <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -50,16 +50,20 @@
                                             <td>{{ $repair->visit_request_date }}</td>
                                             <td>{{ $repair->phone }}</td>
                                             <td>
-                                                <a href="{{ route('admin.repair.show', $repair->id) }}"
-                                                    class="btn btn-info btn-sm">Show</a>
+                                                @can('rapairs-show')
+                                                    <a href="{{ route('admin.repair.show', $repair->id) }}"
+                                                        class="btn btn-info btn-sm">Show</a>
+                                                @endcan
 
-                                                <form action="{{ route('admin.repair.destroy', $repair->id) }}"
-                                                    method="POST" style="display:inline-block;"
-                                                    onsubmit="return confirm('Are you sure?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
+                                                @can('rapairs-delete')
+                                                    <form action="{{ route('admin.repair.destroy', $repair->id) }}"
+                                                        method="POST" style="display:inline-block;"
+                                                        onsubmit="return confirm('Are you sure?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Helpers\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Yoeunes\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
@@ -24,13 +25,17 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::orderBy("id", "DESC")->where('id',Auth::guard('admin')->user()->id)->paginate(15);
+        $roles=Role::get();
         return view($this->model_view_folder . "index")
-            ->with("admins", $admins);
+            ->with("admins", $admins)
+            ->with("roles", $roles)
+            ;
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'role' => 'required|exists:roles,name',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -46,6 +51,7 @@ class AdminController extends Controller
             "name" => $request->name,
             "password" => Hash::make($request->password),
         ]);
+        $admin->assignRole($request->role);
 
         if ($request->file('avatar')) {
             $admin->update([
@@ -66,21 +72,22 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         $admin = Admin::findOrFail($request->admin_id);
-
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'role' => 'required|exists:roles,name',
             'email' => 'required|email|unique:admins,email,' . $admin->id,
-
+            
         ]);
-
+        
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('form_type', 'edit')
-                ->with('edit_id', $admin->id);
+            ->withErrors($validator)
+            ->withInput()
+            ->with('form_type', 'edit')
+            ->with('edit_id', $admin->id);
         }
-
+        
 
         if ($request->hasFile("avatar")) {
             if ($admin->avatar && Storage::disk('public')->exists($admin->avatar)) {
@@ -99,7 +106,10 @@ class AdminController extends Controller
         $admin->update([
             "name" => $request->name,
             "email" => $request->email,
+            "role" => $request->role,
         ]);
+                $admin->syncRoles($request->role);
+
 
         return back()->with('success','updated successfully');
     }

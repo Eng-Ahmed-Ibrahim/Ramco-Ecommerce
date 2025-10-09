@@ -26,8 +26,7 @@
         <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}?v={{ time() }}" rel="stylesheet"
             type="text/css" />
-        <link rel="icon" href="{{ asset('static/logo.webp') }}">
-
+        <link rel="icon" href="{{ asset('storage/'.$siteSettings['logos']['site_favicon']) }}">
         @yield('css')
 
         <style>

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
 
 
-    <link rel="icon" href="{{ asset('static/logo.webp') }}">
+    <link rel="icon" href="{{ asset('storage/'.$siteSettings['logos']['site_favicon']) }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     @yield('css')
     <style>

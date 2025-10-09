@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrdersController;
@@ -22,12 +23,12 @@ use App\Http\Controllers\Admin\SubCategoriesController;
 
 
 
-Route::middleware([ 'guest:admin'])->group(function () {
-    Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
-    Route::post('/login/submit',[AuthController::class,'login'])->name('login.submit');
+Route::middleware(['guest:admin'])->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login/submit', [AuthController::class, 'login'])->name('login.submit');
 });
 
-Route::middleware([ 'auth:admin'])->group(function () {
+Route::middleware(['auth:admin'])->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -75,11 +76,21 @@ Route::middleware([ 'auth:admin'])->group(function () {
 
     Route::get('/currency', [SettingController::class, 'exchange_rate'])->name('currency.index');
     Route::post('/currency', [SettingController::class, 'update_exchange_rate'])->name('currency.update');
-
+    Route::get('/general', [SettingController::class, 'general'])->name('general');
+    Route::put('/general', [SettingController::class, 'updateGeneral'])->name('settings.general.update');
+    
     Route::prefix('admins')->name('admins.')->controller(AdminController::class)->group(function () {
         Route::get('/',  'index')->name('index');
         Route::post('/store', 'store')->name('store');
         Route::post('/update', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+
+    Route::prefix('roles')->name('roles.')->controller(RolesController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/add', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update', 'update')->name('update');
+        Route::delete('/delete/{id}', 'destroy')->name('delete');
     });
 });

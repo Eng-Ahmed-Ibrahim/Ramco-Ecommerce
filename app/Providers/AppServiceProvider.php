@@ -22,12 +22,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+  
         View::composer('web.*', function ($view) {
 
             $siteSettings = [
                 'categories' => Helpers::get_categories(),
                 'cart_count' => CartNumber() ,
                 'social_media'=>Helpers::get_social_media(),
+                'logos' => Helpers::get_logos(),
             ];
 
             $view->with('siteSettings', $siteSettings);
@@ -36,8 +38,11 @@ class AppServiceProvider extends ServiceProvider
     View::composer('admin.*', function ($view) {
         // اجلب عدد الطلبات مثلا
         $totalOrders = \App\Models\Order::count();
+            $siteSettings = [
+                'logos' => Helpers::get_logos(),
 
-        $view->with('totalOrders', $totalOrders);
+            ];
+        $view->with('totalOrders', $totalOrders)->with('siteSettings', $siteSettings);
     });
     }
 }

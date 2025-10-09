@@ -85,9 +85,11 @@
                         </div>
 
                         <!-- Submit -->
+                        @can('about page-edit background')
                         <div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary w-100">Update</button>
                         </div>
+                        @endcan
                     </form>
 
                 </div>

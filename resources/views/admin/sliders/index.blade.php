@@ -1,6 +1,19 @@
 @extends('admin.app')
 @php
-    $title = str_replace('_',' ',request('section'));
+    $title = str_replace('_', ' ', request('section'));
+    $roles = [
+        'home sections' => [
+            'edit' => 'home page-edit sections',
+        ],
+        'need help' => [
+            'create' => 'home page-create item of need help',
+            'edit' => 'home page-edit item of need help',
+            'delete' => 'home page-create item of need help',
+        ],
+        'about page'=>[
+            "edit"=>"about page-edit sections"
+        ]
+    ];
     $sub_title = 'Pages';
 @endphp
 @section('title', $title)
@@ -24,9 +37,18 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
 
-                    @if (request('limit') > count($sliders) || count($sliders)==0|| request('limit') == null)
-                        <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#addModal">Create</a>
+                    @if (in_array($title, array_keys($roles)) && $roles[$title]['edit']  )
+                        @can($roles[$title]['edit'])
+                            @if (request('limit') > count($sliders) || count($sliders) == 0 || request('limit') == null)
+                                <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addModal">Create</a>
+                            @endif
+                        @endcan
+                    @else
+                        @if (request('limit') > count($sliders) || count($sliders) == 0 || request('limit') == null)
+                            <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#addModal">Create</a>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -46,7 +68,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Icon</th>
-                                            <th>Actions</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,13 +85,13 @@
                                                         'png',
                                                         'gif',
                                                         'webp',
-                                                        'svg'
+                                                        'svg',
                                                     ]);
                                                     $isVideo = in_array(strtolower($extension), ['mp4', 'webm', 'ogg']);
                                                 @endphp
 
                                                 @if ($isImage)
-                                                    <img src="{{ asset('storage/' . $slider->icon) }}"  height="80" />
+                                                    <img src="{{ asset('storage/' . $slider->icon) }}" height="80" />
                                                 @elseif ($isVideo)
                                                     <video width="200" height="150" controls>
                                                         <source src="{{ asset('storage/' . $slider->icon) }}"
@@ -81,19 +103,39 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#editModal"
-                                                onclick="editslider({{ $slider }})">Edit</button>
+                                                @if (in_array($title, array_keys($roles)) && $roles[$title]['edit'] )
+                                                    @can($roles[$title]['edit'])
+                                                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                                            data-bs-target="#editModal"
+                                                            onclick="editslider({{ $slider }})">Edit</button>
+                                                    @endcan
+                                                @else
+                                                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#editModal"
+                                                        onclick="editslider({{ $slider }})">Edit</button>
+                                                @endif
                                                 @if (request('limit') == null)
-                                                    <form method="POST"
-                                                        action="{{ route('admin.sliders.destroy', $slider) }}"
-                                                        style="display:inline-block">
-                                                        @csrf @method('DELETE')
-                                                        <button class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Are you sure?')">Delete</button>
-                                                    </form>
+                                                    @if (in_array($title, array_keys($roles)) && $roles[$title]['delete'] )
+                                                        @can($roles[$title]['delete'])
+                                                            <form method="POST"
+                                                                action="{{ route('admin.sliders.destroy', $slider) }}"
+                                                                style="display:inline-block">
+                                                                @csrf @method('DELETE')
+                                                                <button class="btn btn-sm btn-danger"
+                                                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                                            </form>
+                                                        @endcan
+                                                    @else
+                                                        <form method="POST"
+                                                            action="{{ route('admin.sliders.destroy', $slider) }}"
+                                                            style="display:inline-block">
+                                                            @csrf @method('DELETE')
+                                                            <button class="btn btn-sm btn-danger"
+                                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                                        </form>
                                                     @endif
-                                                </td>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

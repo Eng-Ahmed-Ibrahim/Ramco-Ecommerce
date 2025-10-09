@@ -2,7 +2,7 @@
     <div class=" pt-5 pb-2 px-3">
         <div class="row">
             <div class="col-md-4 col-12 mb-5 d-flex flex-column justify-content-between">
-                <img src="{{ asset('static/footer_logo_f45.png') }}" style="max-width: 340px" loading="lazy" alt="">
+                <img src="{{ asset('storage/'.$siteSettings['logos']['site_footer_logo']) }}" style="max-width: 340px" loading="lazy" alt="">
                 <div class=" d-md-flex d-none gap-2 ">
 
                     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">

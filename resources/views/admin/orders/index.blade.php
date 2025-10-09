@@ -75,8 +75,10 @@
                                         <tr>
                                             <td>
 
+                                                @can('orders-show')
                                                 <a href="{{ route('admin.orders.show', $order->id) }}"
                                                     >#{{ $order->id }}</a>
+                                                    @endcan
                                             </td>
                                             <td>{{ $order->full_name }}</td>
                                             <td>{{ $order->phone }}</td>
@@ -97,8 +99,11 @@
 
 
                                             <td>
+                                                @can('orders-show')
                                                 <a href="{{ route('admin.orders.show', $order->id) }}"
                                                     class="btn btn-sm btn-info">Show</a>
+                                                    @endcan
+                                                    @can('orders-delete')
                                                 <form action="{{ route('admin.orders.destroy', $order->id) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
@@ -108,6 +113,7 @@
                                                         Delete
                                                     </button>
                                                 </form>
+                                                @endcan
 
                                             </td>
                                         </tr>

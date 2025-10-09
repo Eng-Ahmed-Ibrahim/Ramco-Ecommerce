@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\CurrencySeeder;
+use Database\Seeders\SettingsSeeder;
 use Database\Seeders\CategoriesSeeder;
+use Database\Seeders\PermissionSeeder;
 use Database\Seeders\SubCategoriesSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder
                 // SubCategoriesSeeder::class,
                 // CurrencySeeder::class,
                 // AdminSeeder::class,
+                PermissionSeeder::class,
+                // SettingsSeeder::class,
         ]);
     }
 }

@@ -22,11 +22,13 @@
                         <li class="breadcrumb-item text-muted">{{ $title }}</li>
                     </ul>
                 </div>
+                @can('sub categories-create')
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
 
                     <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                         data-bs-target="#addModal">Create</a>
                 </div>
+                @endcan
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -67,7 +69,9 @@
                                     <th>Name</th>
                                     <th>Category</th>
 
+                                    @canany(['sub categories-edit','sub categories-delete'])
                                     <th>Actions</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,15 +80,19 @@
                                     <tr>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->category->name }}</td>
+                                        @canany(['sub categories-edit','sub categories-delete'])
                                         <td>
                                             <!-- Edit -->
+                                            @can('sub categories-edit')
                                             <button class="btn btn-sm btn-warning editBtn" data-id="{{ $category->id }}"
                                                 data-name="{{ $category->name }}"
                                                 data-category_id="{{ $category->category_id }}" data-bs-toggle="modal"
                                                 data-bs-target="#editModal">
                                                 Edit
                                             </button>
+                                            @endcan
 
+                                            @can('sub categories-delete')
                                             <!-- Delete -->
                                             <form method="POST"
                                                 action="{{ route('admin.sub_category.destroy', $category) }}"
@@ -94,7 +102,9 @@
                                                 <button class="btn btn-sm btn-danger"
                                                     onclick="return confirm('Are you sure?')">Delete</button>
                                             </form>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @empty
                                     <tr>

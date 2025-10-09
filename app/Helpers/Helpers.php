@@ -16,6 +16,18 @@ use Illuminate\Support\Facades\Cache;
 
 class Helpers
 {
+    // Logos
+    public static function get_logos(){
+        return Cache::rememberForever('logos',function(){
+            return Setting::whereIn('key', ['site_header_logo', 'site_footer_logo', 'site_favicon'])
+            ->pluck('value', 'key')->toArray();
+        });
+    }
+       public static function cache_logos()
+    {
+        Cache::forget('logos');
+        return self::get_logos();
+    }
     // Exchange Rate
     public static function get_exchange_rate(){
         return Cache::rememberForever('exchange_rate',function(){

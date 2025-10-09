@@ -74,11 +74,13 @@
                          <li class="breadcrumb-item text-muted">{{ $title }}</li>
                      </ul>
                  </div>
+                 @can('products-create')
                  <div class="d-flex align-items-center gap-2 gap-lg-3">
 
                      <a href="{{ route('admin.products.create') }}" class="btn btn-sm fw-bold btn-primary">Add New
                          Product</a>
                  </div>
+                 @endcan
              </div>
          </div>
          <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -153,10 +155,18 @@
                                      <th>Sub Category</th>
                                      <th>Price</th>
                                      <th>Thumbnail</th>
+                                     @can('products-change status of home banners')
                                      <th>Home Banner</th>
+                                     @endcan
+                                     @can('products-change status of best seller')
                                      <th>Best Seller</th>
+                                     @endcan
+                                     @can('products-change status of best product')
                                      <th>Best Product</th>
+                                     @endcan
+                                     @can('products-change status of usd')
                                      <th>USD</th>
+                                     @endcan
 
                                      <th>Actions</th>
                                  </tr>
@@ -187,6 +197,7 @@
                                              <img src="{{ asset('storage/' . $product->thumbnail) }}" width="50">
                                          </td>
                                          {{-- Switches --}}
+                                         @can('products-change status of home banners')
                                          <td>
                                              <label class="switch">
                                                  <input type="checkbox" class="toggle-home-banner"
@@ -195,7 +206,9 @@
                                                  <span class="slider round"></span>
                                              </label>
                                          </td>
+                                         @endcan
 
+                                         @can('products-change status of best seller')
                                          <td>
                                              <label class="switch">
                                                  <input type="checkbox" class="toggle-switch" data-id="{{ $product->id }}"
@@ -204,7 +217,9 @@
                                                  <span class="slider round"></span>
                                              </label>
                                          </td>
+                                         @endcan
 
+                                         @can('products-change status of best product')
                                          <td>
                                              <label class="switch">
                                                  <input type="checkbox" class="toggle-switch" data-type="is_best_product"
@@ -213,6 +228,8 @@
                                                  <span class="slider round"></span>
                                              </label>
                                          </td>
+                                         @endcan 
+                                         @can('products-change status of usd')
                                          <td>
                                              <label class="switch">
                                                  <input type="checkbox" class="toggle-switch" data-type="is_usd"
@@ -221,19 +238,24 @@
                                                  <span class="slider round"></span>
                                              </label>
                                          </td>
+                                         @endcan
 
                                          <td>
 
                                              <div class="d-flex align-items-center justify-content-center gap-2">
 
+                                                @can('products-edit')
                                                  <a href="{{ route('admin.products.edit', $product) }}"
                                                      class="btn btn-warning btn-sm">Edit</a>
+                                                     @endcan 
+                                                     @can('products-delete')
                                                  <form action="{{ route('admin.products.destroy', $product) }}"
                                                      method="POST" style="display:inline-block">
                                                      @csrf @method('DELETE')
                                                      <button class="btn btn-danger btn-sm"
                                                          onclick="return confirm('Are you sure?')">Delete</button>
                                                  </form>
+                                                 @endcan
                                              </div>
 
                                          </td>

@@ -22,10 +22,12 @@
                         <li class="breadcrumb-item text-muted">{{ $title }}</li>
                     </ul>
                 </div>
+                @can('home page-create banner')
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
 
                     <a href="#" class="btn btn-sm fw-bold btn-primary"  data-bs-toggle="modal" data-bs-target="#addModal">Create</a>
                 </div>
+                @endcan
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -62,6 +64,7 @@
                                             <td><img style="height: 70px" src="{{ asset('storage/' . $banner->background ) }}" alt=""></td>
                                             <td>{{ $banner->align }}</td>
                                             <td class="d-flex gap-1">
+                                                @can('home page-edit banner')
                                                 <button class="btn btn-sm btn-warning editBtn"
                                                     data-id="{{ $banner->id }}" data-name="{{ $banner->name }}"
                                                     data-sub_title="{{ $banner->sub_title }}"
@@ -70,7 +73,9 @@
                                                     data-background="{{ $banner->background }}"
                                                     data-align="{{ $banner->align }}" data-bs-toggle="modal"
                                                     data-bs-target="#editModal">Edit</button>
+                                                    @endcan
 
+                                                    @can('home page-delete banner')
                                                 <form action="{{ route('admin.home-banners.destroy', $banner) }}" method="POST"
                                                     style="display:inline-block">
                                                     @csrf
@@ -78,6 +83,7 @@
                                                     <button class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Are you sure?')">Delete</button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

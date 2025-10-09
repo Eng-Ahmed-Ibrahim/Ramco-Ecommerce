@@ -37,6 +37,7 @@
                 <div class="card">
                     <div class="card-body p-lg-17">
 
+                        @can('dashboard-view')
                         <div class="container mt-4">
 
                             {{-- 4 Status Cards --}}
@@ -111,6 +112,11 @@
                             </div>
 
                         </div>
+                        @else
+                        <div>
+                            Welcome back
+                        </div>
+                        @endcan
 
 
 

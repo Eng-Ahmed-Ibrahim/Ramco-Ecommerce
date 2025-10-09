@@ -50,23 +50,25 @@
                                     <tr>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->slug }}</td>
-                                        <td>
-                                            <!-- Edit -->
-                                            <button class="btn btn-sm btn-warning editBtn" data-id="{{ $category->id }}"
-                                                data-name="{{ $category->name }}" data-bs-toggle="modal"
-                                                data-bs-target="#editModal">
-                                                Edit
-                                            </button>
+                                        @can('categories-edit')
+                                            <td>
+                                                <!-- Edit -->
+                                                <button class="btn btn-sm btn-warning editBtn" data-id="{{ $category->id }}"
+                                                    data-name="{{ $category->name }}" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal">
+                                                    Edit
+                                                </button>
 
-                                            <!-- Delete -->
-                                            {{-- <form method="POST" action="{{ route('admin.categories.destroy', $category) }}"
-                                                style="display:inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure?')">Delete</button>
-                                            </form> --}}
-                                        </td>
+                                                <!-- Delete -->
+                                                {{-- <form method="POST" action="{{ route('admin.categories.destroy', $category) }}"
+                                            style="display:inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form> --}}
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @empty
                                     <tr>

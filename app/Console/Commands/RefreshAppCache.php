@@ -22,6 +22,8 @@ class RefreshAppCache extends Command
         Helpers::cache_best_products();
         Helpers::cache_best_sellers();
         Helpers::cache_use_guides();
+        Helpers::cache_logos();
+        
         
         $this->info('✅ Custom cache updated!');
     }

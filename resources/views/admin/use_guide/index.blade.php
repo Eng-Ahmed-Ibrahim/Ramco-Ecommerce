@@ -22,10 +22,12 @@
                         <li class="breadcrumb-item text-muted">{{ $title }}</li>
                     </ul>
                 </div>
+                @can('use guides-create')
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
 
                     <a href="{{ route('admin.UseGuide.create') }}" class="btn btn-sm fw-bold btn-primary">Create</a>
                 </div>
+                @endcan
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -56,9 +58,12 @@
                                             </td>
                                             <td>{{ $guide->title }}</td>
                                             <td>
+                                                @can('use guides-edit')
                                                 <a href="{{ route('admin.UseGuide.edit', $guide->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
+                                                    @endcan
 
+                                                @can('use guides-delete')
                                                 <form action="{{ route('admin.UseGuide.destroy', $guide->id) }}"
                                                     method="POST" style="display:inline-block;"
                                                     onsubmit="return confirm('Are you sure?');">
@@ -66,6 +71,7 @@
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @empty

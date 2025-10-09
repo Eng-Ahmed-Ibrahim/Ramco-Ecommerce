@@ -22,7 +22,7 @@
                             <li class="breadcrumb-item text-muted">{{ $title }}</li>
                         </ul>
                     </div>
-     
+
                 </div>
             </div>
             <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -57,9 +57,12 @@
 
 
                                             <td>
-                                                <a href="{{ route('admin.messages.show', $message->id) }}"
-                                                    class="btn btn-info btn-sm">Show</a>
+                                                @can('messages-show')
+                                                    <a href="{{ route('admin.messages.show', $message->id) }}"
+                                                        class="btn btn-info btn-sm">Show</a>
+                                                @endcan
 
+                                                @can('messages-delete')
                                                 <form action="{{ route('admin.messages.destroy', $message->id) }}"
                                                     method="POST" style="display:inline-block;"
                                                     onsubmit="return confirm('Are you sure?');">
@@ -67,6 +70,7 @@
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
