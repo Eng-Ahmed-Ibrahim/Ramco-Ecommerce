@@ -99,6 +99,21 @@ class PermissionSeeder extends Seeder
             "dashboard" => [
                 "view"
             ],
+            "settings" => [
+                "view general",
+                "update general",
+                'view exchange rates',
+                "update exchange rates",
+                "view branches",
+                "create branch",
+                "edit branch",
+                "delete branch",
+                "view socail media",
+                "create socail media",
+                "edit socail media",
+                "delete socail media",
+                
+            ],
         ];
         foreach ($permissions as $section => $sub_permissions) {
             foreach ($sub_permissions as $permission) {

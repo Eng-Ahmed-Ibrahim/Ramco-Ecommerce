@@ -22,11 +22,12 @@
                         <li class="breadcrumb-item text-muted">{{ $title }}</li>
                     </ul>
                 </div>
+                @can('settings-create socail media')
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-
                     <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                         data-bs-target="#addModal">Create</a>
                 </div>
+                @endcan
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -43,7 +44,9 @@
                                     <tr>
                                         <th>Link</th>
                                         <th>Icon</th>
+                                        @canany(['settings-edit socail media', 'settings-delete socail media'])
                                         <th>Actions</th>
+                                        @endcanany
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,10 +54,13 @@
                                         <tr>
                                             <td><a href="{{ $link->link }}" target="_blank">{{ $link->link }}</a></td>
                                             <td><i class="{{ $link->icon }}"></i> {{ $link->icon }}</td>
+                                            @canany(['settings-edit socail media', 'settings-delete socail media'])
                                             <td>
+                                                @can('settings-edit socail media')
                                                 <button class="btn btn-warning btn-sm"
                                                     onclick="openEditModal({{ $link->id }}, '{{ $link->link }}', '{{ $link->icon }}')">Edit</button>
-
+                                                @endcan
+                                                @can('settings-delete socail media')
                                                 <form action="{{ route('admin.social.destroy', $link->id) }}"
                                                     method="POST" style="display:inline-block;">
                                                     @csrf
@@ -62,7 +68,9 @@
                                                     <button onclick="return confirm('Are you sure?')"
                                                         class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
+                                                @endcan
                                             </td>
+                                            @endcanany
                                         </tr>
                                     @empty
                                         <tr>

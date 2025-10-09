@@ -21,10 +21,12 @@ $sub_title="Settings";
 					<li class="breadcrumb-item text-muted">{{ $title }}</li>
 				</ul>
 			</div>
+            @can('settings-create branch')
 			<div class="d-flex align-items-center gap-2 gap-lg-3">
 
 				<a  href="{{ route('admin.branches.create') }}"  class="btn btn-sm fw-bold btn-primary" >Create</a>
 			</div>
+            @endcan
 		</div>
 	</div>
 	<div id="kt_app_content" class="app-content flex-column-fluid">
@@ -43,7 +45,9 @@ $sub_title="Settings";
                 <th>Office Tel</th>
                 <th>Mobile</th>
                 <th>Emails</th>
+                @canany(['settings-edit branch', 'settings-delete branch'])
                 <th>Actions</th>
+                @endcan
             </tr>
         </thead>
         <tbody>
@@ -56,13 +60,19 @@ $sub_title="Settings";
                         Office: {{ $branch->office_email }} <br>
                         Factory: {{ $branch->factory_email }}
                     </td>
+                    @canany(['settings-edit branch', 'settings-delete branch'])
                     <td>
+                        @can('settings-edit branch')
                         <a href="{{ route('admin.branches.edit', $branch) }}" class="btn btn-sm btn-warning">Edit</a>
+                        @endcan
+                        @can('settings-delete branch')
                         <form action="{{ route('admin.branches.destroy', $branch) }}" method="POST" class="d-inline-block">
                             @csrf @method('DELETE')
                             <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</button>
                         </form>
+                        @endcan
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>

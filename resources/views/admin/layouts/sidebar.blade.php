@@ -154,6 +154,7 @@
                         </div>
                     @endcanany
                     {{-- Settings --}}
+                    @canany(['settings-view general', 'settings-view exchange rates', 'settings-view branches', 'settings-view socail media'])
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -167,6 +168,7 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
+                            @can('settings-view general')
                             <div class="menu-item">
                                 <a href=" {{ route('admin.general') }}" class="menu-link">
                                     <span class="menu-bullet">
@@ -175,6 +177,8 @@
                                     <span class="menu-title"> General</span>
                                 </a>
                             </div>
+                            @endcan
+                            @can('settings-view exchange rates')
                             <div class="menu-item">
                                 <a href=" {{ route('admin.currency.index') }}" class="menu-link">
                                     <span class="menu-bullet">
@@ -183,6 +187,8 @@
                                     <span class="menu-title">Exchange Rate</span>
                                 </a>
                             </div>
+                            @endcan
+                            @can('settings-view branches')
                             <div class="menu-item">
                                 <a href=" {{ route('admin.branches.index') }}" class="menu-link">
                                     <span class="menu-bullet">
@@ -191,6 +197,8 @@
                                     <span class="menu-title">Branches</span>
                                 </a>
                             </div>
+                            @endcan 
+                            @can('settings-view socail media')
                             <div class="menu-item">
                                 <a href=" {{ route('admin.social.index') }}" class="menu-link">
                                     <span class="menu-bullet">
@@ -199,9 +207,11 @@
                                     <span class="menu-title">Social Media</span>
                                 </a>
                             </div>
+                            @endcan
 
                         </div>
                     </div>
+                    @endcan
                     {{-- End of Home page --}}
                     <!-- Repairs -->
                     @can('rapairs-view')

@@ -41,9 +41,12 @@
                          
                             </div>
 
+
+                            @can('settings-update exchange rates')
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="w-100 btn btn-primary">Save</button>
                             </div>
+                            @endcan
                         </form>
 
                     </div>

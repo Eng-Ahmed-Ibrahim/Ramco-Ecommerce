@@ -56,7 +56,9 @@
                             <input type="file" name="site_favicon" class="form-control" accept="image/*">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        @can('settings-update general')
+                        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                        @endcan
                     </form>
 
                 </div>
