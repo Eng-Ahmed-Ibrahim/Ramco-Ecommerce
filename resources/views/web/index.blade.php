@@ -555,7 +555,7 @@
         @endif
 
 
-        <section class="help ">
+        {{-- <section class="help ">
             <div class="container">
 
                 <div class="mb-5">
@@ -601,7 +601,7 @@
             </div>
 
 
-        </section>
+        </section> --}}
 
 
     </section>

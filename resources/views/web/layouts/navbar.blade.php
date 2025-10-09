@@ -85,9 +85,9 @@
                         </a>
                     </li>
                 @endforeach
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.repair.index') }}">Repair </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('web.messages.index') }}">Contact Us </a>
