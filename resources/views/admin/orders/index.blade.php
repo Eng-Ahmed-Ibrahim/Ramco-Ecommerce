@@ -98,21 +98,25 @@
                                             </td>
 
 
-                                            <td>
+                                            <td >
                                                 @can('orders-show')
+                                                <div style="display: flex; align-items:center; justify-content:center;gap:5px;">
+
                                                 <a href="{{ route('admin.orders.show', $order->id) }}"
-                                                    class="btn btn-sm btn-info">Show</a>
+                                                    class="btn btn-sm btn-info" style="color: white">Show</a>
                                                     @endcan
                                                     @can('orders-delete')
                                                 <form action="{{ route('admin.orders.destroy', $order->id) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                    <button style="color: white"  type="submit" class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Are you sure you want to delete this order? This action cannot be undone.')">
                                                         Delete
                                                     </button>
                                                 </form>
+                                                </div>
+
                                                 @endcan
 
                                             </td>
