@@ -234,9 +234,11 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <button class="w-100 main-btn mobile mobile-place-order">Place Order</button>
+                                                            @if (count($items) > 0)
 
-                                    </div>
+                                        <button class="w-100 main-btn mobile mobile-place-order">Place Order</button>
+                                        @endif
+                                    </div>  
                                 </div>
 
                             </div>
