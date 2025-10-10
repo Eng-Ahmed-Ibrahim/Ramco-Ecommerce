@@ -184,6 +184,15 @@ span {
     .navbar-nav .nav-link.show {
         color: #353535;
     }
+    .navbar-brand  {
+    color: var(--Colors-Primary-500, #1F1F1F);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    position: relative;
+    right: -30px;
+}
 }
 
 /* القائمة تاخد عرض الشاشة بالكامل */
