@@ -63,7 +63,22 @@
         .products .card {
             border-radius: var(--Radius-10, 28px);
         }
+    </style>
+    <style>
+        .subcategory-slider {
+            padding: 20px 0;
+        }
 
+        .subcategory-slider .swiper-slide {
+            width: auto;
+        }
+
+        .category-btn {
+            white-space: nowrap;
+        }
+        .swiper-slide{
+            padding: 8px;
+        }
     </style>
 
 @endsection
@@ -80,15 +95,21 @@
                     dispensers and others
                 </div>
             </div>
-            <div class="d-flex gap-3 align-items-center flex-wrap">
-                @foreach ($sub_categories as $sub_category)
-                    <a href="?sub_category_id={{ $sub_category->id }}"
-                        class="category-btn {{ request('sub_category_id') == $sub_category->id ? 'active' : '' }}">
-                        {{ $sub_category->name }}
-                    </a>
-                @endforeach
+            <div class="swiper subcategory-slider">
+                <div class="swiper-wrapper">
+                    @foreach ($sub_categories as $sub_category)
+                        <div class="swiper-slide">
+                            <a href="?sub_category_id={{ $sub_category->id }}"
+                                class="category-btn {{ request('sub_category_id') == $sub_category->id ? 'active' : '' }}">
+                                {{ $sub_category->name }}
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
 
             </div>
+
+
             <div class="d-flex justify-content-between align-items-center my-3">
                 <div class="filters">Filters <i class="mx-2 fa-solid fa-chevron-down"></i></div>
                 <div class="filters">Sort By <i class="mx-2 fa-solid fa-chevron-down"></i></div>
@@ -96,10 +117,11 @@
             <div class="mb-3 products">
                 <div class="row">
                     @forelse ($products as $product)
-
-
                         <div class="col-md-4 col-sm-6 col-12 mb-4">
-                            @include('web.partials.product_card', ['product' => $product,'category'=>$category])
+                            @include('web.partials.product_card', [
+                                'product' => $product,
+                                'category' => $category,
+                            ])
 
                         </div>
 
@@ -117,4 +139,23 @@
 @endsection
 @section('js')
 
+    <script>
+        const swiper = new Swiper('.subcategory-slider', {
+            slidesPerView: 'auto',
+            spaceBetween: 12,
+            freeMode: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: {
+                    spaceBetween:0
+                },
+                768: {
+                    spaceBetween: 0
+                }
+            }
+        });
+    </script>
 @endsection

@@ -169,7 +169,8 @@
                             <div class="main-border-bottom p-2 mb-3">Shopping List</div>
                             <div class="cart-products mb-3 ">
                                 @forelse ($items as $item)
-                                    <div class="product main-border-bottom d-flex align-items-center gap-2 mb-3" data-price-usd="{{ $item->price }}">
+                                    <div class="product main-border-bottom d-flex align-items-center gap-2 mb-3"
+                                        data-price-usd="{{ $item->price }}">
                                         <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                             style="height: 150px;" alt="">
 
@@ -182,7 +183,8 @@
                                                     </div>
                                                     <span class="color" style="background: {{ $item->color }};"></span>
                                                 </div>
-                                                <div class="price">{{ GetCurrencyExchange($item->product->is_usd,$item->price) }} </div>
+                                                <div class="price">
+                                                    {{ GetCurrencyExchange($item->product->is_usd, $item->price) }} </div>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="text-muted">count: {{ $item->quantity }}</div>
@@ -209,16 +211,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Subtotal</div>
-                                            <div class="muted-color subtotal" >{{ count($items) > 0 ?   GetCurrencyExchange($items[0]->product->is_usd,$order_summary['subtotal']) : 0.00 }}  </div>
+                                            <div class="muted-color subtotal">
+                                                {{ count($items) > 0 ? GetCurrencyExchange($items[0]->product->is_usd, $order_summary['subtotal']) : 0.0 }}
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-between mb-3">
                                             <div class="muted-color">Discount</div>
                                             <div class="muted-color" id="cart-discount">{{ $order_summary['discount'] }}
-                                                 </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -229,16 +233,17 @@
                                     <div class="col-6">
                                         <div class="d-flex justify-content-between mb-3">
                                             <div>Total</div>
-                                            <div id="cart-total">{{ count($items) > 0 ?  GetCurrencyExchange($items[0]->product->is_usd,$order_summary['total']) :0.00 }} </div>
+                                            <div id="cart-total">
+                                                {{ count($items) > 0 ? GetCurrencyExchange($items[0]->product->is_usd, $order_summary['total']) : 0.0 }}
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="mt-3">
-                                                            @if (count($items) > 0)
-
-                                        <button class="w-100 main-btn mobile mobile-place-order">Place Order</button>
+                                        @if (count($items) > 0)
+                                            <button class="w-100 main-btn mobile mobile-place-order">Place Order</button>
                                         @endif
-                                    </div>  
+                                    </div>
                                 </div>
 
                             </div>
@@ -300,7 +305,7 @@
                 });
             });
         });
-        document.querySelector('.mobile-place-order').onclick=()=>{
+        document.querySelector('.mobile-place-order').onclick = () => {
             document.getElementById('place-order').submit();
         }
     </script>
