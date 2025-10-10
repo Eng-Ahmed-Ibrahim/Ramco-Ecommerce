@@ -69,6 +69,3 @@ Route::middleware('auth:customer')->name('web.')->group(function () {
         Route::post('/store', 'store')->name('store');
     });
 });
-Route::get('/user',function(){
-    return getUser();
-});

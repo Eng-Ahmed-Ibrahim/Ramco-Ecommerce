@@ -24,8 +24,8 @@ use App\Http\Controllers\Admin\SubCategoriesController;
 
 
 // Route::middleware(['guest:admin'])->group(function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login/submit', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login/submit', [AuthController::class, 'login'])->name('login.submit');
 // });
 
 Route::middleware(['auth:admin'])->group(function () {
@@ -78,7 +78,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/currency', [SettingController::class, 'update_exchange_rate'])->name('currency.update');
     Route::get('/general', [SettingController::class, 'general'])->name('general');
     Route::put('/general', [SettingController::class, 'updateGeneral'])->name('settings.general.update');
-    
+
     Route::prefix('admins')->name('admins.')->controller(AdminController::class)->group(function () {
         Route::get('/',  'index')->name('index');
         Route::post('/store', 'store')->name('store');
