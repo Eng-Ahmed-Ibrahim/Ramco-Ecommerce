@@ -52,7 +52,7 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/{order}', 'show')->name('show');
             Route::post('/{order}/update-status', 'updateStatus')->name('updateStatus');
             Route::delete('/{order}', 'destroy')->name('destroy');
-            Route::post('/update-status', 'updateStatus')->name('updateStatus');
+            Route::post('/update-status', 'updateStatus')->middleware('can:orders-change status')->name('updateStatus');
         });
 
     Route::resource('repair', RepairController::class);
